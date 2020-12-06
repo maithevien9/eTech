@@ -4,6 +4,7 @@ import icSchedule from '../../../../Images/Icons/Schedule.png';
 import {useNavigation} from '@react-navigation/native';
 import GetLocalRecy from '../../../../../src/RestAPI/Carrier/get-local-Recy-api';
 import {connect} from 'react-redux';
+import {Button, Linking} from 'react-native';
 const MainView = (props) => {
   const navigation = useNavigation();
   const HandleGetLocalRecy = (TimeLine, Time) => {
@@ -17,7 +18,7 @@ const MainView = (props) => {
     GetLocalRecy(dataDay)
       .then((json) => {
         var data = JSON.parse(JSON.stringify(json));
-        // console.log(data);
+        //console.log(data);
         if (data.dataString === 'THANH_CONG') {
           props.dispatch({
             type: 'setdataLocolRecy',
@@ -30,6 +31,7 @@ const MainView = (props) => {
         console.error(error);
       });
   };
+
   return (
     <View>
       <View style={styles.wrapper}>
