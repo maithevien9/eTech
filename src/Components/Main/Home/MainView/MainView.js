@@ -1,124 +1,259 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import icSchedule from '../../../../Images/Icons/Schedule.png';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
+import icBin from '../../../../Images/Icons/delete.png';
+import icSchedule from '../../../../Images/Icons/date.png';
+import icGift from '../../../../Images/Icons/giftbox.png';
+import icScore from '../../../../Images/Icons/scoreboard.png';
 import {useNavigation} from '@react-navigation/native';
-import GetLocalRecy from '../../../../../src/RestAPI/Carrier/get-local-Recy-api';
+import GetScore from '../../../../RestAPI/Member/get-score-api';
+import CheckRycuclables from '../../../../RestAPI/Member/get-score-api';
 import {connect} from 'react-redux';
-import {Button, Linking} from 'react-native';
+import View1 from './Category/View1';
+import View2 from './Category/View2';
+import View3 from './Category/View3';
+// var ScrollableTabView = require('react-native-scrollable-tab-view');
+var ScrollableTabView = require('react-native-scrollable-tab-view');
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 const MainView = (props) => {
   const navigation = useNavigation();
-  const HandleGetLocalRecy = (TimeLine, Time) => {
-    var YY = TimeLine.slice(6, 10);
-    var MM = TimeLine.slice(3, 5);
-    var DD = TimeLine.slice(0, 2);
+  const [scores, SetScores] = useState(0);
 
-    var dataDay = YY + '-' + MM + '-' + DD + ' ' + Time;
-
-    //console.log(dataDay);
-    GetLocalRecy(dataDay)
-      .then((json) => {
-        var data = JSON.parse(JSON.stringify(json));
-        //console.log(data);
-        if (data.dataString === 'THANH_CONG') {
-          props.dispatch({
-            type: 'setdataLocolRecy',
-            data: data.data,
-          });
-          navigation.navigate('MapView');
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  useEffect(() => {
+    async function CheckRecyle() {
+      // CheckRycuclables(props.dataLogin.token)
+      //   .then((json) => {
+      //     var data = JSON.parse(JSON.stringify(json));
+      //     console.log(data.data[0].score);
+      //     props.dispatch({
+      //       type: 'setScore',
+      //       data: data.data[0].score,
+      //     });
+      //   })
+      //   .catch((error) => {
+      //     console.error(error + 'fail');
+      //   });
+    }
+    CheckRecyle();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const handleCatergery = () => {
+    navigation.navigate('Category');
   };
+  const handleCollect = () => {
+    navigation.navigate('Collect');
+  };
+  const handleGift = () => {
+    navigation.navigate('Gift');
+  };
+  const handlePoints = () => {
+    console.log(JSON.stringify(props.Scores));
 
+    navigation.navigate('Points');
+  };
   return (
     <View>
       <View style={styles.wrapper}>
-        <View style={styles.wrapperText}>
-          <Text style={styles.StylteText}>Ngày: 06/12/2020</Text>
-        </View>
-        <View style={styles.wrapperTime}>
-          <View style={styles.wrapperRow}>
-            <TouchableOpacity
-              style={styles.wrapperTouch}
-              onPress={() => {
-                HandleGetLocalRecy('06/12/2020', '11:30');
-              }}>
-              <Image source={icSchedule} style={styles.wrapperImage} />
-              <Text style={styles.StylteTextTime}>11:30 - 12:30</Text>
-            </TouchableOpacity>
-            <View style={{width: 10}} />
-            <TouchableOpacity style={styles.wrapperTouch}>
-              <Image source={icSchedule} style={styles.wrapperImage} />
-              <Text style={styles.StylteTextTime}>12:30 - 13:30</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.wrapperRow}>
-            <TouchableOpacity style={styles.wrapperTouch}>
-              <Image source={icSchedule} style={styles.wrapperImage} />
-              <Text style={styles.StylteTextTime}>16:30 - 17:30</Text>
-            </TouchableOpacity>
-            <View style={{width: 10}} />
-            <TouchableOpacity style={styles.wrapperTouch}>
-              <Image source={icSchedule} style={styles.wrapperImage} />
-              <Text style={styles.StylteTextTime}>17:30 - 18:30</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        <ScrollableTabView
+          tabBarUnderlineStyle={styles.tabBarUnderline}
+          tabBarActiveTextColor={'#009966'}
+          tabBarUnderlineColor={'#009966'}
+          tabBarTextStyle={{
+            fontFamily: 'monospace',
+            fontSize: 15,
+            fontWeight: 'bold',
+          }}>
+          <View1 tabLabel="Nhựa" />
+          <View2 tabLabel="Giấy" />
+          <View3 tabLabel="Kim Loại" />
+        </ScrollableTabView>
+        {/* <View style={styles.wrapperRowCater}>
+        <TouchableOpacity
+          style={styles.wrapperCategory}
+          onPress={() => {
+            handleCatergery();
+          }}>
+          <Image source={icBin} style={styles.wrapperImage} />
+          <Text style={styles.styleTextInMain}>Hướng dẫn Phân loại</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.wrapperCategory2}
+          onPress={handleCollect}>
+          <Image source={icSchedule} style={styles.wrapperImage} />
+          <Text style={styles.styleTextInMain2}>Thông báo thu gom</Text>
+        </TouchableOpacity>
+      </View> */}
       </View>
+      {/* <View style={styles.wrapperAdd}>
+        <View style={styles.wrapperBtnCartAdd}>
+          <Text style={styles.textAdd}>+</Text>
+        </View>
+      </View> */}
     </View>
   );
 };
 const styles = StyleSheet.create({
   wrapper: {
-    marginTop: '2%',
-    height: '91%',
-    width: '98%',
-
-    marginLeft: '1%',
-    // borderWidth: 0.9,
+    height: (windowHeight * 4) / 4,
+    backgroundColor: 'white',
   },
-  wrapperText: {
-    marginTop: '2%',
-    marginLeft: '3%',
+  tabBarUnderline: {
+    backgroundColor: '#009966',
+  },
+  textAdd: {
+    color: '#009966',
+    fontSize: 49,
+    fontFamily: 'monospace',
+    fontWeight: 'bold',
+  },
+  wrapperBtnCartAdd: {
+    height: '25%',
+    width: '16%',
+    backgroundColor: 'white',
+    marginLeft: (windowWidth * 2.3) / 3,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderRadius: 45,
+  },
+  wrapperAdd: {
+    height: (windowHeight * 1.2) / 4,
+    backgroundColor: 'white',
+  },
+  wrapperScore: {
+    height: 60,
+    width: '85%',
+    backgroundColor: 'white',
+    elevation: 15,
     marginBottom: '20%',
+    borderWidth: 1,
+    borderRadius: 20,
+    marginLeft: '8%',
+    marginTop: '8%',
+    paddingLeft: '5%',
+    justifyContent: 'center',
   },
-  wrapperImage: {height: 40, width: 40},
-  StylteText: {
+  styleText: {
     fontSize: 15,
     fontFamily: 'monospace',
-    fontWeight: 'bold',
+    // color: 'white',
   },
-  StylteTextTime: {
-    marginTop: '10%',
-    fontSize: 18,
-    fontFamily: 'monospace',
-    fontWeight: 'bold',
-    color: 'black',
-  },
-  wrapperRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  wrapperTouch: {
-    height: 170,
-    width: '45%',
-    borderWidth: 2,
-    borderColor: '#009966',
+  wrapperCategory: {
+    height: 150,
+    width: 160,
+    backgroundColor: 'white',
+    elevation: 10,
+    alignItems: 'center',
     justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 30,
-    marginTop: 15,
+    marginBottom: '2%',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#009966',
   },
-  wrapperTime: {
+  wrapperCategory2: {
+    height: 150,
+    width: 160,
+    backgroundColor: 'white',
+    elevation: 10,
     alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: '4%',
+    borderRadius: 10,
+    borderWidth: 1,
+
+    borderColor: '#8A4B08',
+  },
+  wrapperCategory3: {
+    height: 150,
+    width: 160,
+    backgroundColor: 'white',
+    elevation: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: '4%',
+    borderRadius: 10,
+    borderWidth: 1,
+
+    borderColor: '#086A87',
+  },
+  wrapperCategory4: {
+    height: 150,
+    width: 160,
+    backgroundColor: 'white',
+    elevation: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: '4%',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#610B5E',
+  },
+  wrapperRowCater: {
+    marginTop: '10%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginHorizontal: '5%',
+    flexWrap: 'wrap',
+  },
+  styleTextInMain: {
+    fontWeight: 'bold',
+    fontSize: 13,
+    fontFamily: 'monospace',
+    marginTop: '10%',
+
+    color: '#009966',
+  },
+  styleTextInMain2: {
+    fontWeight: 'bold',
+    fontSize: 13,
+    fontFamily: 'monospace',
+    marginTop: '10%',
+
+    color: '#8A4B08',
+  },
+  styleTextInMain3: {
+    fontWeight: 'bold',
+    fontSize: 13,
+    fontFamily: 'monospace',
+    marginTop: '10%',
+
+    color: '#086A87',
+  },
+  styleTextInMain4: {
+    fontWeight: 'bold',
+    fontSize: 13,
+    fontFamily: 'monospace',
+    marginTop: '10%',
+
+    color: '#610B5E',
+  },
+  wrapperImage: {height: 50, width: 50},
+  wrapperTest: {
+    height: 60,
+    width: '85%',
+    backgroundColor: 'white',
+    elevation: 20,
+    marginBottom: '20%',
+    borderWidth: 1,
+    borderRadius: 5,
+    marginLeft: '8%',
+    marginTop: '8%',
+    paddingLeft: '5%',
+    justifyContent: 'center',
   },
 });
 
 function mapStateToProps(state) {
   return {
-    dataLocolRecy: state.dataLocolRecyReducer,
+    dataLogin: state.dataLogin,
+    Scores: state.Scores,
   };
 }
 export default connect(mapStateToProps)(MainView);

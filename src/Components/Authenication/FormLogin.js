@@ -9,80 +9,134 @@ import {
   Alert,
   Image,
 } from 'react-native';
-
+import ICFacebook from '../../Images/Icons/facebook.png';
+import ICEmail from '../../Images/Icons/gmail.png';
 import SaveDataLogin from '../../AsyncStorage/SaveDataLogin';
 import LoginAPI from '../../RestAPI/User/login-api';
 import {connect} from 'react-redux';
 const FormLogin = (props) => {
+  // useEffect(() => {
+  //   var url = 'http://localhost:8000/Login';
+  //   var myHeaders = new Headers();
+  //   myHeaders.append('Content-Type', 'application/json');
+
+  //   var raw = JSON.stringify({User: '1', PassWord: '2'});
+
+  //   var requestOptions = {
+  //     method: 'POST',
+  //     headers: myHeaders,
+  //     body: raw,
+  //     redirect: 'follow',
+  //   };
+
+  //   fetch('http://localhost:8000/Login', requestOptions)
+  //     .then((response) => response.text())
+  //     .then((result) => console.log(result))
+  //     .catch((error) => console.log('error', error));
+  // }, []);
   const navigation = useNavigation();
   const [emailLogin, setemailLogin] = React.useState('');
   const [mkLogin, setmkLogin] = React.useState('');
 
   const HandleLogin = () => {
-    if (emailLogin !== '' && mkLogin !== '') {
-      LoginAPI(emailLogin, mkLogin)
-        .then((json) => {
-          var DataLoginUser = JSON.parse(JSON.stringify(json));
-          console.log(DataLoginUser);
+    //console.log(emailLogin + '/' + mkLogin);
 
-          if (DataLoginUser.dataString === 'THANH_CONG') {
-            if (DataLoginUser.data[0].IDdecentralization === 2) {
-              props.dispatch({
-                type: 'setDataLogin',
-                data: DataLoginUser,
-              });
-              SaveDataLogin(DataLoginUser);
-              console.log('OK');
-              navigation.navigate('Main');
-            } else {
-              Alert.alert(
-                'Nofity',
-                'Login not Success',
-                [
-                  {
-                    text: 'Cancel',
-                    onPress: () => console.log('Cancel Pressed'),
-                    style: 'cancel',
-                  },
-                  {text: 'OK', onPress: () => console.log('OK Pressed')},
-                ],
-                {cancelable: false},
-              );
-            }
-          } else {
-            Alert.alert(
-              'Nofity',
-              'Login not Success',
-              [
-                {
-                  text: 'Cancel',
-                  onPress: () => console.log('Cancel Pressed'),
-                  style: 'cancel',
-                },
-                {text: 'OK', onPress: () => console.log('OK Pressed')},
-              ],
-              {cancelable: false},
-            );
-          }
-        })
-        .catch((error) => {
-          console.error(error + 'fail');
-        });
+    if (emailLogin !== '' && mkLogin !== '') {
+      // LoginAPI(emailLogin, mkLogin)
+      //   .then((json) => {
+      //     var DataLoginUser = JSON.parse(JSON.stringify(json));
+      //     //console.log(DataLoginUser);
+
+      //     if (DataLoginUser.dataString === 'THANH_CONG') {
+      //       if (DataLoginUser.data[0].IDdecentralization === 1) {
+      //         props.dispatch({
+      //           type: 'setDataLogin',
+      //           data: DataLoginUser,
+      //         });
+      //         SaveDataLogin(DataLoginUser);
+      //         console.log('OK');
+      //         navigation.navigate('Main');
+      //       } else {
+      //         Alert.alert(
+      //           'Nofity',
+      //           'Login not Success',
+      //           [
+      //             {
+      //               text: 'Cancel',
+      //               onPress: () => console.log('Cancel Pressed'),
+      //               style: 'cancel',
+      //             },
+      //             {text: 'OK', onPress: () => console.log('OK Pressed')},
+      //           ],
+      //           {cancelable: false},
+      //         );
+      //       }
+      //     } else {
+      //       Alert.alert(
+      //         'Nofity',
+      //         'Login not Success',
+      //         [
+      //           {
+      //             text: 'Cancel',
+      //             onPress: () => console.log('Cancel Pressed'),
+      //             style: 'cancel',
+      //           },
+      //           {text: 'OK', onPress: () => console.log('OK Pressed')},
+      //         ],
+      //         {cancelable: false},
+      //       );
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     console.error(error + 'fail');
+      //   });
+      navigation.navigate('SelectRole');
     } else {
-      Alert.alert(
-        'Nofity',
-        'Please input Data Login',
-        [
-          {
-            text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
-            style: 'cancel',
-          },
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ],
-        {cancelable: false},
-      );
+      // Alert.alert(
+      //   'Nofity',
+      //   'Please input Data Login',
+      //   [
+      //     {
+      //       text: 'Cancel',
+      //       onPress: () => console.log('Cancel Pressed'),
+      //       style: 'cancel',
+      //     },
+      //     {text: 'OK', onPress: () => console.log('OK Pressed')},
+      //   ],
+      //   {cancelable: false},
+      // );
+      navigation.navigate('SelectRole');
     }
+
+    // if (emailLogin !== '' && mkLogin !== '') {
+    //   LoginAPI(emailLogin, mkLogin)
+    //     .then((json) => {
+    //       var DataLoginUser = JSON.parse(JSON.stringify(json));
+    //       //setDatalogin(json);
+    //       if (DataLoginUser.dataString === 'THANH_CONG') {
+    //       }
+    //       // .then((json) => {
+    //       //   var DataLoginUser = JSON.parse(JSON.stringify(json));
+    //       //   console.log(DataLoginUser);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // } else {
+    //   Alert.alert(
+    //     'Nofity',
+    //     'Please input Data Login',
+    //     [
+    //       {
+    //         text: 'Cancel',
+    //         onPress: () => console.log('Cancel Pressed'),
+    //         style: 'cancel',
+    //       },
+    //       {text: 'OK', onPress: () => console.log('OK Pressed')},
+    //     ],
+    //     {cancelable: false},
+    //   );
+    // }
   };
   return (
     <View style={styles.wrapperInput}>
@@ -98,7 +152,16 @@ const FormLogin = (props) => {
         style={styles.textInput}
         placeholder="PassWord"
       />
-
+      {/* <TouchableOpacity style={styles.ButtonFB}>
+        <Image style={styles.stretch} source={ICFacebook} />
+        <Text style={styles.Text3}>Login with Facebook</Text>
+        <View></View>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.ButtonEmail}>
+        <Image style={styles.stretch} source={ICEmail} />
+        <Text style={styles.Text3}>Login with Email</Text>
+        <View></View>
+      </TouchableOpacity> */}
       <TouchableOpacity style={styles.Button} onPress={HandleLogin}>
         <Text style={styles.Text2}>SIGN IN</Text>
       </TouchableOpacity>

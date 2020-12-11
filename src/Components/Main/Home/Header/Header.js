@@ -9,7 +9,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import icMenu from '../../../../Images/Icons/menu.png';
+import icMenu from '../../../../Images/Icons/menu2.png';
 const {height} = Dimensions.get('window');
 
 class Header extends Component {
@@ -27,7 +27,7 @@ class Header extends Component {
             style={{justifyContent: 'center', alignItems: 'center'}}>
             <Image source={icMenu} style={styles.iconStyle}></Image>
           </TouchableOpacity>
-          <Text style={styles.textStyle}>ETECH DREAM</Text>
+          <Text style={styles.textStyle}>Etech Dream</Text>
           <View style={styles.wrapperWrong} />
         </View>
         {/* <View style={styles.wrapper2}>
@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
     borderColor: '#808080',
   },
   iconStyle: {
-    width: 25,
-    height: 25,
+    width: 22,
+    height: 22,
   },
   textInput: {
     marginTop: 10,
@@ -82,10 +82,11 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: 'monospace',
     color: 'white',
+    fontWeight: 'bold',
   },
   wrapperWrong: {
-    width: 25,
-    height: 25,
+    width: 15,
+    height: 15,
   },
   textStyleHeader: {
     fontSize: 28,

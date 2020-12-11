@@ -11,15 +11,51 @@ import QA from '../../Images/Icons/qa.png';
 import QA2 from '../../Images/Icons/qa2.png';
 import User from '../../Images/Icons/profile-user2.png';
 import User2 from '../../Images/Icons/profile-user.png';
+import Contact from './Contact/Contact';
 import Home from './Home/Home';
+import Notify from './Notify/NotifyView';
+import About from './About/about';
+import ContactMain from './Contact/Contact';
+import GetInforUser from '../../RestAPI/User/get-infor-user';
 import {connect} from 'react-redux';
+import NotifyAPI from '../../RestAPI/Notify/get-notify-api';
 
 const Main = (props) => {
   const [selectedTab, setSelectedTab] = React.useState('home');
   const HandleSelectContact = () => {
+    // GetInforUser(props.dataLogin.token)
+    //   .then((json) => {
+    //     var data = JSON.parse(JSON.stringify(json));
+    //     // console.log(data);
+    //     if (data.dataString === 'THANH_CONG') {
+    //       props.dispatch({
+    //         type: 'setInforUser',
+    //         data: data.data,
+    //       });
+    //       // setSelectedTab('Contact');
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.error(error + 'fail');
+    //   });
     setSelectedTab('Contact');
   };
   const HandleSelectNotify = () => {
+    // NotifyAPI(props.dataLogin.token)
+    //   .then((json) => {
+    //     var data = JSON.parse(JSON.stringify(json));
+    //     console.log(data);
+    //     props.dispatch({
+    //       type: 'setdataNotify',
+    //       data: data.data,
+    //     });
+    //     if (data.dataString === 'THANH_CONG') {
+    //       setSelectedTab('notify');
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.error(error + 'fail');
+    //   });
     setSelectedTab('notify');
   };
   return (
@@ -36,7 +72,8 @@ const Main = (props) => {
       </TabNavigator.Item>
       <TabNavigator.Item
         selected={selectedTab === 'notify'}
-        title="Thông Báo"
+        title="Giỏ Hàng"
+        badgeText={props.Cart.length}
         renderIcon={() => (
           <Image source={icNotify} style={styles.wrapperImage} />
         )}
@@ -46,13 +83,11 @@ const Main = (props) => {
         onPress={() => {
           HandleSelectNotify();
         }}>
-        <View>
-          <Text>notify</Text>
-        </View>
+        <About />
       </TabNavigator.Item>
       <TabNavigator.Item
         selected={selectedTab === 'About'}
-        title="Giới Thiệu"
+        title="Thông báo"
         renderIcon={() => (
           <Image source={icNote2} style={styles.wrapperImage} />
         )}
@@ -60,9 +95,7 @@ const Main = (props) => {
           <Image source={icNote} style={styles.wrapperImage} />
         )}
         onPress={() => setSelectedTab('About')}>
-        <View>
-          <Text>about</Text>
-        </View>
+        <Notify />
       </TabNavigator.Item>
       <TabNavigator.Item
         selected={selectedTab === 'Contact'}
@@ -72,9 +105,7 @@ const Main = (props) => {
           <Image source={User} style={styles.wrapperImage} />
         )}
         onPress={() => HandleSelectContact()}>
-        <View>
-          <Text>Contact</Text>
-        </View>
+        <ContactMain />
       </TabNavigator.Item>
     </TabNavigator>
   );
@@ -85,6 +116,7 @@ const styles = StyleSheet.create({
 function mapStateToProps(state) {
   return {
     dataLogin: state.dataLogin,
+    Cart: state.Cart,
   };
 }
 export default connect(mapStateToProps)(Main);

@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import FormLogin from './FormLogin';
+import FormRegister from './FormRegister';
 
 const {height} = Dimensions.get('window');
 const Authentication = (props) => {
@@ -16,6 +17,7 @@ const Authentication = (props) => {
 
   const [dataCheckLoginRe, setdataCheckLoginRe] = useState(true);
 
+  const main = dataCheckLoginRe ? <FormLogin /> : <FormRegister />;
   const setValue1 = () => {
     props.dispatch({
       type: 'setLogin',
@@ -44,7 +46,7 @@ const Authentication = (props) => {
         </View>
         <View style={styles.wrapper2}></View>
       </View>
-      <FormLogin />
+      {main}
       <View style={styles.wrapperSectionButton}>
         <TouchableOpacity style={styles.SectionButton} onPress={handleSignIn}>
           <Text style={dataCheckLoginRe ? styles.Text : styles.Text2}>

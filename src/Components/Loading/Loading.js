@@ -13,41 +13,42 @@ const Loading = (props) => {
     setTimeout(() => {
       // navigation.navigate('Authenication');
       async function getDataLogin() {
-        var value = await AsyncStorage.getItem('@saveData');
+        // var value = await AsyncStorage.getItem('@save');
 
-        value = JSON.parse(value);
-        if (value !== null) {
-          // console.log(value.token);
-          // console.log(value);
-          props.dispatch({
-            type: 'setDataLogin',
-            data: value,
-          });
+        // value = JSON.parse(value);
+        // if (value !== null) {
+        //   // console.log(value.token);
+        //   // console.log(value);
+        //   props.dispatch({
+        //     type: 'setDataLogin',
+        //     data: value,
+        //   });
+        //   // console.log(props.dataLogin.token + '//////////////////');
+        //   if (value.token !== '') {
+        //     CheckToken(value.token)
+        //       .then((json) => {
+        //         var data = JSON.parse(JSON.stringify(json));
+        //         //console.log(DataLoginUser);
 
-          if (value.token !== '') {
-            CheckToken(value.token)
-              .then((json) => {
-                var data = JSON.parse(JSON.stringify(json));
-
-                if (data.dataString === 'THANH_CONG') {
-                  navigation.replace('Main');
-                } else {
-                  navigation.replace('Authenication');
-                }
-              })
-              .catch((error) => {
-                console.error(error + 'fail');
-              });
-            //navigation.replace('Main');
-          } else {
-            navigation.replace('Authenication');
-          }
-        } else {
-          navigation.replace('Authenication');
-        }
+        //         if (data.dataString === 'THANH_CONG') {
+        //           navigation.replace('Main');
+        //         } else {
+        //           navigation.replace('Authenication');
+        //         }
+        //       })
+        //       .catch((error) => {
+        //         console.error(error + 'fail');
+        //       });
+        //   } else {
+        //     navigation.replace('Authenication');
+        //   }
+        // } else {
+        //   navigation.replace('Authenication');
+        // }
+        navigation.replace('Authenication');
       }
       getDataLogin();
-    }, 1000);
+    }, 1500);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
   },
   StyleText: {
     color: 'white',
-    fontSize: 25,
+    fontSize: 29,
     fontFamily: 'monospace',
     fontWeight: 'bold',
   },
