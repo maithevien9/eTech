@@ -77,7 +77,7 @@ const Home = (props) => {
     navigation.replace('Authenication');
   };
   // const main = dataCheckLoginSuccess ? <Login /> : <Logout />;
-  const HandleHistoryGift = () => {
+  const HandleHistoryCart = () => {
     // GetHistoryGift(props.dataLogin.token)
     //   .then((json) => {
     //     var data = JSON.parse(JSON.stringify(json));
@@ -90,7 +90,7 @@ const Home = (props) => {
     //   .catch((error) => {
     //     console.error(error + 'fail');
     //   });
-    navigation.navigate('HistoryGift');
+    navigation.navigate('HistoryCart');
   };
   const HandleHistoryScore = () => {
     // HistoryScore(props.dataLogin.token)
@@ -138,19 +138,13 @@ const Home = (props) => {
 
             <TouchableOpacity
               style={styles.WrapperBtnLogOut}
-              onPress={HandleHistoryGift}>
-              <Text style={styles.StyleTextBtn}>Lịch Sử Đổi Quà</Text>
+              onPress={HandleHistoryCart}>
+              <Text style={styles.StyleTextBtn}>Đợi duyệt gói hàng</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.WrapperBtnLogOut}
               onPress={HandleHistoryScore}>
-              <Text style={styles.StyleTextBtn}>Lịch Sử Tích Điểm</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.WrapperBtnLogOut}
-              onPress={HandleHistoryRecyclables}>
-              <Text style={styles.StyleTextBtn}>Lịch Sử Rác Tái Chế</Text>
+              <Text style={styles.StyleTextBtn}>Chi Tiết gói hàng</Text>
             </TouchableOpacity>
 
             <TouchableOpacity

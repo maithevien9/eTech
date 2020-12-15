@@ -1,9 +1,17 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  Dimensions,
+} from 'react-native';
 import icGift from '.././../../../Images/Icons/gift-box.png';
 import {connect} from 'react-redux';
-
-const HistoryGift = (props) => {
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+const HistoryCart = (props) => {
   const convertDate = (date) => {
     var ts = new Date(date);
     return ts.toLocaleDateString();
@@ -15,30 +23,31 @@ const HistoryGift = (props) => {
   return (
     <View>
       <View style={styles.wrapperHeader}>
-        <Text style={styles.textStyleHeader}>Lịch sử đổi quà</Text>
+        <Text style={styles.textStyleHeader}>Đợi Duyệt gói hàng</Text>
       </View>
       <ScrollView style={styles.wrapperMain}>
-        {props.historyGift.map((e) => (
-          <View style={styles.wrapperForm} key={e.ID}>
+        {props.CartHistory.map((e) => (
+          <View style={styles.wrapperForm}>
             <Image source={icGift} style={styles.wrapperImage} />
             <View>
               <View style={styles.wrapperRowFull}>
                 <View style={styles.wrapperRowGift}>
-                  <Text style={styles.StyleText}>Tên quà: </Text>
+                  <Text style={styles.StyleText}>Trạng Thái: </Text>
                   <View>
-                    <Text style={styles.StyleText}>{e.NameGift}</Text>
+                    <Text style={styles.StyleText}>Chờ duyệt</Text>
                   </View>
                 </View>
                 <View style={styles.wrapperRowScore}>
-                  <Text style={styles.StyleText}>Điểm Đổi: </Text>
-                  <Text style={styles.StyleText}>{e.Score}</Text>
+                  <Text style={styles.StyleText2}>Chi tiết </Text>
                 </View>
               </View>
+              <View style={styles.wrapperRowScore}>
+                <Text style={styles.StyleText}>Mức Giá: </Text>
+                <Text style={styles.StyleText}>{e.Price}</Text>
+              </View>
               <View style={styles.wrapperRow}>
-                <Text style={styles.StyleText}>Ngày đổi: </Text>
-                <Text style={styles.StyleText}>
-                  {convertDate(e.DateTime)} {convertDate2(e.DateTime)}
-                </Text>
+                <Text style={styles.StyleText}>Thời gian tạo: </Text>
+                <Text style={styles.StyleText}>{e.CreateAtTime}</Text>
               </View>
             </View>
           </View>
@@ -58,6 +67,7 @@ const styles = StyleSheet.create({
 
   textStyleHeader: {
     fontSize: 28,
+    fontWeight: 'bold',
     fontFamily: 'monospace',
     color: 'white',
   },
@@ -67,8 +77,8 @@ const styles = StyleSheet.create({
   },
   wrapperForm: {
     width: '95%',
-    height: 80,
-    borderWidth: 1,
+    height: windowHeight / 8,
+    borderBottomWidth: 1,
     flexDirection: 'row',
     paddingLeft: '3%',
     alignItems: 'center',
@@ -84,13 +94,13 @@ const styles = StyleSheet.create({
   },
   wrapperRowFull: {
     flexDirection: 'row',
-    marginBottom: 5,
   },
   wrapperRowGift: {
     flexDirection: 'row',
     width: '60%',
   },
   wrapperRowScore: {
+    height: windowHeight / 38,
     flexDirection: 'row',
     width: '35%',
   },
@@ -98,14 +108,21 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: 'monospace',
     color: 'black',
+    fontWeight: 'bold',
+  },
+  StyleText2: {
+    fontSize: 12,
+    fontFamily: 'monospace',
+    color: 'red',
+    fontWeight: 'bold',
   },
 });
 
 function mapStateToProps(state) {
   return {
-    dataCheckLoginSuccess: state.dataCheckLoginSuccess,
+    CartHistory: state.CartHistory,
     dataLogin: state.dataLogin,
     historyGift: state.historyGift,
   };
 }
-export default connect(mapStateToProps)(HistoryGift);
+export default connect(mapStateToProps)(HistoryCart);

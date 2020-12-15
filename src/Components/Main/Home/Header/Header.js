@@ -10,37 +10,53 @@ import {
 } from 'react-native';
 
 import icMenu from '../../../../Images/Icons/menu2.png';
+import icVn from '../../../../Images/Icons/vietnam.png';
+import icVn2 from '../../../../Images/Icons/vietnam2.png';
+import icUSA from '../../../../Images/Icons/usa.png';
+import icUSA2 from '../../../../Images/Icons/usa2.png';
+import icTranslate from '../../../../Images/Icons/translate.png';
 const {height} = Dimensions.get('window');
 
-class Header extends Component {
-  render() {
-    return (
-      <View
-        style={{
-          height: 80,
-          backgroundColor: '#009966',
-          padding: 13,
-        }}>
-        <View style={styles.wrapper1}>
-          <TouchableOpacity
-            onPress={this.props.onOpen}
-            style={{justifyContent: 'center', alignItems: 'center'}}>
-            <Image source={icMenu} style={styles.iconStyle}></Image>
-          </TouchableOpacity>
+const Header = (props) => {
+  const [valueLanguege, setValueLanguege] = useState(false);
+  return (
+    <View
+      style={{
+        height: 80,
+        backgroundColor: '#009966',
+        padding: 13,
+      }}>
+      <View style={styles.wrapper1}>
+        <TouchableOpacity
+          onPress={props.onOpen}
+          style={{justifyContent: 'center', alignItems: 'center'}}>
+          <Image source={icMenu} style={styles.iconStyle}></Image>
+        </TouchableOpacity>
+        <View style={{justifyContent: 'center', alignItems: 'center'}}>
           <Text style={styles.textStyle}>Etech Dream</Text>
-          <View style={styles.wrapperWrong} />
         </View>
-        {/* <View style={styles.wrapper2}>
+        <View style={styles.wrapperWrong}>
+          {/* <Image
+            source={valueLanguege ? icVn2 : icVn}
+            style={styles.iconLanguege}
+          />
+          <Image
+            source={valueLanguege ? icUSA2 : icUSA}
+            style={styles.iconLanguege2}
+          /> */}
+          <Image source={icTranslate} style={styles.iconLanguege} />
+        </View>
+      </View>
+      {/* <View style={styles.wrapper2}>
           <TextInput
             style={styles.textInput}
             placeholder="Search"
             onChangeText={(text) => this.setState({text})}
           />
         </View> */}
-      </View>
-    );
-  }
-}
+    </View>
+  );
+};
 export default Header;
 const styles = StyleSheet.create({
   text: {
@@ -55,6 +71,12 @@ const styles = StyleSheet.create({
     width: 22,
     height: 22,
   },
+  iconLanguege: {
+    width: 30,
+    height: 25,
+    borderRadius: 5,
+  },
+
   textInput: {
     marginTop: 10,
     height: 35,
@@ -69,7 +91,7 @@ const styles = StyleSheet.create({
   wrapper1: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
 
     alignItems: 'center',
   },
@@ -85,6 +107,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   wrapperWrong: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: '2%',
     width: 15,
     height: 15,
   },

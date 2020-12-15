@@ -31,19 +31,7 @@ const CategoryDetail = (props) => {
         Unit: route.params.Unit,
         Image: route.params.Image,
       });
-      Alert.alert(
-        'Nofity',
-        'Thành Công',
-        [
-          {
-            text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
-            style: 'cancel',
-          },
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ],
-        {cancelable: false},
-      );
+
       navigation.navigate('Main');
     } else {
       Alert.alert(

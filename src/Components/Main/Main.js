@@ -14,14 +14,14 @@ import User2 from '../../Images/Icons/profile-user.png';
 import Contact from './Contact/Contact';
 import Home from './Home/Home';
 import Notify from './Notify/NotifyView';
-import About from './About/about';
+import Cart from './Cart/Cart';
 import ContactMain from './Contact/Contact';
 import GetInforUser from '../../RestAPI/User/get-infor-user';
 import {connect} from 'react-redux';
 import NotifyAPI from '../../RestAPI/Notify/get-notify-api';
 
 const Main = (props) => {
-  const [selectedTab, setSelectedTab] = React.useState('home');
+  const [selectedTab, setSelectedTab] = React.useState('Notify');
   const HandleSelectContact = () => {
     // GetInforUser(props.dataLogin.token)
     //   .then((json) => {
@@ -56,7 +56,7 @@ const Main = (props) => {
     //   .catch((error) => {
     //     console.error(error + 'fail');
     //   });
-    setSelectedTab('notify');
+    setSelectedTab('Cart');
   };
   return (
     <TabNavigator tabBarStyle={{height: 53}}>
@@ -71,7 +71,7 @@ const Main = (props) => {
         <Home />
       </TabNavigator.Item>
       <TabNavigator.Item
-        selected={selectedTab === 'notify'}
+        selected={selectedTab === 'Cart'}
         title="Giỏ Hàng"
         badgeText={props.Cart.length}
         renderIcon={() => (
@@ -83,10 +83,10 @@ const Main = (props) => {
         onPress={() => {
           HandleSelectNotify();
         }}>
-        <About />
+        <Cart />
       </TabNavigator.Item>
       <TabNavigator.Item
-        selected={selectedTab === 'About'}
+        selected={selectedTab === 'Notify'}
         title="Thông báo"
         renderIcon={() => (
           <Image source={icNote2} style={styles.wrapperImage} />
@@ -94,7 +94,7 @@ const Main = (props) => {
         renderSelectedIcon={() => (
           <Image source={icNote} style={styles.wrapperImage} />
         )}
-        onPress={() => setSelectedTab('About')}>
+        onPress={() => setSelectedTab('Notify')}>
         <Notify />
       </TabNavigator.Item>
       <TabNavigator.Item

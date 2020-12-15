@@ -36,7 +36,7 @@ const View1 = (props) => {
   return (
     <ScrollView style={styles.wrapper}>
       <View style={styles.wrapperHeader}>
-        <Text style={styles.Textheader}>HƯỚNG DẪN PHÂN LOẠI</Text>
+        {/* <Text style={styles.Textheader}>HƯỚNG DẪN PHÂN LOẠI</Text> */}
       </View>
 
       <View style={styles.wrapperPlastic}>
@@ -79,7 +79,7 @@ const View1 = (props) => {
         </View>
         <View style={styles.wrapperMain2}>
           <View style={styles.wrapperMain2Parient}>
-            <Text style={styles.wrapperText}>NHỰA</Text>
+            {/* <Text style={styles.wrapperText}>NHỰA</Text> */}
           </View>
         </View>
         <View style={styles.wrapperMain3plastic}>
@@ -100,108 +100,6 @@ const View1 = (props) => {
               }}>
               <Text style={styles.wrapperTextHeader}>Còn Lại</Text>
               <Image source={icPlastic5} style={styles.wrapperImage} />
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
-      <View style={styles.wrapperPaper}>
-        <View style={styles.wrapperMain1}>
-          <View style={styles.wrapperheaderPlastic}>
-            <TouchableOpacity
-              style={styles.wrapperheader2Plactic}
-              onPress={() => {
-                HandleRecyclables(6, 3000, '1/Kg', 'Carton/Bìa Cứng', icPaper1);
-              }}>
-              <Text style={styles.wrapperTextHeader}>Carton/Bìa Cứng</Text>
-              <Image source={icPaper1} style={styles.wrapperImage} />
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.wrapperheader2Plactic}
-              onPress={() => {
-                HandleRecyclables(
-                  8,
-                  3000,
-                  '1/Kg',
-                  'Giấy Vở/Văn Phòng',
-                  icPaper2,
-                );
-              }}>
-              <Text style={styles.wrapperTextHeader}>Giấy Vở/Văn Phòng</Text>
-              <Image source={icPaper2} style={styles.wrapperImage} />
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={styles.wrapperMain2}>
-          <View style={styles.wrapperMain2Parient}>
-            <Text style={styles.wrapperText}>GIẤY</Text>
-          </View>
-        </View>
-        <View style={styles.wrapperMain3}>
-          <View style={styles.wrapperBottomPlastic}>
-            <TouchableOpacity
-              style={styles.wrapperheader2Plactic}
-              onPress={() => {
-                HandleRecyclables(
-                  7,
-                  3000,
-                  '1/Kg',
-                  'Sách Báo Tạp Chí/Bưu Phẩm',
-                  icPaper3,
-                );
-              }}>
-              <Text style={styles.wrapperTextHeader}>
-                Sách Báo Tạp Chí/Bưu Phẩm
-              </Text>
-              <Image source={icPaper3} style={styles.wrapperImage} />
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
-
-      <View style={styles.wrapperPaper}>
-        <View style={styles.wrapperMain1}>
-          <View style={styles.wrapperheaderMetal}>
-            <TouchableOpacity
-              style={styles.wrapperheader2Plactic}
-              onPress={() => {
-                HandleRecyclables(9, 3000, '1/Kg', 'Phế Liệu', icMetal1);
-              }}>
-              <Text style={styles.wrapperTextHeader}>Phế Liệu</Text>
-              <Image source={icMetal2} style={styles.wrapperImage} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.wrapperheader2Plactic}
-              onPress={() => {
-                HandleRecyclables(10, 3000, '1/Kg', 'Vỏ Lon ', icMetal2);
-              }}>
-              <Text style={styles.wrapperTextHeader}> Vỏ Lon </Text>
-              <Image source={icMetal1} style={styles.wrapperImage} />
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={styles.wrapperMain2}>
-          <View style={styles.wrapperMain2Parient}>
-            <Text style={styles.wrapperText}> KIM LOẠI</Text>
-          </View>
-        </View>
-        <View style={styles.wrapperMain3}>
-          <View style={styles.wrapperBottomPlastic}>
-            <TouchableOpacity
-              style={styles.wrapperheader2Plactic}
-              onPress={() => {
-                HandleRecyclables(
-                  11,
-                  3000,
-                  '1/Kg',
-                  'Bình Xịt Nén Khí/Hộp Bánh',
-                  icMetal3,
-                );
-              }}>
-              <Text style={styles.wrapperTextHeader}>
-                Bình Xịt Nén Khí/Hộp Bánh
-              </Text>
-              <Image source={icMetal3} style={styles.wrapperImage} />
             </TouchableOpacity>
           </View>
         </View>
@@ -274,11 +172,11 @@ const styles = StyleSheet.create({
     height: 250,
     width: '96%',
     // backgroundColor: 'yellow',
-    borderWidth: 2,
+    // borderWidth: 2,
     borderRadius: 40,
     marginLeft: '2%',
     marginBottom: '10%',
-    borderStyle: 'dashed',
+    // borderStyle: 'dashed',
   },
   wrapperheaderPlastic: {
     flexDirection: 'row',

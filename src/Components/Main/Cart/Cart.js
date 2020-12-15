@@ -42,7 +42,7 @@ const About = (props) => {
         {
           text: 'Đồng ý',
           onPress: () => {
-            navigation.replace('Booking');
+            navigation.navigate('Sale');
           },
         },
       ],

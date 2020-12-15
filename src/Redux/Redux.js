@@ -2,6 +2,8 @@ import {createStore, combineReducers} from 'redux';
 import icMetal1 from '../Images/Icons/paper1.png';
 import icMetal2 from '../Images/Icons/plastic2.png';
 import icMetal3 from '../Images/Icons/plastic3.png';
+import {Alert} from 'react-native';
+
 var dataLogin = {};
 var Scores = 0;
 var dataNotify = [];
@@ -30,20 +32,102 @@ var Cart = [
     Image: icMetal2,
   },
 ];
+var CartHistory = [
+  {
+    CreateAtTime: '19:00:00 22/22/2020',
+    Cart: [
+      {
+        ID: 6,
+        Name: 'Carton/Bìa Cứng',
+        amount: 2,
+        Score: 3000,
+        Unit: '1/kg',
+        Image: icMetal1,
+      },
+      {
+        ID: 2,
+        Name: 'Gia Vị',
+        amount: 2,
+        Score: 3000,
+        Unit: '1/kg',
+        Image: icMetal2,
+      },
+    ],
+    Price: 20000,
+  },
+];
 
+const CartHistoryReducer = (state = CartHistory, action) => {
+  if (action.type === 'AddCartHistory') {
+    return [
+      {
+        CreateAtTime: action.CreateAtTime,
+        Cart: action.arrayCart,
+        Price: action.Price,
+      },
+    ].concat(state);
+  }
+  return state;
+};
 const CartReducer = (state = Cart, action) => {
   if (action.type === 'setCart') return action.data;
   if (action.type === 'addCart') {
-    return [
-      {
-        ID: action.ID,
-        Name: action.Name,
-        amount: action.amount,
-        Score: action.Score,
-        Unit: action.Unit,
-        Image: action.Image,
-      },
-    ].concat(state);
+    var ID = action.ID;
+    var temp = 0;
+    state.filter((e) => {
+      if (ID === e.ID) {
+        temp = temp + 1;
+      }
+    });
+    if (temp == 0) {
+      Alert.alert(
+        'Nofity',
+        'Thành Công',
+        [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        {cancelable: false},
+      );
+      return [
+        {
+          ID: action.ID,
+          Name: action.Name,
+          amount: action.amount,
+          Score: action.Score,
+          Unit: action.Unit,
+          Image: action.Image,
+        },
+      ].concat(state);
+    } else {
+      Alert.alert(
+        'Nofity',
+        'Bạn đã thêm rồi, vui lòng kiểm tra lại',
+        [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        {cancelable: false},
+      );
+    }
+    // return [
+    //   {
+    //     ID: action.ID,
+    //     Name: action.Name,
+    //     amount: action.amount,
+    //     Score: action.Score,
+    //     Unit: action.Unit,
+    //     Image: action.Image,
+    //   },
+    // ].concat(state);
   }
   if (action.type === 'deleteCart') {
     return state.filter((e) => {
@@ -144,6 +228,7 @@ const reducer = combineReducers({
   ZoomX: ZoomXRedycer,
   ZoomY: ZoomYRedycer,
   Cart: CartReducer,
+  CartHistory: CartHistoryReducer,
 });
 const store = createStore(reducer);
 

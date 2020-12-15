@@ -4,7 +4,7 @@ import icEmail from '../../../Images/Icons/email.png';
 
 import Notify from '../../../RestAPI/Notify/get-notify-api';
 import {connect} from 'react-redux';
-
+import {translate} from 'react-i18next';
 const NotifyView = (props) => {
   useEffect(() => {
     async function CheckRecyle() {
@@ -33,61 +33,36 @@ const NotifyView = (props) => {
     return ts.toLocaleTimeString();
   };
   return (
-    <ScrollView>
-      <View style={styles.wrapperHeader}>
-        <Text style={styles.textStyleHeader}>THÔNG BÁO</Text>
-      </View>
-      {/* <View style={styles.wrapperMain2}> */}
-      {/* <View style={{height: 4, backgroundColor: '#FFFFFF'}}></View> */}
+    <View>
+      <Text>sa</Text>
+    </View>
+    // <ScrollView>
+    //   <View style={styles.wrapperHeader}>
+    //     <Text style={styles.textStyleHeader}>THÔNG BÁO</Text>
+    //   </View>
+    //   {/* <View style={styles.wrapperMain2}> */}
+    //   {/* <View style={{height: 4, backgroundColor: '#FFFFFF'}}></View> */}
 
-      <View style={styles.wrapperMain}>
-        {props.dataNotify.map((e) => (
-          <View style={styles.wrapperNotify} key={e.ID}>
-            <View style={styles.wrapperInNotyfi}>
-              <View style={styles.wrapperImageInNotify}>
-                <Image source={icEmail} style={styles.wrapperImage} />
-              </View>
-              <View style={{width: 350, marginLeft: 20}}>
-                <View style={{width: '85%'}}>
-                  <Text style={styles.wrapperTextInNotify}>{e.Name}</Text>
-                </View>
-                <Text style={styles.StyleTextTime}>
-                  {convertDate(e.CreateAtTime)} {convertDate2(e.CreateAtTime)}
-                </Text>
-              </View>
-            </View>
-          </View>
-        ))}
-
-        {/* <View style={styles.wrapperNotify}>
-          <View style={styles.wrapperInNotyfi}>
-            <View style={styles.wrapperImageInNotify}>
-              <Image source={icEmail} style={styles.wrapperImage} />
-            </View>
-            <View style={{width: 350, marginLeft: 20}}>
-              <Text style={styles.wrapperTextInNotify}>
-                Hôm nay bạn có khoẻ không?
-              </Text>
-              <Text style={styles.StyleTextTime}>10:00 11/2/2020</Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.wrapperNotify}>
-          <View style={styles.wrapperInNotyfi}>
-            <View style={styles.wrapperImageInNotify}>
-              <Image source={icEmail} style={styles.wrapperImage} />
-            </View>
-            <View style={{width: 350, marginLeft: 20}}>
-              <Text style={styles.wrapperTextInNotify}>
-                Hướng dẫn phân loại rác thải
-              </Text>
-              <Text style={styles.StyleTextTime}>10:00 11/2/2020</Text>
-            </View>
-          </View>
-        </View> */}
-      </View>
-      {/* </View> */}
-    </ScrollView>
+    //   <View style={styles.wrapperMain}>
+    //     {props.dataNotify.map((e) => (
+    //       <View style={styles.wrapperNotify} key={e.ID}>
+    //         <View style={styles.wrapperInNotyfi}>
+    //           <View style={styles.wrapperImageInNotify}>
+    //             <Image source={icEmail} style={styles.wrapperImage} />
+    //           </View>
+    //           <View style={{width: 350, marginLeft: 20}}>
+    //             <View style={{width: '85%'}}>
+    //               <Text style={styles.wrapperTextInNotify}>{e.Name}</Text>
+    //             </View>
+    //             <Text style={styles.StyleTextTime}>
+    //               {convertDate(e.CreateAtTime)} {convertDate2(e.CreateAtTime)}
+    //             </Text>
+    //           </View>
+    //         </View>
+    //       </View>
+    //     ))}
+    //   </View>
+    // </ScrollView>
   );
 };
 
