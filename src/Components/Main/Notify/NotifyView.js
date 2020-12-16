@@ -1,40 +1,16 @@
 import React, {useEffect} from 'react';
 import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
 import icEmail from '../../../Images/Icons/email.png';
-
 import Notify from '../../../RestAPI/Notify/get-notify-api';
 import {connect} from 'react-redux';
-import {translate} from 'react-i18next';
+
+import {useTranslation} from 'react-i18next';
+
 const NotifyView = (props) => {
-  useEffect(() => {
-    async function CheckRecyle() {
-      // Notify(props.dataLogin.token)
-      //   .then((json) => {
-      //     var data = JSON.parse(JSON.stringify(json));
-      //     console.log(data);
-      //     props.dispatch({
-      //       type: 'setdataNotify',
-      //       data: data.data,
-      //     });
-      //   })
-      //   .catch((error) => {
-      //     console.error(error + 'fail');
-      //   });
-    }
-    CheckRecyle();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  const convertDate = (date) => {
-    var ts = new Date(date);
-    return ts.toLocaleDateString();
-  };
-  const convertDate2 = (date) => {
-    var ts = new Date(date);
-    return ts.toLocaleTimeString();
-  };
+  const {t, i18n} = useTranslation();
   return (
     <View>
-      <Text>sa</Text>
+      <Text>{t('Hello')}</Text>
     </View>
     // <ScrollView>
     //   <View style={styles.wrapperHeader}>

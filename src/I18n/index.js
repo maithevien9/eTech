@@ -1,49 +1,51 @@
 import i18n from 'i18next';
-import {reactI18nextModule} from 'react-i18next';
-import locale from 'react-native-locale-detector';
-import {AsyncStorage} from 'react-native';
+import {initReactI18next} from 'react-i18next';
 
-import de from './de.json';
-import en from './en.json';
-import ar from './ar.json';
-
-const STORAGE_KEY = '@APP:languageCode';
-
-// creating a language detection plugin using expo
-// http://i18n.com/docs/ownplugin/#languagedetector
-const languageDetector = {
-  init: Function.prototype,
-  type: 'languageDetector',
-  async: true, // flags below detection to be async
-  detect: async (callback) => {
-    const savedDataJSON = await AsyncStorage.getItem(STORAGE_KEY);
-    const lng = savedDataJSON ? savedDataJSON : null;
-    const selectLanguage = lng || locale;
-    console.log('detect - selectLanguage:', selectLanguage);
-    callback(selectLanguage);
+// the translations
+// (tip move them in a JSON file and import them)
+const resources = {
+  en: {
+    translation: {
+      Hello: 'Welcome to React and react-i18next',
+      Plastic: 'Plastic',
+      Paper: 'Paper',
+      Metal: 'Metal',
+      LogOut: 'Log Out',
+      DetailRecy: 'Detail Recyclables',
+      RigisterRecy: 'Rigister Recyclables',
+      Home: 'Home',
+      Cart: 'Cart',
+      Nofity: 'Nofity',
+      Contact: 'Contact',
+    },
   },
-  cacheUserLanguage: () => {},
+  vn: {
+    translation: {
+      Hello: 'Xin Chào React',
+      Plastic: 'Nhựa',
+      Paper: 'Giấy',
+      Metal: 'Kim Loại',
+      LogOut: 'Đăng Xuất',
+      DetailRecy: 'Chi tiết gói hàng',
+      RigisterRecy: 'Đợi duyệt gói hàng',
+      Home: 'Trang Chủ',
+      Cart: 'Giỏ Hàng',
+      Nofity: 'Thông Báo',
+      Contact: 'Thông tin',
+    },
+  },
 };
 
 i18n
-  .use(languageDetector)
-  .use(reactI18nextModule)
+  .use(initReactI18next) // passes i18n down to react-i18next
   .init({
-    fallbackLng: 'en',
-    resources: {en, de, ar},
+    resources,
+    lng: 'vn',
 
-    // have a common namespace used around the full app
-    ns: ['common'],
-    defaultNS: 'common',
-
-    debug: true,
-
-    //   cache: {
-    //  enabled: true
-    // },
+    keySeparator: false, // we do not use keys in form messages.welcome
 
     interpolation: {
-      escapeValue: false, // not needed for react as it does escape per default to prevent xss!
+      escapeValue: false, // react already safes from xss
     },
   });
 

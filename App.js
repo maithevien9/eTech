@@ -18,6 +18,7 @@ import ContactUpdate from './src/Components/Main/Contact/ContactUpdate';
 import CategoryDetail from './src/Components/Main/Home/category/CategoryDetail/CategoryDetail';
 import SelectRole from './src/Components/SelectRole/SelectRole';
 import Sale from './src/Components/Main/Home/MainView/Sale/Sale';
+import './src/I18n';
 const Stack = createStackNavigator();
 const App = () => {
   return (

@@ -20,12 +20,14 @@ import HistoryScore from '../../../RestAPI/Member/get-history-score-api';
 import GetHistoryRecyclables from '../../../RestAPI/Recyclables/get-history-recyclables';
 import {LogBox} from 'react-native';
 import GetInforUser from '../../../RestAPI/User/get-infor-user';
+import {useTranslation} from 'react-i18next';
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
 const Home = (props) => {
   const [value, setvalue] = React.useState();
   const navigation = useNavigation();
   const {dataCheckLoginSuccess} = props;
+  const {t} = useTranslation();
 
   const closeControlPanel = () => {
     value.close();
@@ -35,23 +37,6 @@ const Home = (props) => {
   };
   const [dataUser, setDataUser] = useState({});
 
-  // useEffect(() => {
-  //   dataTemp();
-  //   GetInforUser(props.dataLogin.token)
-  //     .then((json) => {
-  //       var data = JSON.parse(JSON.stringify(json));
-  //       console.log(data);
-  //       if (data.dataString === 'THANH_CONG') {
-  //         props.dispatch({
-  //           type: 'setInforUser',
-  //           data: data.data,
-  //         });
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error(error + 'fail');
-  //     });
-  // });
   const dataTemp = () => {
     if (props.dataLogin.accessToken) {
       props.dispatch({
@@ -64,62 +49,16 @@ const Home = (props) => {
     }
   };
   const HandlerLogOut = () => {
-    // var data = {
-    //   dataString: 'KHONG_THANH_CONG',
-    //   data: [],
-    //   token: '',
-    // };
-    // props.dispatch({
-    //   type: 'setDataLogin',
-    //   data: data,
-    // });
-    // SaveDataLogin(data);
     navigation.replace('Authenication');
   };
-  // const main = dataCheckLoginSuccess ? <Login /> : <Logout />;
+
   const HandleHistoryCart = () => {
-    // GetHistoryGift(props.dataLogin.token)
-    //   .then((json) => {
-    //     var data = JSON.parse(JSON.stringify(json));
-    //     console.log(data);
-    //     props.dispatch({
-    //       type: 'historyGift',
-    //       data: data.data,
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.error(error + 'fail');
-    //   });
     navigation.navigate('HistoryCart');
   };
   const HandleHistoryScore = () => {
-    // HistoryScore(props.dataLogin.token)
-    //   .then((json) => {
-    //     var data = JSON.parse(JSON.stringify(json));
-    //     console.log(data);
-    //     props.dispatch({
-    //       type: 'historyScore',
-    //       data: data.data,
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.error(error + 'fail');
-    //   });
     navigation.navigate('HistoryScore');
   };
   const HandleHistoryRecyclables = () => {
-    // GetHistoryRecyclables(props.dataLogin.token)
-    //   .then((json) => {
-    //     var data = JSON.parse(JSON.stringify(json));
-    //     console.log(data);
-    //     props.dispatch({
-    //       type: 'HistoryRecyclables',
-    //       data: data.data,
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.error(error + 'fail');
-    //   });
     navigation.navigate('HistoryRecyclables');
   };
   return (
@@ -130,27 +69,25 @@ const Home = (props) => {
         ref={(ref) => setvalue(ref)}
         content={
           <View style={styles.wrapper}>
-            <View>
-              {/* <Image source={profileImage} style={styles.ImageStyle}></Image> */}
-            </View>
-            {/* <Text style={styles.textUSer}>Hello</Text> */}
+            <View></View>
+
             <View style={{height: 50}} />
 
             <TouchableOpacity
               style={styles.WrapperBtnLogOut}
               onPress={HandleHistoryCart}>
-              <Text style={styles.StyleTextBtn}>Đợi duyệt gói hàng</Text>
+              <Text style={styles.StyleTextBtn}>{t('RigisterRecy')}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.WrapperBtnLogOut}
               onPress={HandleHistoryScore}>
-              <Text style={styles.StyleTextBtn}>Chi Tiết gói hàng</Text>
+              <Text style={styles.StyleTextBtn}>{t('DetailRecy')}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={styles.WrapperBtnLogOut2}
               onPress={HandlerLogOut}>
-              <Text style={styles.StyleTextBtn}>Đăng Xuất</Text>
+              <Text style={styles.StyleTextBtn}>{t('LogOut')}</Text>
             </TouchableOpacity>
           </View>
         }>

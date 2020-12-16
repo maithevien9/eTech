@@ -15,10 +15,15 @@ import icVn2 from '../../../../Images/Icons/vietnam2.png';
 import icUSA from '../../../../Images/Icons/usa.png';
 import icUSA2 from '../../../../Images/Icons/usa2.png';
 import icTranslate from '../../../../Images/Icons/translate.png';
+import {useTranslation} from 'react-i18next';
 const {height} = Dimensions.get('window');
 
 const Header = (props) => {
   const [valueLanguege, setValueLanguege] = useState(false);
+  const {t, i18n} = useTranslation();
+  const HandleChangeLanguage = () => {
+    i18n.changeLanguage(i18n.language === 'en' ? 'vn' : 'en');
+  };
   return (
     <View
       style={{
@@ -35,17 +40,11 @@ const Header = (props) => {
         <View style={{justifyContent: 'center', alignItems: 'center'}}>
           <Text style={styles.textStyle}>Etech Dream</Text>
         </View>
-        <View style={styles.wrapperWrong}>
-          {/* <Image
-            source={valueLanguege ? icVn2 : icVn}
-            style={styles.iconLanguege}
-          />
-          <Image
-            source={valueLanguege ? icUSA2 : icUSA}
-            style={styles.iconLanguege2}
-          /> */}
+        <TouchableOpacity
+          style={styles.wrapperWrong}
+          onPress={HandleChangeLanguage}>
           <Image source={icTranslate} style={styles.iconLanguege} />
-        </View>
+        </TouchableOpacity>
       </View>
       {/* <View style={styles.wrapper2}>
           <TextInput
@@ -110,8 +109,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: '2%',
-    width: 15,
-    height: 15,
+    width: 35,
+    height: 35,
   },
   textStyleHeader: {
     fontSize: 28,

@@ -19,9 +19,10 @@ import ContactMain from './Contact/Contact';
 import GetInforUser from '../../RestAPI/User/get-infor-user';
 import {connect} from 'react-redux';
 import NotifyAPI from '../../RestAPI/Notify/get-notify-api';
-
+import {useTranslation} from 'react-i18next';
 const Main = (props) => {
-  const [selectedTab, setSelectedTab] = React.useState('Notify');
+  const [selectedTab, setSelectedTab] = React.useState('home');
+  const {t, i18n} = useTranslation();
   const HandleSelectContact = () => {
     // GetInforUser(props.dataLogin.token)
     //   .then((json) => {
@@ -62,7 +63,7 @@ const Main = (props) => {
     <TabNavigator tabBarStyle={{height: 53}}>
       <TabNavigator.Item
         selected={selectedTab === 'home'}
-        title="Trang Chủ"
+        title={t('Home')}
         renderIcon={() => <Image source={icHome} style={styles.wrapperImage} />}
         renderSelectedIcon={() => (
           <Image source={icHome2} style={styles.wrapperImage} />
@@ -72,7 +73,7 @@ const Main = (props) => {
       </TabNavigator.Item>
       <TabNavigator.Item
         selected={selectedTab === 'Cart'}
-        title="Giỏ Hàng"
+        title={t('Cart')}
         badgeText={props.Cart.length}
         renderIcon={() => (
           <Image source={icNotify} style={styles.wrapperImage} />
@@ -87,7 +88,7 @@ const Main = (props) => {
       </TabNavigator.Item>
       <TabNavigator.Item
         selected={selectedTab === 'Notify'}
-        title="Thông báo"
+        title={t('Nofity')}
         renderIcon={() => (
           <Image source={icNote2} style={styles.wrapperImage} />
         )}
@@ -99,7 +100,7 @@ const Main = (props) => {
       </TabNavigator.Item>
       <TabNavigator.Item
         selected={selectedTab === 'Contact'}
-        title="Thông Tin"
+        title={t('Contact')}
         renderIcon={() => <Image source={User2} style={styles.wrapperImage} />}
         renderSelectedIcon={() => (
           <Image source={User} style={styles.wrapperImage} />

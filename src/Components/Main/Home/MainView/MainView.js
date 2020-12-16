@@ -18,6 +18,7 @@ import {connect} from 'react-redux';
 import View1 from './Category/View1';
 import View2 from './Category/View2';
 import View3 from './Category/View3';
+import {useTranslation} from 'react-i18next';
 // var ScrollableTabView = require('react-native-scrollable-tab-view');
 var ScrollableTabView = require('react-native-scrollable-tab-view');
 const windowWidth = Dimensions.get('window').width;
@@ -25,7 +26,7 @@ const windowHeight = Dimensions.get('window').height;
 const MainView = (props) => {
   const navigation = useNavigation();
   const [scores, SetScores] = useState(0);
-
+  const {t, i18n} = useTranslation();
   useEffect(() => {
     async function CheckRecyle() {
       // CheckRycuclables(props.dataLogin.token)
@@ -70,9 +71,9 @@ const MainView = (props) => {
             fontSize: 15,
             fontWeight: 'bold',
           }}>
-          <View1 tabLabel="Nhựa" />
-          <View2 tabLabel="Giấy" />
-          <View3 tabLabel="Kim Loại" />
+          <View1 tabLabel={t('Plastic')} />
+          <View2 tabLabel={t('Paper')} />
+          <View3 tabLabel={t('Metal')} />
         </ScrollableTabView>
         {/* <View style={styles.wrapperRowCater}>
         <TouchableOpacity
