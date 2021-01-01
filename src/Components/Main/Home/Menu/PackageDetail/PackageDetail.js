@@ -37,29 +37,13 @@ const PackageDetail = (props) => {
       <View style={styles.wrapperHeader}>
         <Text style={styles.textStyleHeader}>Chi tiết gói hàng</Text>
       </View>
+
       <ScrollView style={styles.wrapperContent}>
         {route.params.e.Cart.map((e) => (
           <View style={styles.wrapperMainCart}>
             <View style={styles.wrapperinLine}>
               <Image source={e.Image} style={styles.wrapperImage} />
               <View style={styles.wrapperText}>
-                {/* <TouchableOpacity
-                  style={{
-                    height: 15,
-                    alignSelf: 'flex-end',
-                    width: 15,
-                    borderWidth: 1,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    paddingBottom: '1%',
-                    borderRadius: 20,
-                    borderColor: '#009966',
-                  }}
-                  onPress={() => {
-                    handleX(e.ID);
-                  }}>
-                  <Text style={styles.TextBtnX}>x</Text>
-                </TouchableOpacity> */}
                 <View style={styles.wrapperinLine2}>
                   <Text style={styles.stylesText}>
                     Tên rác tái chế: {e.Name}

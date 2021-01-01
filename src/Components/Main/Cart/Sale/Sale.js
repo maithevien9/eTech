@@ -18,6 +18,10 @@ const windowHeight = Dimensions.get('window').height;
 const Sale = (props) => {
   var i = 0;
   const [amount, setAmount] = React.useState(0);
+  const [Address, setAddress] = React.useState(
+    '64 Nhơn Hòa 5, Cẩm Lệ, Đà Nẵng',
+  );
+  const [Phone, setPhone] = React.useState('0869040015');
   const route = useRoute();
   const navigation = useNavigation();
   const HanldeSale = () => {
@@ -32,16 +36,15 @@ const Sale = (props) => {
     var min = date_ob.getMinutes();
     var sec = date_ob.getSeconds();
 
-    // console.log(
-    //   year + '-' + month + '-' + date + ' ' + hour + ':' + min + ':' + sec,
-    // );
     var dateTime =
       year + '-' + month + '-' + date + ' ' + hour + ':' + min + ':' + sec;
     props.dispatch({
       type: 'AddCartHistory',
       CreateAtTime: dateTime,
-      Price: 20000,
-      Cart: props.Cart,
+      Price: amount,
+      arrayCart: props.Cart,
+      Address: Address,
+      Phone: Phone,
     });
     props.dispatch({
       type: 'setCart',
@@ -69,9 +72,26 @@ const Sale = (props) => {
           //   placeholder="data"
         />
       </View>
-
+      <View style={styles.wrapperMain}>
+        <Text style={styles.textMain}>Địa chỉ</Text>
+        <TextInput
+          onChangeText={(text) => setAddress(text)}
+          value={Address}
+          style={styles.textInput}
+          //   placeholder="data"
+        />
+      </View>
+      <View style={styles.wrapperMain}>
+        <Text style={styles.textMain}>Số điện thoại</Text>
+        <TextInput
+          onChangeText={(text) => setPhone(text)}
+          value={Phone}
+          style={styles.textInput}
+          //   placeholder="data"
+        />
+      </View>
+      <Text style={styles.textMain2}>Chi Tiết Gói Hàng</Text>
       <ScrollView style={styles.wrapperMain2}>
-        <Text style={styles.textMain}>Chi Tiết Gói Hàng</Text>
         <View style={styles.wrapperDetailCart}>
           <View style={styles.stylesSTT}>
             <Text style={styles.stylesText}>STT</Text>
@@ -106,7 +126,6 @@ const Sale = (props) => {
 };
 const styles = StyleSheet.create({
   wrapperDetailCart: {
-    marginTop: '2%',
     flexDirection: 'row',
     justifyContent: 'space-around',
     borderColor: 'black',
@@ -132,12 +151,13 @@ const styles = StyleSheet.create({
   stylesText: {fontSize: 13, fontFamily: 'monospace', fontWeight: 'bold'},
   wrapperHeader: {
     marginTop: '5%',
-    marginBottom: '20%',
+    marginBottom: '13%',
 
     alignItems: 'center',
   },
   wrapperBtn: {
     marginLeft: '5%',
+    marginTop: '8%',
     height: '7%',
     width: '90%',
     backgroundColor: '#009966',
@@ -171,6 +191,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginHorizontal: '1%',
   },
+  textMain2: {
+    fontSize: 15,
+    fontFamily: 'monospace',
+    fontWeight: 'bold',
+    marginHorizontal: '1%',
+    marginLeft: '4%',
+  },
   wrapperMain: {
     marginTop: '3%',
     marginLeft: '4%',
@@ -178,7 +205,7 @@ const styles = StyleSheet.create({
   wrapperMain2: {
     marginTop: '3%',
     marginLeft: '4%',
-    height: windowHeight / 1.7,
+    height: windowHeight / 2.7,
   },
   wrapperScore: {
     flexDirection: 'row',

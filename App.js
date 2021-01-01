@@ -16,7 +16,7 @@ import PackageSaled from './src/Components/Main/Home/Menu/PackageSaled';
 import ContactUpdate from './src/Components/Main/Contact/ContactUpdate';
 import CategoryDetail from './src/Components/Main/Home/category/CategoryDetail/CategoryDetail';
 import SelectRole from './src/Components/SelectRole/SelectRole';
-import Sale from './src/Components/Main/Home/MainView/Sale/Sale';
+import Sale from './src/Components/Main/Cart/Sale/Sale';
 import PackageDetail from './src/Components/Main/Home/Menu/PackageDetail/PackageDetail';
 import PackageDetailUpdate from './src/Components/Main/Home/Menu/PackageDetail/PackageDetailUpdate';
 import Main2 from './src/Components/Main2/Main';
@@ -27,9 +27,10 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
+          <Stack.Screen name="Main2" component={Main2} />
           <Stack.Screen name="Loading" component={Loading} />
           <Stack.Screen name="Main" component={Main} />
-          <Stack.Screen name="Main2" component={Main2} />
+
           <Stack.Screen name="PackageDetail" component={PackageDetail} />
           <Stack.Screen name="SelectRole" component={SelectRole} />
           <Stack.Screen name="Authenication" component={Authenication} />

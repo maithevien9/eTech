@@ -93,7 +93,6 @@ const Contact = (props) => {
   // }, []);
 
   const handleUpdateUser = () => {
-    console.log('Vien');
     navigation.navigate('ContactUpdate');
   };
   return (
@@ -102,39 +101,6 @@ const Contact = (props) => {
         <Text style={styles.textStyleHeader}>{t('Contact')}</Text>
       </View>
       <View style={mapContainer}>
-        {/* <GooglePlacesAutocomplete
-          placeholder="Enter Location"
-          minLength={2}
-          autoFocus={false}
-          returnKeyType={'default'}
-          fetchDetails={true}
-          styles={{
-            textInputContainer: {
-              backgroundColor: 'grey',
-              marginTop: 6,
-              height: 40,
-              width: '100%',
-            },
-            textInput: {
-              borderRadius: 0,
-              height: 38,
-              color: 'black',
-              fontSize: 16,
-            },
-            predefinedPlacesDescription: {
-              color: '#1faadb',
-            },
-          }}
-          onPress={(data, details = null) => {
-            // 'details' is provided when fetchDetails = true
-            console.log(data, details);
-          }}
-          query={{
-            key: 'AIzaSyDY_HsllA7mpJ7XLBqTJFy7gv3ja07xNuY',
-            language: 'en',
-          }}
-          predefinedPlaces={[homePlace, workPlace]}
-        /> */}
         <MapView
           style={styles.map}
           initialRegion={{

@@ -53,7 +53,9 @@ var CartHistory = [
         Image: icMetal2,
       },
     ],
-    Price: 20000,
+    Price: '20000',
+    Address: '64 Nhơn Hòa 5, Cẩm Lệ, Đà Nẵng',
+    Phone: '0869040015',
   },
 ];
 
@@ -64,6 +66,8 @@ const CartHistoryReducer = (state = CartHistory, action) => {
         CreateAtTime: action.CreateAtTime,
         Cart: action.arrayCart,
         Price: action.Price,
+        Address: action.Address,
+        Phone: action.Phone,
       },
     ].concat(state);
   }
