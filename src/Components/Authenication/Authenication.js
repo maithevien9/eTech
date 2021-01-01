@@ -10,13 +10,13 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import FormLogin from './FormLogin';
 import FormRegister from './FormRegister';
-
+import {useTranslation} from 'react-i18next';
 const {height} = Dimensions.get('window');
 const Authentication = (props) => {
   const navigation = useNavigation();
 
   const [dataCheckLoginRe, setdataCheckLoginRe] = useState(true);
-
+  const {t} = useTranslation();
   const main = dataCheckLoginRe ? <FormLogin /> : <FormRegister />;
   const setValue1 = () => {
     props.dispatch({
@@ -50,12 +50,12 @@ const Authentication = (props) => {
       <View style={styles.wrapperSectionButton}>
         <TouchableOpacity style={styles.SectionButton} onPress={handleSignIn}>
           <Text style={dataCheckLoginRe ? styles.Text : styles.Text2}>
-            SIGN IN
+            {t('SignIn')}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.SectionButton2} onPress={handleSignUp}>
           <Text style={!dataCheckLoginRe ? styles.Text : styles.Text2}>
-            SIGN UP
+            {t('SignUp')}
           </Text>
         </TouchableOpacity>
       </View>

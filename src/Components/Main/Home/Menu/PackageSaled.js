@@ -15,35 +15,9 @@ const HistoryRecyclables = (props) => {
   return (
     <View>
       <View style={styles.wrapperHeader}>
-        <Text style={styles.textStyleHeader}>Lịch sử Rác Tái Chế</Text>
+        <Text style={styles.textStyleHeader}>Gói Hàng Đã Bán</Text>
       </View>
-      <ScrollView style={styles.wrapperMain}>
-        {props.HistoryRecyclables.map((e) => (
-          <View style={styles.wrapperForm} key={e.ID}>
-            <Image source={icGift} style={styles.wrapperImage} />
-            <View>
-              <View style={styles.wrapperRowFull}>
-                <View style={styles.wrapperRowGift}>
-                  <Text style={styles.StyleText}>Trạng Thái: </Text>
-                  <View>
-                    <Text style={styles.StyleText}>{e.StatusRecy}</Text>
-                  </View>
-                </View>
-                <View style={styles.wrapperRowScore}>
-                  <Text style={styles.StyleText}>Điểm: </Text>
-                  <Text style={styles.StyleText}>{e.Score}</Text>
-                </View>
-              </View>
-              <View style={styles.wrapperRow}>
-                <Text style={styles.StyleText}>Thời gian: </Text>
-                <Text style={styles.StyleText}>
-                  {convertDate(e.CreateAtTime)} {convertDate2(e.CreateAtTime)}
-                </Text>
-              </View>
-            </View>
-          </View>
-        ))}
-      </ScrollView>
+      <ScrollView style={styles.wrapperMain}></ScrollView>
     </View>
   );
 };
@@ -60,6 +34,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontFamily: 'monospace',
     color: 'white',
+    fontWeight: 'bold',
   },
   wrapperMain: {
     marginLeft: '3%',

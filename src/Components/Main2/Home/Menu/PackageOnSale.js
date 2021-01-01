@@ -8,12 +8,15 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-import icGift from '.././../../../Images/Icons/gift-box.png';
+import icGift from '.././../../../Images/Icons/cart.png';
 import {connect} from 'react-redux';
+import {useRoute} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const HistoryCart = (props) => {
+const PackageOnSale = (props) => {
+  const route = useRoute();
   const navigation = useNavigation();
   const convertDate = (date) => {
     var ts = new Date(date);
@@ -24,14 +27,14 @@ const HistoryCart = (props) => {
     return ts.toLocaleTimeString();
   };
   const hanldePackageDetail = (e) => {
-    navigation.navigate('PackageDetail', {
+    navigation.navigate('PackageDetailUpdate', {
       e,
     });
   };
   return (
     <View>
       <View style={styles.wrapperHeader}>
-        <Text style={styles.textStyleHeader}>Đợi Duyệt gói hàng</Text>
+        <Text style={styles.textStyleHeader}>Tôi Bán</Text>
       </View>
       <ScrollView style={styles.wrapperMain}>
         {props.CartHistory.map((e) => (
@@ -42,7 +45,7 @@ const HistoryCart = (props) => {
                 <View style={styles.wrapperRowGift}>
                   <Text style={styles.StyleText}>Trạng Thái: </Text>
                   <View>
-                    <Text style={styles.StyleText}>Chờ duyệt</Text>
+                    <Text style={styles.StyleText}>Đang bán</Text>
                   </View>
                 </View>
                 <TouchableOpacity
@@ -135,4 +138,4 @@ function mapStateToProps(state) {
     historyGift: state.historyGift,
   };
 }
-export default connect(mapStateToProps)(HistoryCart);
+export default connect(mapStateToProps)(PackageOnSale);

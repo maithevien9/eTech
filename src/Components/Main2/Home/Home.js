@@ -14,12 +14,9 @@ import {useNavigation} from '@react-navigation/native';
 
 import {connect} from 'react-redux';
 import HomeView from './HomeView';
-import SaveDataLogin from '../../../AsyncStorage/SaveDataLogin';
-import GetHistoryGift from '../../../RestAPI/Gift/get-history-gift-api';
-import HistoryScore from '../../../RestAPI/Member/get-history-score-api';
-import GetHistoryRecyclables from '../../../RestAPI/Recyclables/get-history-recyclables';
+
 import {LogBox} from 'react-native';
-import GetInforUser from '../../../RestAPI/User/get-infor-user';
+
 import {useTranslation} from 'react-i18next';
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
@@ -35,7 +32,6 @@ const Home = (props) => {
   const openControlPanel = () => {
     value.open();
   };
-  const [dataUser, setDataUser] = useState({});
 
   const dataTemp = () => {
     if (props.dataLogin.accessToken) {
@@ -51,21 +47,11 @@ const Home = (props) => {
   const HandlerLogOut = () => {
     navigation.replace('Authenication');
   };
+
   const handleSelectRoleMenu = () => {
-    navigation.navigate('Main2');
+    navigation.navigate('Main');
   };
-  const HandleHistoryCart = () => {
-    navigation.navigate('HistoryCart');
-  };
-  const HandlePackageOnSale = () => {
-    navigation.navigate('PackageOnSale');
-  };
-  const HandleHistoryRecyclables = () => {
-    navigation.navigate('HistoryRecyclables');
-  };
-  const HandlePackageSaled = () => {
-    navigation.navigate('PackageSaled');
-  };
+
   return (
     <View style={{flex: 1}}>
       <Drawer
@@ -78,7 +64,7 @@ const Home = (props) => {
 
             <View style={{height: 50}} />
 
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={styles.WrapperBtnLogOut}
               onPress={HandleHistoryCart}>
               <Text style={styles.StyleTextBtn}>{t('RigisterRecy')}</Text>
@@ -92,13 +78,13 @@ const Home = (props) => {
               style={styles.WrapperBtnLogOut}
               onPress={HandlePackageSaled}>
               <Text style={styles.StyleTextBtn}>{t('packageSaled')}</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
+
             <TouchableOpacity
               style={styles.WrapperBtnLogOut}
               onPress={handleSelectRoleMenu}>
-              <Text style={styles.StyleTextBtn}>{t('SelectRoleMenu2')}</Text>
+              <Text style={styles.StyleTextBtn}>{t('SelectRoleMenu')}</Text>
             </TouchableOpacity>
-
             <TouchableOpacity
               style={styles.WrapperBtnLogOut2}
               onPress={HandlerLogOut}>

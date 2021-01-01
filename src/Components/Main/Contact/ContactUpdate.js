@@ -160,7 +160,7 @@ const ContactUpdate = (props) => {
           fetchDetails={true}
           styles={{
             textInputContainer: {
-              backgroundColor: 'grey',
+              backgroundColor: 'black',
               marginTop: 6,
               height: 40,
               width: '100%',
@@ -214,7 +214,7 @@ const ContactUpdate = (props) => {
             onPress={() => {
               handleUpdate();
             }}>
-            <Text>Cập nhập</Text>
+            <Text style={styles.wrapperTextupdate}>Cập nhập</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -256,11 +256,10 @@ const styles = StyleSheet.create({
     width: '90%',
     backgroundColor: 'white',
     borderColor: 'black',
-    borderWidth: 0.5,
+    borderBottomWidth: 1,
     paddingLeft: 20,
     marginBottom: 8,
     fontSize: 13,
-    borderRadius: 15,
   },
   wrapperInput: {
     height: 300,
@@ -288,7 +287,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     height: 40,
     width: 300,
-    borderWidth: 0.5,
+    // borderWidth: 0.5,
   },
   map: {width: '95%', height: 255},
   map2: {
@@ -301,6 +300,12 @@ const styles = StyleSheet.create({
     height: 55,
     width: '100%',
     paddingHorizontal: 10,
+  },
+  wrapperTextupdate: {
+    fontSize: 20,
+    fontFamily: 'monospace',
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
 

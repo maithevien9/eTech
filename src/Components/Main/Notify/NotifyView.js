@@ -8,37 +8,45 @@ import {useTranslation} from 'react-i18next';
 
 const NotifyView = (props) => {
   const {t, i18n} = useTranslation();
+  const convertDate = (date) => {
+    var ts = new Date(date);
+    return ts.toLocaleDateString();
+  };
+  const convertDate2 = (date) => {
+    var ts = new Date(date);
+    return ts.toLocaleTimeString();
+  };
   return (
-    <View>
-      <Text>{t('Hello')}</Text>
-    </View>
-    // <ScrollView>
-    //   <View style={styles.wrapperHeader}>
-    //     <Text style={styles.textStyleHeader}>THÔNG BÁO</Text>
-    //   </View>
-    //   {/* <View style={styles.wrapperMain2}> */}
-    //   {/* <View style={{height: 4, backgroundColor: '#FFFFFF'}}></View> */}
+    // <View>
+    //   <Text>{t('Hello')}</Text>
+    // </View>
+    <ScrollView>
+      <View style={styles.wrapperHeader}>
+        <Text style={styles.textStyleHeader}>{t('Nofity')}</Text>
+      </View>
+      {/* <View style={styles.wrapperMain2}> */}
+      {/* <View style={{height: 4, backgroundColor: '#FFFFFF'}}></View> */}
 
-    //   <View style={styles.wrapperMain}>
-    //     {props.dataNotify.map((e) => (
-    //       <View style={styles.wrapperNotify} key={e.ID}>
-    //         <View style={styles.wrapperInNotyfi}>
-    //           <View style={styles.wrapperImageInNotify}>
-    //             <Image source={icEmail} style={styles.wrapperImage} />
-    //           </View>
-    //           <View style={{width: 350, marginLeft: 20}}>
-    //             <View style={{width: '85%'}}>
-    //               <Text style={styles.wrapperTextInNotify}>{e.Name}</Text>
-    //             </View>
-    //             <Text style={styles.StyleTextTime}>
-    //               {convertDate(e.CreateAtTime)} {convertDate2(e.CreateAtTime)}
-    //             </Text>
-    //           </View>
-    //         </View>
-    //       </View>
-    //     ))}
-    //   </View>
-    // </ScrollView>
+      <View style={styles.wrapperMain}>
+        {props.dataNotify.map((e) => (
+          <View style={styles.wrapperNotify} key={e.ID}>
+            <View style={styles.wrapperInNotyfi}>
+              <View style={styles.wrapperImageInNotify}>
+                <Image source={icEmail} style={styles.wrapperImage} />
+              </View>
+              <View style={{width: 350, marginLeft: 20}}>
+                <View style={{width: '85%'}}>
+                  <Text style={styles.wrapperTextInNotify}>{e.Name}</Text>
+                </View>
+                <Text style={styles.StyleTextTime}>
+                  {convertDate(e.CreateAtTime)} {convertDate2(e.CreateAtTime)}
+                </Text>
+              </View>
+            </View>
+          </View>
+        ))}
+      </View>
+    </ScrollView>
   );
 };
 
@@ -76,6 +84,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontFamily: 'monospace',
     color: 'white',
+    fontWeight: 'bold',
   },
   wrapperNotify: {
     height: 80,

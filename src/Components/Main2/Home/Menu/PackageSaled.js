@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
 import icGift from '.././../../../Images/Icons/grade.png';
 import {connect} from 'react-redux';
 
-const HistoryScore = (props) => {
+const HistoryRecyclables = (props) => {
   const convertDate = (date) => {
     var ts = new Date(date);
     return ts.toLocaleDateString();
@@ -15,35 +15,9 @@ const HistoryScore = (props) => {
   return (
     <View>
       <View style={styles.wrapperHeader}>
-        <Text style={styles.textStyleHeader}>Lịch sử điểm</Text>
+        <Text style={styles.textStyleHeader}>Gói Hàng Đã Bán</Text>
       </View>
-      <ScrollView style={styles.wrapperMain}>
-        {props.historyScore.map((e) => (
-          <View style={styles.wrapperForm} key={e.ID}>
-            <Image source={icGift} style={styles.wrapperImage} />
-            <View>
-              <View style={styles.wrapperRowFull}>
-                <View style={styles.wrapperRowGift}>
-                  <Text style={styles.StyleText}>Điểm: </Text>
-                  <View>
-                    <Text style={styles.StyleText}>{e.differenceScore}</Text>
-                  </View>
-                </View>
-                {/* <View style={styles.wrapperRowScore}>
-                  <Text style={styles.StyleText}>Điểm Đổi: </Text>
-                  <Text style={styles.StyleText}>{e.Score}</Text>
-                </View> */}
-              </View>
-              <View style={styles.wrapperRow}>
-                <Text style={styles.StyleText}>Thời gian: </Text>
-                <Text style={styles.StyleText}>
-                  {convertDate(e.DateTime)} {convertDate2(e.DateTime)}
-                </Text>
-              </View>
-            </View>
-          </View>
-        ))}
-      </ScrollView>
+      <ScrollView style={styles.wrapperMain}></ScrollView>
     </View>
   );
 };
@@ -60,6 +34,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontFamily: 'monospace',
     color: 'white',
+    fontWeight: 'bold',
   },
   wrapperMain: {
     marginLeft: '3%',
@@ -105,7 +80,7 @@ function mapStateToProps(state) {
   return {
     dataCheckLoginSuccess: state.dataCheckLoginSuccess,
     dataLogin: state.dataLogin,
-    historyScore: state.historyScore,
+    HistoryRecyclables: state.HistoryRecyclables,
   };
 }
-export default connect(mapStateToProps)(HistoryScore);
+export default connect(mapStateToProps)(HistoryRecyclables);

@@ -1,62 +1,27 @@
 import React, {Component} from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
-import icNotify from '../../Images/Icons/notification.png';
-import icNotify2 from '../../Images/Icons/notification2.png';
+import icFace from '../../Images/Icons/face2.png';
+import icFace2 from '../../Images/Icons/face.png';
 import icHome from '../../Images/Icons/home2.png';
 import icHome2 from '../../Images/Icons/home.png';
 import icNote from '../../Images/Icons/note.png';
 import icNote2 from '../../Images/Icons/note2.png';
-import QA from '../../Images/Icons/qa.png';
-import QA2 from '../../Images/Icons/qa2.png';
 import User from '../../Images/Icons/profile-user2.png';
 import User2 from '../../Images/Icons/profile-user.png';
-import Contact from './Contact/Contact';
+import Contact from '../Main/Contact/Contact';
+import Notify from '../Main/Notify/NotifyView';
 import Home from './Home/Home';
-import Notify from './Notify/NotifyView';
-import Cart from './Cart/Cart';
-import ContactMain from './Contact/Contact';
-import GetInforUser from '../../RestAPI/User/get-infor-user';
+import PackageOnSale from './Home/Menu/PackageOnSale';
 import {connect} from 'react-redux';
-import NotifyAPI from '../../RestAPI/Notify/get-notify-api';
 import {useTranslation} from 'react-i18next';
-const Main = (props) => {
+const Main2 = (props) => {
   const [selectedTab, setSelectedTab] = React.useState('home');
   const {t, i18n} = useTranslation();
   const HandleSelectContact = () => {
-    // GetInforUser(props.dataLogin.token)
-    //   .then((json) => {
-    //     var data = JSON.parse(JSON.stringify(json));
-    //     // console.log(data);
-    //     if (data.dataString === 'THANH_CONG') {
-    //       props.dispatch({
-    //         type: 'setInforUser',
-    //         data: data.data,
-    //       });
-    //       // setSelectedTab('Contact');
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error(error + 'fail');
-    //   });
     setSelectedTab('Contact');
   };
   const HandleSelectNotify = () => {
-    // NotifyAPI(props.dataLogin.token)
-    //   .then((json) => {
-    //     var data = JSON.parse(JSON.stringify(json));
-    //     console.log(data);
-    //     props.dispatch({
-    //       type: 'setdataNotify',
-    //       data: data.data,
-    //     });
-    //     if (data.dataString === 'THANH_CONG') {
-    //       setSelectedTab('notify');
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error(error + 'fail');
-    //   });
     setSelectedTab('Cart');
   };
   return (
@@ -74,19 +39,16 @@ const Main = (props) => {
       </TabNavigator.Item>
       <TabNavigator.Item
         selected={selectedTab === 'Cart'}
-        title={t('Cart')}
+        title={t('ISell')}
         titleStyle={styles.tabTitle}
-        badgeText={props.Cart.length}
-        renderIcon={() => (
-          <Image source={icNotify} style={styles.wrapperImage} />
-        )}
+        renderIcon={() => <Image source={icFace} style={styles.wrapperImage} />}
         renderSelectedIcon={() => (
-          <Image source={icNotify2} style={styles.wrapperImage} />
+          <Image source={icFace2} style={styles.wrapperImage} />
         )}
         onPress={() => {
           HandleSelectNotify();
         }}>
-        <Cart />
+        <PackageOnSale />
       </TabNavigator.Item>
       <TabNavigator.Item
         selected={selectedTab === 'Notify'}
@@ -110,7 +72,7 @@ const Main = (props) => {
           <Image source={User} style={styles.wrapperImage} />
         )}
         onPress={() => HandleSelectContact()}>
-        <ContactMain />
+        <Contact />
       </TabNavigator.Item>
     </TabNavigator>
   );
@@ -129,4 +91,4 @@ function mapStateToProps(state) {
     Cart: state.Cart,
   };
 }
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps)(Main2);

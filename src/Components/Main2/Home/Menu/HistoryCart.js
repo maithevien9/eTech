@@ -37,7 +37,7 @@ const HistoryCart = (props) => {
         {props.CartHistory.map((e) => (
           <View style={styles.wrapperForm}>
             <Image source={icGift} style={styles.wrapperImage} />
-            <View style={{marginLeft: '5%'}}>
+            <View>
               <View style={styles.wrapperRowFull}>
                 <View style={styles.wrapperRowGift}>
                   <Text style={styles.StyleText}>Trạng Thái: </Text>

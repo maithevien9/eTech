@@ -8,11 +8,12 @@ import {
   Alert,
 } from 'react-native';
 import registerAPI from '../../RestAPI/User/register-api';
-
+import {useTranslation} from 'react-i18next';
 const FormRegister = (props) => {
   const [user, setuser] = useState('');
   const [mk, setmk] = useState('');
   const [mk2, setmk2] = useState('');
+  const {t} = useTranslation();
   const HandleRegister = () => {
     if (mk === mk2 && user !== '' && mk !== '') {
       // registerAPI(user, mk)
@@ -72,27 +73,27 @@ const FormRegister = (props) => {
     <View style={styles.wrapperInput}>
       <TextInput
         style={styles.textInput}
-        placeholder="Your User Name"
+        placeholder={t('UserName')}
         onChangeText={(text) => setuser(text)}
         value={user}
       />
 
       <TextInput
         style={styles.textInput}
-        placeholder="Your PassWord"
+        placeholder={t('PassWord')}
         onChangeText={(text) => setmk(text)}
         value={mk}
         secureTextEntry
       />
       <TextInput
         style={styles.textInput}
-        placeholder="Re-Enter Your PassWord"
+        placeholder={t('ReEnterPass')}
         onChangeText={(text) => setmk2(text)}
         value={mk2}
         secureTextEntry
       />
       <TouchableOpacity style={styles.Button} onPress={HandleRegister}>
-        <Text style={styles.Text2}>SIGN UP</Text>
+        <Text style={styles.Text2}>{t('SignUp')}</Text>
       </TouchableOpacity>
     </View>
   );

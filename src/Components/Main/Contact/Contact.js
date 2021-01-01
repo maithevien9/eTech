@@ -25,6 +25,7 @@ import {useNavigation} from '@react-navigation/native';
 import {YellowBox} from 'react-native';
 import GetInforUser from '../../../RestAPI/User/get-infor-user';
 import {connect} from 'react-redux';
+import {useTranslation} from 'react-i18next';
 // import LocationView from 'react-native-location-view';
 const {width} = Dimensions.get('window');
 
@@ -34,6 +35,7 @@ const {width} = Dimensions.get('window');
 
 const Contact = (props) => {
   const navigation = useNavigation();
+  const {t, i18n} = useTranslation();
   const {
     mapContainer,
     wrapper,
@@ -97,7 +99,7 @@ const Contact = (props) => {
   return (
     <View>
       <View style={styles.wrapperHeader}>
-        <Text style={styles.textStyleHeader}>THÔNG TIN NGƯỜI DÙNG</Text>
+        <Text style={styles.textStyleHeader}>{t('Contact')}</Text>
       </View>
       <View style={mapContainer}>
         {/* <GooglePlacesAutocomplete
@@ -176,7 +178,7 @@ const Contact = (props) => {
           onPress={() => {
             handleUpdateUser();
           }}>
-          <Text>Cập nhập</Text>
+          <Text style={styles.wrapperTextupdate}>{t('Update')}</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -273,6 +275,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontFamily: 'monospace',
     color: 'white',
+    fontWeight: 'bold',
   },
   wapperBtnUpdate: {
     alignItems: 'center',
@@ -287,6 +290,12 @@ const styles = StyleSheet.create({
 
     fontWeight: '500',
     fontSize: 20,
+  },
+  wrapperTextupdate: {
+    fontSize: 20,
+    fontFamily: 'monospace',
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
 
