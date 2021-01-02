@@ -25,7 +25,9 @@ const MainView = (props) => {
   const navigation = useNavigation();
   const [textSearch, setTextSearch] = useState('');
   const {t, i18n} = useTranslation();
-
+  const HandleProductDetail = (e) => {
+    navigation.navigate('ProductDetail', {e});
+  };
   return (
     <View style={styles.wrapperMain}>
       <View style={styles.WrapperSearch}>
@@ -67,118 +69,42 @@ const MainView = (props) => {
           </View>
         </View>
         <ScrollView>
-          <View style={styles.wrapperProduct}>
-            <Image source={icBox} style={styles.wrapperImage} />
-            <View style={styles.wrapperTextInlineProduct}>
-              <View style={styles.wrapperRowScore}>
-                <Text style={styles.StyleText}>Gói Hàng: </Text>
-                <View style={styles.wrapperTextAddress}>
-                  <Text style={styles.StyleText}>Kim Loại, HDPE, PET,...</Text>
+          {props.Products.map((e) => (
+            <TouchableOpacity
+              style={styles.wrapperProduct}
+              onPress={() => {
+                HandleProductDetail(e);
+              }}>
+              <Image source={icBox} style={styles.wrapperImage} />
+              <View style={styles.wrapperTextInlineProduct}>
+                <View style={styles.wrapperRowScore}>
+                  <Text style={styles.StyleText}>Gói Hàng: </Text>
+                  <View style={styles.wrapperTextAddress}>
+                    <Text style={styles.StyleText}>
+                      {e.Cart.map((data) => data.Name + ', ')}
+                    </Text>
+                  </View>
                 </View>
-              </View>
-              <View style={styles.wrapperRowScore}>
-                <Text style={styles.StyleText}>Mức Giá: </Text>
-                <Text style={styles.StyleText}>22222</Text>
-              </View>
-              <View style={styles.wrapperRowScore}>
-                <Text style={styles.StyleText}>Thời gian: </Text>
-                <Text style={styles.StyleText}>22/22/222</Text>
-              </View>
+                <View style={styles.wrapperRowScore}>
+                  <Text style={styles.StyleText}>Mức Giá: </Text>
+                  <Text style={styles.StyleText}>{e.Price}</Text>
+                </View>
+                <View style={styles.wrapperRowScore}>
+                  <Text style={styles.StyleText}>Thời gian: </Text>
+                  <View style={styles.wrapperTextAddress}>
+                    <Text style={styles.StyleText}>{e.CreateAtTime}</Text>
+                  </View>
+                </View>
 
-              <View style={styles.wrapperRowScore}>
-                <Text style={styles.StyleText}>Địa điểm: </Text>
-                <View style={styles.wrapperTextAddress}>
-                  <Text style={styles.StyleText}>
-                    64 Nhơn Hòa 5, Cẩm Lệ, Đà Nẵng
-                  </Text>
+                <View style={styles.wrapperRowScore}>
+                  <Text style={styles.StyleText}>Địa điểm: </Text>
+                  <View style={styles.wrapperTextAddress}>
+                    <Text style={styles.StyleText}>{e.Address}</Text>
+                  </View>
                 </View>
               </View>
-            </View>
-          </View>
-          <View style={styles.wrapperProduct}>
-            <Image source={icBox} style={styles.wrapperImage} />
-            <View style={styles.wrapperTextInlineProduct}>
-              <View style={styles.wrapperRowScore}>
-                <Text style={styles.StyleText}>Gói Hàng: </Text>
-                <View style={styles.wrapperTextAddress}>
-                  <Text style={styles.StyleText}>Kim Loại, HDPE, PET,...</Text>
-                </View>
-              </View>
-              <View style={styles.wrapperRowScore}>
-                <Text style={styles.StyleText}>Mức Giá: </Text>
-                <Text style={styles.StyleText}>22222</Text>
-              </View>
-              <View style={styles.wrapperRowScore}>
-                <Text style={styles.StyleText}>Thời gian: </Text>
-                <Text style={styles.StyleText}>22/22/222</Text>
-              </View>
-
-              <View style={styles.wrapperRowScore}>
-                <Text style={styles.StyleText}>Địa điểm: </Text>
-                <View style={styles.wrapperTextAddress}>
-                  <Text style={styles.StyleText}>
-                    64 Nhơn Hòa 5, Cẩm Lệ, Đà Nẵng
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </View>
-          <View style={styles.wrapperProduct}>
-            <Image source={icBox} style={styles.wrapperImage} />
-            <View style={styles.wrapperTextInlineProduct}>
-              <View style={styles.wrapperRowScore}>
-                <Text style={styles.StyleText}>Gói Hàng: </Text>
-                <View style={styles.wrapperTextAddress}>
-                  <Text style={styles.StyleText}>Kim Loại, HDPE, PET,...</Text>
-                </View>
-              </View>
-              <View style={styles.wrapperRowScore}>
-                <Text style={styles.StyleText}>Mức Giá: </Text>
-                <Text style={styles.StyleText}>22222</Text>
-              </View>
-              <View style={styles.wrapperRowScore}>
-                <Text style={styles.StyleText}>Thời gian: </Text>
-                <Text style={styles.StyleText}>22/22/222</Text>
-              </View>
-
-              <View style={styles.wrapperRowScore}>
-                <Text style={styles.StyleText}>Địa điểm: </Text>
-                <View style={styles.wrapperTextAddress}>
-                  <Text style={styles.StyleText}>
-                    64 Nhơn Hòa 5, Cẩm Lệ, Đà Nẵng
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </View>
-          <View style={styles.wrapperProduct}>
-            <Image source={icBox} style={styles.wrapperImage} />
-            <View style={styles.wrapperTextInlineProduct}>
-              <View style={styles.wrapperRowScore}>
-                <Text style={styles.StyleText}>Gói Hàng: </Text>
-                <View style={styles.wrapperTextAddress}>
-                  <Text style={styles.StyleText}>Kim Loại, HDPE, PET,...</Text>
-                </View>
-              </View>
-              <View style={styles.wrapperRowScore}>
-                <Text style={styles.StyleText}>Mức Giá: </Text>
-                <Text style={styles.StyleText}>22222</Text>
-              </View>
-              <View style={styles.wrapperRowScore}>
-                <Text style={styles.StyleText}>Thời gian: </Text>
-                <Text style={styles.StyleText}>22/22/222</Text>
-              </View>
-
-              <View style={styles.wrapperRowScore}>
-                <Text style={styles.StyleText}>Địa điểm: </Text>
-                <View style={styles.wrapperTextAddress}>
-                  <Text style={styles.StyleText}>
-                    64 Nhơn Hòa 5, Cẩm Lệ, Đà Nẵng
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </View>
+            </TouchableOpacity>
+          ))}
         </ScrollView>
       </View>
     </View>
@@ -226,6 +152,8 @@ const styles = StyleSheet.create({
   slide1: {
     height: (windowHeight * 2) / 10,
     borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#009966',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#97CAE5',
@@ -233,6 +161,8 @@ const styles = StyleSheet.create({
   slide2: {
     height: (windowHeight * 2) / 10,
     borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#009966',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#92BBD9',
@@ -240,6 +170,8 @@ const styles = StyleSheet.create({
   slide3: {
     height: (windowHeight * 2) / 10,
     borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#009966',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#97CAE5',
@@ -341,7 +273,6 @@ const styles = StyleSheet.create({
     width: '60%',
   },
   wrapperRowScore: {
-    marginBottom: '2%',
     flexDirection: 'row',
     width: '35%',
   },
@@ -369,6 +300,7 @@ function mapStateToProps(state) {
   return {
     dataLogin: state.dataLogin,
     Scores: state.Scores,
+    Products: state.Products,
   };
 }
 export default connect(mapStateToProps)(MainView);

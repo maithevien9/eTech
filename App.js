@@ -20,6 +20,7 @@ import Sale from './src/Components/Main/Cart/Sale/Sale';
 import PackageDetail from './src/Components/Main/Home/Menu/PackageDetail/PackageDetail';
 import PackageDetailUpdate from './src/Components/Main/Home/Menu/PackageDetail/PackageDetailUpdate';
 import Main2 from './src/Components/Main2/Main';
+import ProductDetail from './src/Components/Main2/Home/MainView/Products/ProductDetail';
 import './src/I18n';
 const Stack = createStackNavigator();
 const App = () => {
@@ -30,7 +31,7 @@ const App = () => {
           <Stack.Screen name="Main2" component={Main2} />
           <Stack.Screen name="Loading" component={Loading} />
           <Stack.Screen name="Main" component={Main} />
-
+          <Stack.Screen name="ProductDetail" component={ProductDetail} />
           <Stack.Screen name="PackageDetail" component={PackageDetail} />
           <Stack.Screen name="SelectRole" component={SelectRole} />
           <Stack.Screen name="Authenication" component={Authenication} />
