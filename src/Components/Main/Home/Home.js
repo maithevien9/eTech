@@ -37,17 +37,6 @@ const Home = (props) => {
   };
   const [dataUser, setDataUser] = useState({});
 
-  const dataTemp = () => {
-    if (props.dataLogin.accessToken) {
-      props.dispatch({
-        type: 'setLoginSuccess',
-      });
-    } else {
-      props.dispatch({
-        type: 'setLogout',
-      });
-    }
-  };
   const HandlerLogOut = () => {
     navigation.replace('Authenication');
   };

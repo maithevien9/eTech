@@ -30,8 +30,9 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
-          <Stack.Screen name="Loading" component={Loading} />
           <Stack.Screen name="Main" component={Main} />
+          <Stack.Screen name="Loading" component={Loading} />
+
           <Stack.Screen name="Main2" component={Main2} />
           <Stack.Screen name="ProductDetail" component={ProductDetail} />
           <Stack.Screen name="ListProducts" component={ListProducts} />

@@ -22,13 +22,13 @@ const PackageDetailUpdate = (props) => {
   const {t, i18n} = useTranslation();
   const route = useRoute();
   const navigation = useNavigation();
-  const handleX = (ID) => {
-    console.log(ID);
-    props.dispatch({
-      type: 'deleteCart',
-      ID: ID,
-    });
-  };
+  // const handleX = (ID) => {
+  //   console.log(ID);
+  //   props.dispatch({
+  //     type: 'deleteCart',
+  //     ID: ID,
+  //   });
+  // };
   useEffect(() => {
     console.log(route.params.e);
   });

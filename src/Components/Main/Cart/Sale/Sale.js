@@ -13,6 +13,7 @@ import {
 import {useRoute} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 import {connect} from 'react-redux';
+import {AddCartHistory, setCart} from '../../../../Redux/ActionCreators';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const Sale = (props) => {
@@ -36,18 +37,9 @@ const Sale = (props) => {
 
     var dateTime =
       year + '-' + month + '-' + date + ' ' + hour + ':' + min + ':' + sec;
-    props.dispatch({
-      type: 'AddCartHistory',
-      CreateAtTime: dateTime,
-      Price: amount,
-      arrayCart: props.Cart,
-      Address: Address,
-      Phone: Phone,
-    });
-    props.dispatch({
-      type: 'setCart',
-      data: [],
-    });
+    props.AddCartHistory(dateTime, amount, props.Cart, Address, Phone);
+
+    props.setCart();
     Alert.alert(
       'Nofity',
       'Thành Công',
@@ -216,4 +208,4 @@ function mapStateToProps(state) {
     Cart: state.Cart,
   };
 }
-export default connect(mapStateToProps)(Sale);
+export default connect(mapStateToProps, {AddCartHistory, setCart})(Sale);

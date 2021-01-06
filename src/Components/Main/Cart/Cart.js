@@ -8,23 +8,12 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
-import icEmail from '../../../Images/Icons/email.png';
 import {Dimensions} from 'react-native';
-import icPlastic1 from '../../../Images/Icons/plastic1.png';
-import icPlastic2 from '../../../Images/Icons/plastic2.png';
-import icPlastic3 from '../../../Images/Icons/plastic3.png';
-import icPlastic4 from '../../../Images/Icons/plastic4.png';
-import icPlastic5 from '../../../Images/Icons/plastic5.png';
-import icPaper1 from '../../../Images/Icons/paper1.png';
-import icPaper2 from '../../../Images/Icons/paper2.png';
-import icPaper3 from '../../../Images/Icons/paper3.png';
-import icMetal1 from '../../../Images/Icons/metal1.png';
-import icMetal2 from '../../../Images/Icons/metal2.png';
-import icMetal3 from '../../../Images/Icons/metal3.png';
-import ICRecy from '../../..//Images/Icons/metal2.png';
 import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import {connect} from 'react-redux';
+
+import {deleteCart} from '../../../Redux/ActionCreators';
 const windowWidth = Dimensions.get('window').width;
 
 const windowHeight = Dimensions.get('window').height;
@@ -52,11 +41,7 @@ const About = (props) => {
     );
   };
   const handleX = (ID) => {
-    console.log(ID);
-    props.dispatch({
-      type: 'deleteCart',
-      ID: ID,
-    });
+    props.deleteCart(ID);
   };
   return (
     <View style={styles.wrapperMain}>
@@ -196,4 +181,4 @@ function mapStateToProps(state) {
     Cart: state.Cart,
   };
 }
-export default connect(mapStateToProps)(About);
+export default connect(mapStateToProps, {deleteCart})(About);

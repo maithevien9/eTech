@@ -7,10 +7,13 @@ import {
   TouchableOpacity,
   Alert,
   Image,
+  ScrollView,
 } from 'react-native';
+import icText from '../../../../../Images/Icons/recycle.png';
 import {useRoute} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 import {connect} from 'react-redux';
+import {addCart} from '../../../../../Redux/ActionCreators';
 const CategoryDetail = (props) => {
   const [amount, setAmount] = React.useState(0);
   const route = useRoute();
@@ -22,15 +25,14 @@ const CategoryDetail = (props) => {
   const HandleCart = () => {
     if (amount) {
       console.log(ID + '/' + Name + '/' + amount + '/' + route.params.Score);
-      props.dispatch({
-        type: 'addCart',
-        ID: ID,
-        Name: Name,
-        amount: amount,
-        Score: route.params.Score,
-        Unit: route.params.Unit,
-        Image: route.params.Image,
-      });
+      props.addCart(
+        ID,
+        Name,
+        amount,
+        route.params.Score,
+        route.params.Unit,
+        route.params.Image,
+      );
 
       navigation.navigate('Main');
     } else {
@@ -68,10 +70,69 @@ const CategoryDetail = (props) => {
         <Text style={styles.textMain}>Điểm đổi:</Text>
         <Text style={styles.textMain}>{amount * route.params.Score}</Text>
       </View>
-      <Image
+      {/* <Image
         source={route.params.Image}
         style={{height: 40, width: 40, marginTop: '10%'}}
-      />
+      /> */}
+      <View style={styles.wrapperTextView}>
+        <Text style={styles.TextStyleView}>Một số hình ảnh của sản phẩm: </Text>
+      </View>
+      <ScrollView style={styles.wrapperList}>
+        <View style={styles.wrapperListView}>
+          <View style={styles.WrapperListDetail}>
+            <Image source={icText} style={styles.wrapperImage} />
+            <Text style={styles.texList}>Omo</Text>
+          </View>
+          <View style={styles.WrapperListDetail}>
+            <Image source={icText} style={styles.wrapperImage} />
+            <Text style={styles.texList}>Omo</Text>
+          </View>
+          <View style={styles.WrapperListDetail}>
+            <Image source={icText} style={styles.wrapperImage} />
+            <Text style={styles.texList}>Omo</Text>
+          </View>
+          <View style={styles.WrapperListDetail}>
+            <Image source={icText} style={styles.wrapperImage} />
+            <Text style={styles.texList}>Omo</Text>
+          </View>
+          <View style={styles.WrapperListDetail}>
+            <Image source={icText} style={styles.wrapperImage} />
+            <Text style={styles.texList}>Omo</Text>
+          </View>
+          <View style={styles.WrapperListDetail}>
+            <Image source={icText} style={styles.wrapperImage} />
+            <Text style={styles.texList}>Omo</Text>
+          </View>
+          <View style={styles.WrapperListDetail}>
+            <Image source={icText} style={styles.wrapperImage} />
+            <Text style={styles.texList}>Omo</Text>
+          </View>
+          <View style={styles.WrapperListDetail}>
+            <Image source={icText} style={styles.wrapperImage} />
+            <Text style={styles.texList}>Omo</Text>
+          </View>
+          <View style={styles.WrapperListDetail}>
+            <Image source={icText} style={styles.wrapperImage} />
+            <Text style={styles.texList}>Omo</Text>
+          </View>
+          <View style={styles.WrapperListDetail}>
+            <Image source={icText} style={styles.wrapperImage} />
+            <Text style={styles.texList}>Omo</Text>
+          </View>
+          <View style={styles.WrapperListDetail}>
+            <Image source={icText} style={styles.wrapperImage} />
+            <Text style={styles.texList}>Omo</Text>
+          </View>
+          <View style={styles.WrapperListDetail}>
+            <Image source={icText} style={styles.wrapperImage} />
+            <Text style={styles.texList}>Omo</Text>
+          </View>
+          <View style={styles.WrapperListDetail}>
+            <Image source={icText} style={styles.wrapperImage} />
+            <Text style={styles.texList}>Omo</Text>
+          </View>
+        </View>
+      </ScrollView>
       <TouchableOpacity style={styles.wrapperBtn} onPress={HandleCart}>
         <Text style={styles.TextSubmit}>Thêm vào Giỏ</Text>
       </TouchableOpacity>
@@ -86,7 +147,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   wrapperBtn: {
-    marginTop: '100%',
+    marginTop: '5%',
     height: '7%',
     width: '90%',
     backgroundColor: '#009966',
@@ -126,6 +187,43 @@ const styles = StyleSheet.create({
   wrapperScore: {
     flexDirection: 'row',
   },
+  wrapperList: {
+    height: '55%',
+    width: '92%',
+  },
+  WrapperListDetail: {
+    flexDirection: 'row',
+    height: 50,
+    alignItems: 'center',
+    width: '49%',
+    paddingBottom: '0%',
+    borderBottomWidth: 1,
+    marginTop: '5%',
+  },
+  wrapperImage: {
+    height: 30,
+    width: 30,
+  },
+  wrapperListView: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    marginHorizontal: '4%',
+  },
+  texList: {
+    marginLeft: '5%',
+    fontSize: 13,
+    fontFamily: 'monospace',
+  },
+  wrapperTextView: {
+    marginTop: '5%',
+    height: '2%',
+  },
+  TextStyleView: {
+    fontSize: 15,
+    fontFamily: 'monospace',
+    fontWeight: 'bold',
+  },
 });
 
 function mapStateToProps(state) {
@@ -134,4 +232,4 @@ function mapStateToProps(state) {
     Scores: state.Scores,
   };
 }
-export default connect(mapStateToProps)(CategoryDetail);
+export default connect(mapStateToProps, {addCart})(CategoryDetail);

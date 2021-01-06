@@ -9,17 +9,7 @@ import {
   ScrollView,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import icPlastic1 from '../../../../../Images/Icons/plastic1.png';
-import icPlastic2 from '../../../../../Images/Icons/plastic2.png';
-import icPlastic3 from '../../../../../Images/Icons/plastic3.png';
-import icPlastic4 from '../../../../../Images/Icons/plastic4.png';
-import icPlastic5 from '../../../../../Images/Icons/plastic5.png';
-import icPaper1 from '../../../../../Images/Icons/paper1.png';
-import icPaper2 from '../../../../../Images/Icons/paper2.png';
-import icPaper3 from '../../../../../Images/Icons/paper3.png';
-import icMetal1 from '../../../../../Images/Icons/metal1.png';
-import icMetal2 from '../../../../../Images/Icons/metal2.png';
-import icMetal3 from '../../../../../Images/Icons/metal3.png';
+import icPlastic from '../../../../../Images/Icons/recycle.png';
 
 const View1 = (props) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -35,71 +25,45 @@ const View1 = (props) => {
   };
   return (
     <ScrollView style={styles.wrapper}>
-      <View style={styles.wrapperHeader}>
-        {/* <Text style={styles.Textheader}>HƯỚNG DẪN PHÂN LOẠI</Text> */}
-      </View>
-
       <View style={styles.wrapperPlastic}>
-        <View style={{alignItems: 'center'}}>
-          <Text style={styles.wrapperTextHeaderPlastic}>HDPE / PET</Text>
-        </View>
         <View style={styles.wrapperMain1}>
           <View style={styles.wrapperheaderPlastic}>
             <TouchableOpacity
               style={styles.wrapperheader2Plactic}
               onPress={() => {
-                HandleRecyclables(
-                  1,
-                  3000,
-                  '1/Kg',
-                  'Chai Nước Uống',
-                  icPlastic1,
-                );
+                HandleRecyclables(1, 3000, '1/Kg', 'HDPE', icPlastic);
               }}>
-              <Text style={styles.wrapperTextHeader2}>Chai Nước Uống</Text>
-              <Image source={icPlastic1} style={styles.wrapperImage2} />
+              <Image source={icPlastic} style={styles.wrapperImage2} />
+              <Text style={styles.wrapperTextHeader2}>HDPE</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.wrapperheader2Plactic}
               onPress={() => {
-                HandleRecyclables(2, 3000, '1/Kg', 'Gia Vị', icPlastic2);
+                HandleRecyclables(2, 3000, '1/Kg', 'PET', icPlastic);
               }}>
-              <Text style={styles.wrapperTextHeader2}>Gia Vị</Text>
-              <Image source={icPlastic2} style={styles.wrapperImage2} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.wrapperheader2Plactic}
-              onPress={() => {
-                HandleRecyclables(3, 3000, '1/Kg', 'Chất Tẩy Rửa', icPlastic3);
-              }}>
-              <Text style={styles.wrapperTextHeader2}>Chất Tẩy Rửa</Text>
-              <Image source={icPlastic3} style={styles.wrapperImage2} />
+              <Image source={icPlastic} style={styles.wrapperImage2} />
+              <Text style={styles.wrapperTextHeader2}>PET</Text>
             </TouchableOpacity>
           </View>
         </View>
-        <View style={styles.wrapperMain2}>
-          <View style={styles.wrapperMain2Parient}>
-            {/* <Text style={styles.wrapperText}>NHỰA</Text> */}
-          </View>
-        </View>
-        <View style={styles.wrapperMain3plastic}>
-          <View style={styles.wrapperBottomPlastic}>
-            <TouchableOpacity
-              style={styles.wrapperheader2Plactic}
-              onPress={() => {
-                HandleRecyclables(4, 3000, '1/Kg', 'Bao Bì', icPlastic4);
-              }}>
-              <Text style={styles.wrapperTextHeader}>Bao Bì</Text>
-              <Image source={icPlastic4} style={styles.wrapperImage} />
-            </TouchableOpacity>
 
+        <View style={styles.wrapperMain1}>
+          <View style={styles.wrapperheaderPlastic}>
             <TouchableOpacity
               style={styles.wrapperheader2Plactic}
               onPress={() => {
-                HandleRecyclables(5, 3000, '1/Kg', 'Còn Lại', icPlastic4);
+                HandleRecyclables(3, 3000, '1/Kg', 'PE', icPlastic);
               }}>
-              <Text style={styles.wrapperTextHeader}>Còn Lại</Text>
-              <Image source={icPlastic5} style={styles.wrapperImage} />
+              <Image source={icPlastic} style={styles.wrapperImage2} />
+              <Text style={styles.wrapperTextHeader2}>PE</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.wrapperheader2Plactic}
+              onPress={() => {
+                HandleRecyclables(4, 3000, '1/Kg', 'Còn Lại', icPlastic);
+              }}>
+              <Image source={icPlastic} style={styles.wrapperImage2} />
+              <Text style={styles.wrapperTextHeader2}>Còn Lại</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -123,7 +87,7 @@ const styles = StyleSheet.create({
   },
   wrapperMain1: {
     height: '15%',
-    marginBottom: '3%',
+    marginTop: '24%',
   },
   wrapperMain2Parient: {
     height: '45%',
@@ -169,18 +133,15 @@ const styles = StyleSheet.create({
     fontFamily: 'monospace',
   },
   wrapperPlastic: {
-    height: 250,
+    marginTop: '5%',
     width: '96%',
-    // backgroundColor: 'yellow',
-    // borderWidth: 2,
     borderRadius: 40,
     marginLeft: '2%',
     marginBottom: '10%',
-    // borderStyle: 'dashed',
   },
   wrapperheaderPlastic: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     marginHorizontal: '7%',
     marginTop: '3%',
   },
@@ -200,6 +161,15 @@ const styles = StyleSheet.create({
   wrapperheader2Plactic: {
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#009966',
+    height: '175%',
+    width: '35%',
+    // eslint-disable-next-line no-dupe-keys
+    alignItems: 'center',
+    // eslint-disable-next-line no-dupe-keys
+    justifyContent: 'center',
+    borderRadius: 15,
   },
   wrapperBottomPlastic: {
     flexDirection: 'row',
@@ -216,8 +186,10 @@ const styles = StyleSheet.create({
     borderStyle: 'dashed',
   },
   wrapperTextHeader2: {
-    fontSize: 10,
+    fontSize: 13,
     fontFamily: 'monospace',
+    marginTop: '5%',
+    fontWeight: 'bold',
   },
   wrapperheaderMetal: {
     flexDirection: 'row',
@@ -226,8 +198,8 @@ const styles = StyleSheet.create({
     marginTop: '3%',
   },
   wrapperImage2: {
-    height: 30,
-    width: 30,
+    height: 35,
+    width: 35,
     marginTop: '4%',
   },
 });

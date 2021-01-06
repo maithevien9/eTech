@@ -9,19 +9,11 @@ import {
   ScrollView,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import icPlastic1 from '../../../../../Images/Icons/plastic1.png';
-import icPlastic2 from '../../../../../Images/Icons/plastic2.png';
-import icPlastic3 from '../../../../../Images/Icons/plastic3.png';
-import icPlastic4 from '../../../../../Images/Icons/plastic4.png';
-import icPlastic5 from '../../../../../Images/Icons/plastic5.png';
-import icPaper1 from '../../../../../Images/Icons/paper1.png';
-import icPaper2 from '../../../../../Images/Icons/paper2.png';
-import icPaper3 from '../../../../../Images/Icons/paper3.png';
-import icMetal1 from '../../../../../Images/Icons/metal1.png';
-import icMetal2 from '../../../../../Images/Icons/metal2.png';
-import icMetal3 from '../../../../../Images/Icons/metal3.png';
+import metal1 from '../../../../../Images/Icons/metal1.png';
+import metal2 from '../../../../../Images/Icons/metal2.png';
+import metal3 from '../../../../../Images/Icons/metal3.png';
 
-const View3 = (props) => {
+const View2 = (props) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const navigation = useNavigation();
   const HandleRecyclables = (ID, Score, Unit, Name, Image) => {
@@ -35,53 +27,43 @@ const View3 = (props) => {
   };
   return (
     <ScrollView style={styles.wrapper}>
-      <View style={styles.wrapperHeader}>
-        {/* <Text style={styles.Textheader}>HƯỚNG DẪN PHÂN LOẠI</Text> */}
-      </View>
-
-      <View style={styles.wrapperPaper}>
+      <View style={styles.wrapperPlastic}>
         <View style={styles.wrapperMain1}>
-          <View style={styles.wrapperheaderMetal}>
+          <View style={styles.wrapperheaderPlastic}>
             <TouchableOpacity
               style={styles.wrapperheader2Plactic}
               onPress={() => {
-                HandleRecyclables(9, 3000, '1/Kg', 'Phế Liệu', icMetal1);
+                HandleRecyclables(9, 3000, '1/Kg', 'Vỏ Lon', metal1);
               }}>
-              <Text style={styles.wrapperTextHeader}>Phế Liệu</Text>
-              <Image source={icMetal2} style={styles.wrapperImage} />
+              <Image source={metal1} style={styles.wrapperImage2} />
+              <Text style={styles.wrapperTextHeader2}>Vỏ Lon</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.wrapperheader2Plactic}
               onPress={() => {
-                HandleRecyclables(10, 3000, '1/Kg', 'Vỏ Lon ', icMetal2);
+                HandleRecyclables(9, 3000, '1/Kg', 'Phế Liệu', metal2);
               }}>
-              <Text style={styles.wrapperTextHeader}> Vỏ Lon </Text>
-              <Image source={icMetal1} style={styles.wrapperImage} />
+              <Image source={metal2} style={styles.wrapperImage2} />
+              <Text style={styles.wrapperTextHeader2}>Phế Liệu</Text>
             </TouchableOpacity>
           </View>
         </View>
-        <View style={styles.wrapperMain2}>
-          <View style={styles.wrapperMain2Parient}>
-            {/* <Text style={styles.wrapperText}> KIM LOẠI</Text> */}
-          </View>
-        </View>
-        <View style={styles.wrapperMain3}>
-          <View style={styles.wrapperBottomPlastic}>
+
+        <View style={styles.wrapperMain1}>
+          <View style={styles.wrapperheaderPlastic}>
             <TouchableOpacity
               style={styles.wrapperheader2Plactic}
               onPress={() => {
                 HandleRecyclables(
-                  11,
+                  10,
                   3000,
                   '1/Kg',
-                  'Bình Xịt Nén Khí/Hộp Bánh',
-                  icMetal3,
+                  'Bình Xịt/Hộp Bánh',
+                  metal3,
                 );
               }}>
-              <Text style={styles.wrapperTextHeader}>
-                Bình Xịt Nén Khí/Hộp Bánh
-              </Text>
-              <Image source={icMetal3} style={styles.wrapperImage} />
+              <Image source={metal3} style={styles.wrapperImage2} />
+              <Text style={styles.wrapperTextHeader2}>Bình Xịt/Hộp Bánh</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -105,7 +87,7 @@ const styles = StyleSheet.create({
   },
   wrapperMain1: {
     height: '15%',
-    marginBottom: '3%',
+    marginTop: '27%',
   },
   wrapperMain2Parient: {
     height: '45%',
@@ -151,18 +133,15 @@ const styles = StyleSheet.create({
     fontFamily: 'monospace',
   },
   wrapperPlastic: {
-    height: 250,
+    marginTop: '2%',
     width: '96%',
-    // backgroundColor: 'yellow',
-    borderWidth: 2,
     borderRadius: 40,
     marginLeft: '2%',
     marginBottom: '10%',
-    borderStyle: 'dashed',
   },
   wrapperheaderPlastic: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     marginHorizontal: '7%',
     marginTop: '3%',
   },
@@ -182,6 +161,15 @@ const styles = StyleSheet.create({
   wrapperheader2Plactic: {
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: '#009966',
+    height: '175%',
+    width: '39%',
+    // eslint-disable-next-line no-dupe-keys
+    alignItems: 'center',
+    // eslint-disable-next-line no-dupe-keys
+    justifyContent: 'center',
+    borderRadius: 15,
   },
   wrapperBottomPlastic: {
     flexDirection: 'row',
@@ -191,13 +179,19 @@ const styles = StyleSheet.create({
     height: 250,
     width: '96%',
 
+    borderWidth: 2,
     borderRadius: 40,
     marginLeft: '2%',
     marginBottom: '10%',
+    borderStyle: 'dashed',
   },
   wrapperTextHeader2: {
-    fontSize: 10,
+    marginLeft: '20%',
+    width: '70%',
+    fontSize: 13,
     fontFamily: 'monospace',
+    marginTop: '5%',
+    fontWeight: 'bold',
   },
   wrapperheaderMetal: {
     flexDirection: 'row',
@@ -206,9 +200,9 @@ const styles = StyleSheet.create({
     marginTop: '3%',
   },
   wrapperImage2: {
-    height: 30,
-    width: 30,
+    height: 35,
+    width: 35,
     marginTop: '4%',
   },
 });
-export default View3;
+export default View2;

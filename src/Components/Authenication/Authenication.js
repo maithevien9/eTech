@@ -18,11 +18,7 @@ const Authentication = (props) => {
   const [dataCheckLoginRe, setdataCheckLoginRe] = useState(true);
   const {t} = useTranslation();
   const main = dataCheckLoginRe ? <FormLogin /> : <FormRegister />;
-  const setValue1 = () => {
-    props.dispatch({
-      type: 'setLogin',
-    });
-  };
+
   const handleSignUp = () => {
     setdataCheckLoginRe(false);
   };

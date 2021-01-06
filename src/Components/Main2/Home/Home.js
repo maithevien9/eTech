@@ -33,17 +33,17 @@ const Home = (props) => {
     value.open();
   };
 
-  const dataTemp = () => {
-    if (props.dataLogin.accessToken) {
-      props.dispatch({
-        type: 'setLoginSuccess',
-      });
-    } else {
-      props.dispatch({
-        type: 'setLogout',
-      });
-    }
-  };
+  // const dataTemp = () => {
+  //   if (props.dataLogin.accessToken) {
+  //     props.dispatch({
+  //       type: 'setLoginSuccess',
+  //     });
+  //   } else {
+  //     props.dispatch({
+  //       type: 'setLogout',
+  //     });
+  //   }
+  // };
   const HandlerLogOut = () => {
     navigation.replace('Authenication');
   };
