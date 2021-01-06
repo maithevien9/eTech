@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     // height: (windowHeight * 0.9) / 10,
     width: '90%',
     marginLeft: '5%',
-    borderBottomWidth: 1.5,
+    borderBottomWidth: 1,
     marginTop: '3%',
     paddingBottom: '4%',
     // justifyContent: 'center',

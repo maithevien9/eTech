@@ -18,10 +18,8 @@ const windowHeight = Dimensions.get('window').height;
 const Sale = (props) => {
   var i = 0;
   const [amount, setAmount] = React.useState(0);
-  const [Address, setAddress] = React.useState(
-    '64 Nhơn Hòa 5, Cẩm Lệ, Đà Nẵng',
-  );
-  const [Phone, setPhone] = React.useState('0869040015');
+  const [Address, setAddress] = React.useState('');
+  const [Phone, setPhone] = React.useState('');
   const route = useRoute();
   const navigation = useNavigation();
   const HanldeSale = () => {
@@ -148,7 +146,7 @@ const styles = StyleSheet.create({
   stylesSTT: {width: '20%'},
   stylesNameCart: {width: '50%'},
   stylesAmount: {width: '20%', alignItems: 'center'},
-  stylesText: {fontSize: 13, fontFamily: 'monospace', fontWeight: 'bold'},
+  stylesText: {fontSize: 12, fontFamily: 'monospace'},
   wrapperHeader: {
     marginTop: '5%',
     marginBottom: '13%',
@@ -186,9 +184,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   textMain: {
-    fontSize: 15,
+    fontSize: 12,
     fontFamily: 'monospace',
-    fontWeight: 'bold',
     marginHorizontal: '1%',
   },
   textMain2: {

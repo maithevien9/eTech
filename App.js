@@ -21,17 +21,20 @@ import PackageDetail from './src/Components/Main/Home/Menu/PackageDetail/Package
 import PackageDetailUpdate from './src/Components/Main/Home/Menu/PackageDetail/PackageDetailUpdate';
 import Main2 from './src/Components/Main2/Main';
 import ProductDetail from './src/Components/Main2/Home/MainView/Products/ProductDetail';
+import ListProducts from './src/Components/Main2/Home/MainView/Products/ListProducts';
 import './src/I18n';
+
 const Stack = createStackNavigator();
 const App = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
-          <Stack.Screen name="Main2" component={Main2} />
           <Stack.Screen name="Loading" component={Loading} />
           <Stack.Screen name="Main" component={Main} />
+          <Stack.Screen name="Main2" component={Main2} />
           <Stack.Screen name="ProductDetail" component={ProductDetail} />
+          <Stack.Screen name="ListProducts" component={ListProducts} />
           <Stack.Screen name="PackageDetail" component={PackageDetail} />
           <Stack.Screen name="SelectRole" component={SelectRole} />
           <Stack.Screen name="Authenication" component={Authenication} />

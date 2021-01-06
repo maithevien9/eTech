@@ -9,7 +9,7 @@ import {
   Linking,
 } from 'react-native';
 import {useRoute} from '@react-navigation/native';
-import * as SMS from 'expo-sms';
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -20,17 +20,20 @@ const ProductDetail = (props) => {
     Linking.openURL(`tel:${route.params.e.Phone}`);
   };
   const HandleMessage = async () => {
-    // const {result} = await SMS.sendSMSAsync(
-    //   ['0123456789', '9876543210'],
-    //   'My sample HelloWorld message',
-    //   {
-    //     attachments: {
-    //       uri: 'path/myfile.png',
-    //       mimeType: 'image/png',
-    //       filename: 'myfile.png',
-    //     },
-    //   },
-    // );
+    Linking.openURL(
+      `sms:${route.params.e.Phone}?body=Tôi muốn mua gói hàng của bạn`,
+    );
+  };
+  const HandleMap = () => {
+    var latitude = 16.047559536535516;
+    var longitude = 108.17248364031836;
+    Linking.canOpenURL(`geo:${latitude},${longitude}`).then((supported) => {
+      if (supported) {
+        Linking.openURL(`geo:${latitude},${longitude}`);
+      } else {
+        console.log("Don't know how to go");
+      }
+    });
   };
   return (
     <View>
@@ -100,10 +103,12 @@ const ProductDetail = (props) => {
         <TouchableOpacity style={styles.wrapperBtnDetail} onPress={HandleCall}>
           <Text style={styles.StyleTextBtn}>Gọi điện</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.wrapperBtnDetail}>
+        <TouchableOpacity
+          style={styles.wrapperBtnDetail}
+          onPress={HandleMessage}>
           <Text style={styles.StyleTextBtn}>Nhắn tin</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.wrapperBtnDetail}>
+        <TouchableOpacity style={styles.wrapperBtnDetail} onPress={HandleMap}>
           <Text style={styles.StyleTextBtn}>Map</Text>
         </TouchableOpacity>
       </View>
@@ -116,7 +121,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     borderColor: 'black',
     borderBottomWidth: 0.7,
-    height: windowHeight / 15,
+    height: windowHeight / 20,
     width: '92%',
     marginHorizontal: '2%',
     alignItems: 'center',
@@ -125,8 +130,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     borderColor: 'black',
-    borderBottomWidth: 0.7,
-    height: windowHeight / 19,
+    borderBottomWidth: 0.5,
+    height: windowHeight / 22,
     width: '92%',
     marginHorizontal: '2%',
     alignItems: 'center',
@@ -134,7 +139,7 @@ const styles = StyleSheet.create({
   stylesSTT: {width: '20%'},
   stylesNameCart: {width: '50%'},
   stylesAmount: {width: '20%', alignItems: 'center'},
-  stylesText: {fontSize: 13, fontFamily: 'monospace', fontWeight: 'bold'},
+  stylesText: {fontSize: 12, fontFamily: 'monospace'},
   wrapperHeader: {
     marginTop: '5%',
     marginBottom: '13%',
@@ -202,7 +207,7 @@ const styles = StyleSheet.create({
   },
   wrapperBtnCustomer: {
     justifyContent: 'space-around',
-    marginTop: '26%',
+    marginTop: '29%',
     height: windowHeight / 15,
     width: '90%',
     borderRadius: 10,
@@ -211,17 +216,17 @@ const styles = StyleSheet.create({
   },
   wrapperInforProduct: {
     marginTop: '12%',
-    height: windowHeight / 4,
+    height: windowHeight / 4.5,
   },
   wrapperInforProductInLine: {
     marginLeft: '5%',
-    height: windowHeight / 19,
+    height: windowHeight / 22,
     flexDirection: 'row',
   },
   styleTextInforProduct: {
-    fontSize: 15,
+    fontSize: 12,
     fontFamily: 'monospace',
-    fontWeight: 'bold',
+
     color: 'black',
   },
   wrapperBtnDetail: {

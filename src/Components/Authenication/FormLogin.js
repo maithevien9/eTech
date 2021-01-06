@@ -64,24 +64,22 @@ const styles = StyleSheet.create({
   },
 
   textInput: {
-    height: 50,
+    height: 55,
     width: 366,
     backgroundColor: 'white',
     borderColor: 'black',
-    borderWidth: 1.2,
     paddingLeft: 20,
     marginBottom: 15,
-    fontSize: 13,
-    borderRadius: 15,
+    borderRadius: 30,
   },
 
   Button: {
-    height: 50,
+    height: 60,
     width: 366,
     backgroundColor: 'white',
     borderColor: 'black',
-    borderWidth: 1.2,
-    borderRadius: 15,
+
+    borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 15,
@@ -121,8 +119,8 @@ const styles = StyleSheet.create({
     fontFamily: 'monospace',
   },
   Text2: {
-    color: 'black',
-    fontSize: 15,
+    color: '#009966',
+    fontSize: 18,
     fontFamily: 'monospace',
     fontWeight: 'bold',
   },

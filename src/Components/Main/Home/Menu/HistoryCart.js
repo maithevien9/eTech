@@ -8,7 +8,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-import icGift from '.././../../../Images/Icons/gift-box.png';
+import icGift from '.././../../../Images/Icons/cart.png';
 import {connect} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 const windowWidth = Dimensions.get('window').width;
@@ -118,7 +118,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: 'monospace',
     color: 'black',
-    fontWeight: 'bold',
   },
   StyleText2: {
     fontSize: 12,

@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Dimensions,
   TextInput,
+  Picker,
   ScrollView,
 } from 'react-native';
 
@@ -16,31 +17,200 @@ import {useTranslation} from 'react-i18next';
 import IcSearch from '../../../../Images/Icons/Search.png';
 import Swiper from 'react-native-swiper';
 import icBox from '../../../../Images/Icons/paper1.png';
+
 // var ScrollableTabView = require('react-native-scrollable-tab-view');
 var ScrollableTabView = require('react-native-scrollable-tab-view');
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+
 const widthImageICSearch = (windowHeight * 0.5) / 10;
 const MainView = (props) => {
   const navigation = useNavigation();
+  const [dataCheck, setDataCheck] = useState(false);
+  const [dataCheckProduct, setDataCheckProduct] = useState(false);
   const [textSearch, setTextSearch] = useState('');
+  const [selectedValue1, setSelectedValue1] = useState('Đà Nẵng');
+  const [selectedValue2, setSelectedValue2] = useState('');
+  const [selectedValue3, setSelectedValue3] = useState('Nhựa');
+  const [selectedValue4, setSelectedValue4] = useState('');
+  const [arrDataProduct, setArrDataProduct] = useState({
+    ' ': '',
+    HDPE: 'HDPE',
+    PET: 'PET',
+    PE: 'PE',
+  });
+  var options = {
+    '': '',
+    HDPE: 'HDPE',
+    PET: 'PET',
+    PE: 'PE',
+  };
   const {t, i18n} = useTranslation();
+  const HandleChangArrayProduct = (value) => {
+    if (value === 0) {
+      console.log(0);
+      setArrDataProduct({
+        ' ': '',
+        HDPE: 'HDPE',
+        PET: 'PET',
+        PE: 'PE',
+      });
+    }
+    if (value === 1) {
+      setArrDataProduct({
+        ' ': '',
+        Giấy: 'Giấy',
+        Thùng: 'Thùng',
+      });
+    }
+    if (value === 2) {
+      setArrDataProduct({
+        ' ': '',
+        Sắt: 'Sắt',
+        Nhôm: 'Nhôm',
+      });
+    }
+  };
   const HandleProductDetail = (e) => {
     navigation.navigate('ProductDetail', {e});
+  };
+  const HandleSearch = () => {
+    navigation.navigate('ListProducts');
+  };
+  const HanldeAdress = () => {
+    setDataCheckProduct(false);
+    setDataCheck(!dataCheck);
+  };
+  const main = dataCheck ? (
+    <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+      <Picker
+        selectedValue={selectedValue1}
+        style={{
+          height: (windowHeight * 0.5) / 10,
+          width: (windowWidth * 10) / 30,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        itemStyle={{
+          backgroundColor: 'grey',
+          color: 'blue',
+          fontFamily: 'Ebrima',
+          fontSize: 17,
+        }}
+        onValueChange={(itemValue, itemIndex) => {
+          setSelectedValue1(itemValue);
+        }}>
+        <Picker.Item label="Đà Nẵng" value="Đà Nẵng" />
+      </Picker>
+      <Picker
+        selectedValue={selectedValue2}
+        style={{
+          height: (windowHeight * 0.5) / 10,
+          width: (windowWidth * 10) / 30,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        itemStyle={{
+          backgroundColor: 'grey',
+          color: 'blue',
+          fontFamily: 'Ebrima',
+          fontSize: 17,
+        }}
+        onValueChange={(itemValue, itemIndex) => {
+          setSelectedValue2(itemValue);
+        }}>
+        <Picker.Item label=" " value=" " />
+        <Picker.Item label="Hải Châu" value="Hải Châu" />
+        <Picker.Item label="Liên Chiểu" value="Liên Chiểu" />
+        <Picker.Item label="Cẩm Lệ" value="Cẩm Lệ" />
+        <Picker.Item label="Thanh Khê" value="Thanh Khê" />
+        <Picker.Item label="Ngũ Hành Sơn" value="Ngũ Hành Sơn" />
+        <Picker.Item label="Sơn Trà" value="Sơn Trà" />
+      </Picker>
+      <View style={styles.wrapperBtnAddress}>
+        <Text style={styles.StyleTextBtn}>Tìm kiếm</Text>
+      </View>
+    </View>
+  ) : (
+    <View></View>
+  );
+  const main2 = dataCheckProduct ? (
+    <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+      <Picker
+        selectedValue={selectedValue3}
+        style={{
+          height: (windowHeight * 0.5) / 10,
+          width: (windowWidth * 10) / 30,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        itemStyle={{
+          backgroundColor: 'grey',
+          color: 'blue',
+          fontFamily: 'Ebrima',
+          fontSize: 17,
+        }}
+        onValueChange={(itemValue, itemIndex) => {
+          setSelectedValue3(itemValue);
+
+          HandleChangArrayProduct(itemIndex);
+        }}>
+        <Picker.Item label="Nhựa" value="Nhựa" />
+        <Picker.Item label="Giấy" value="Giấy" />
+        <Picker.Item label="Kim Loại" value="Kim Loại" />
+      </Picker>
+      <Picker
+        selectedValue={selectedValue4}
+        style={{
+          height: (windowHeight * 0.5) / 10,
+          width: (windowWidth * 10) / 30,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        itemStyle={{
+          backgroundColor: 'grey',
+          color: 'blue',
+          fontFamily: 'Ebrima',
+          fontSize: 17,
+        }}
+        onValueChange={(itemValue, itemIndex) => {
+          setSelectedValue4(itemValue);
+          console.log(itemValue);
+        }}>
+        {/* <Picker.Item label=" " value=" " />
+        <Picker.Item label="HDPE" value="HDPE" />
+        <Picker.Item label="PET" value="PET" /> */}
+        {Object.keys(arrDataProduct).map((key) => {
+          return <Picker.Item label={key} value={key} key={key} />; //if you have a bunch of keys value pair
+        })}
+      </Picker>
+      <View style={styles.wrapperBtnAddress}>
+        <Text style={styles.StyleTextBtn}>Tìm kiếm</Text>
+      </View>
+    </View>
+  ) : (
+    <View></View>
+  );
+
+  const HandleProduct = () => {
+    setDataCheck(false);
+    setDataCheckProduct(!dataCheckProduct);
   };
   return (
     <View style={styles.wrapperMain}>
       <View style={styles.WrapperSearch}>
-        <View style={styles.wrapperImageSearch}>
+        <TouchableOpacity
+          style={styles.wrapperImageSearch}
+          onPress={HandleSearch}>
           <Image source={IcSearch} style={styles.iconStyle}></Image>
-        </View>
+        </TouchableOpacity>
         <TextInput
           style={styles.WrapperTextSearch}
           onChangeText={(text) => setTextSearch(text)}
           value={textSearch}
         />
       </View>
-      <View style={styles.wrapperSwiper}>
+      {/* <View style={styles.wrapperSwiper}>
         <Swiper>
           <View style={styles.slide1}>
             <Text style={styles.text}>Lợi ích của việc phân loại rác</Text>
@@ -52,22 +222,28 @@ const MainView = (props) => {
             <Text style={styles.text}>And simple</Text>
           </View>
         </Swiper>
-      </View>
+      </View> */}
       <View style={styles.wrapperMainCatogory}>
         <View style={styles.WrapperCatogory}>
-          <View style={styles.wrapperCatogoryHeader2}>
+          <TouchableOpacity
+            style={styles.wrapperCatogoryHeader2}
+            onPress={HanldeAdress}>
             <Text style={styles.TextCatogory}>Địa điểm</Text>
-          </View>
-          <View style={styles.wrapperCatogoryHeader}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.wrapperCatogoryHeader}>
             <Text style={styles.TextCatogory}>Thời gian</Text>
-          </View>
-          <View style={styles.wrapperCatogoryHeader}>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.wrapperCatogoryHeader}>
             <Text style={styles.TextCatogory}>Mức Giá</Text>
-          </View>
-          <View style={styles.wrapperCatogoryHeader3}>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.wrapperCatogoryHeader3}
+            onPress={HandleProduct}>
             <Text style={styles.TextCatogory}>Mặt Hàng</Text>
-          </View>
+          </TouchableOpacity>
         </View>
+        {main}
+        {main2}
         <ScrollView>
           {props.Products.map((e) => (
             <TouchableOpacity
@@ -117,7 +293,8 @@ const styles = StyleSheet.create({
   },
   wrapperMainCatogory: {
     marginTop: '2%',
-    height: (windowHeight * 5.35) / 10,
+    // height: (windowHeight * 5.35) / 10,
+    height: (windowHeight * 7.5) / 10,
     width: (windowWidth * 9.7) / 10,
   },
   WrapperSearch: {
@@ -148,6 +325,14 @@ const styles = StyleSheet.create({
     marginTop: '2%',
     height: (windowHeight * 2) / 10,
     width: (windowWidth * 9.7) / 10,
+  },
+  wrapperBtnAddress: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#009966',
+    borderRadius: 10,
+    width: (windowWidth * 8) / 30,
+    height: (windowHeight * 1.2) / 30,
   },
   slide1: {
     height: (windowHeight * 2) / 10,
@@ -247,10 +432,12 @@ const styles = StyleSheet.create({
     fontFamily: 'monospace',
     color: 'white',
   },
-  // wrapperMain: {
-  //   marginLeft: '3%',
-  //   marginTop: '3%',
-  // },
+  StyleTextBtn: {
+    fontSize: 10,
+    fontFamily: 'monospace',
+    color: 'white',
+    fontWeight: 'bold',
+  },
   wrapperForm: {
     width: '95%',
     height: windowHeight / 8,
@@ -277,10 +464,9 @@ const styles = StyleSheet.create({
     width: '35%',
   },
   StyleText: {
-    fontSize: 12,
+    fontSize: 10,
     fontFamily: 'monospace',
     color: 'black',
-    fontWeight: 'bold',
   },
   StyleText2: {
     fontSize: 12,

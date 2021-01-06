@@ -49,12 +49,12 @@ const Authentication = (props) => {
       {main}
       <View style={styles.wrapperSectionButton}>
         <TouchableOpacity style={styles.SectionButton} onPress={handleSignIn}>
-          <Text style={dataCheckLoginRe ? styles.Text : styles.Text2}>
+          <Text style={dataCheckLoginRe ? styles.Text2 : styles.Text}>
             {t('SignIn')}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.SectionButton2} onPress={handleSignUp}>
-          <Text style={!dataCheckLoginRe ? styles.Text : styles.Text2}>
+          <Text style={!dataCheckLoginRe ? styles.Text2 : styles.Text}>
             {t('SignUp')}
           </Text>
         </TouchableOpacity>
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textStyle: {
-    fontSize: 30,
+    fontSize: 33,
     fontWeight: 'bold',
     fontFamily: 'monospace',
     color: 'white',
@@ -125,9 +125,9 @@ const styles = StyleSheet.create({
     fontFamily: 'monospace',
   },
   Text2: {
-    color: 'black',
+    color: '#009966',
     fontSize: 15,
-
+    fontWeight: 'bold',
     fontFamily: 'monospace',
   },
   wrapperSectionButton: {

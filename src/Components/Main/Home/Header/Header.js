@@ -49,7 +49,9 @@ const Header = (props) => {
       }}>
       <View style={styles.wrapper1}>
         <TouchableOpacity
-          onPress={props.onOpen}
+          onPress={() => {
+            props.onOpen();
+          }}
           style={{justifyContent: 'center', alignItems: 'center'}}>
           <Image source={icMenu} style={styles.iconStyle}></Image>
         </TouchableOpacity>

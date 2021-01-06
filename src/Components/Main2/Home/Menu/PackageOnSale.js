@@ -121,7 +121,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: 'monospace',
     color: 'black',
-    fontWeight: 'bold',
   },
   StyleText2: {
     fontSize: 12,

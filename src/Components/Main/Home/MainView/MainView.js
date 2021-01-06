@@ -26,6 +26,7 @@ const windowHeight = Dimensions.get('window').height;
 const MainView = (props) => {
   const navigation = useNavigation();
   const [scores, SetScores] = useState(0);
+
   const {t, i18n} = useTranslation();
   useEffect(() => {
     async function CheckRecyle() {
