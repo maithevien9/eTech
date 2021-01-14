@@ -12,10 +12,11 @@ import {useNavigation} from '@react-navigation/native';
 import icPaper1 from '../../../../../Images/Icons/paper1.png';
 import icPaper2 from '../../../../../Images/Icons/paper2.png';
 import icPaper3 from '../../../../../Images/Icons/paper3.png';
-
+import {useTranslation} from 'react-i18next';
 const View2 = (props) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const navigation = useNavigation();
+  const {t} = useTranslation();
   const HandleRecyclables = (ID, Score, Unit, Name, Image) => {
     navigation.navigate('CategoryDetail', {
       ID,
@@ -26,31 +27,33 @@ const View2 = (props) => {
     });
   };
   return (
-    <ScrollView style={styles.wrapper}>
+    <View style={styles.wrapper}>
       <View style={styles.wrapperPlastic}>
         <View style={styles.wrapperMain1}>
           <View style={styles.wrapperheaderPlastic}>
             <TouchableOpacity
               style={styles.wrapperheader2Plactic}
               onPress={() => {
-                HandleRecyclables(5, 3000, '1/Kg', 'Carton/Bìa Cứng', icPaper1);
+                HandleRecyclables(
+                  5,
+                  3000,
+                  '1/Kg',
+                  t('CartonCardboard'),
+                  icPaper1,
+                );
               }}>
               <Image source={icPaper1} style={styles.wrapperImage2} />
-              <Text style={styles.wrapperTextHeader2}>Carton/Bìa Cứng</Text>
+              <Text style={styles.wrapperTextHeader2}>
+                {t('CartonCardboard')}
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.wrapperheader2Plactic}
               onPress={() => {
-                HandleRecyclables(
-                  6,
-                  3000,
-                  '1/Kg',
-                  'Giấy Vở/Văn Phòng',
-                  icPaper2,
-                );
+                HandleRecyclables(6, 3000, '1/Kg', t('PaperOffice'), icPaper2);
               }}>
               <Image source={icPaper2} style={styles.wrapperImage2} />
-              <Text style={styles.wrapperTextHeader2}>Giấy Vở/Văn Phòng</Text>
+              <Text style={styles.wrapperTextHeader2}>{t('PaperOffice')}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -64,17 +67,19 @@ const View2 = (props) => {
                   7,
                   3000,
                   '1/Kg',
-                  'Sách Báo/Tạp Chí',
+                  t('BooksNewspapersMagazines'),
                   icPaper3,
                 );
               }}>
               <Image source={icPaper3} style={styles.wrapperImage2} />
-              <Text style={styles.wrapperTextHeader2}>Sách Báo/Tạp Chí</Text>
+              <Text style={styles.wrapperTextHeader2}>
+                {t('BooksNewspapersMagazines')}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 const styles = StyleSheet.create({
@@ -105,7 +110,7 @@ const styles = StyleSheet.create({
   },
   wrapperText: {
     fontSize: 28,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
   },
   wrapperMain2: {
@@ -126,7 +131,7 @@ const styles = StyleSheet.create({
   },
   Textheader: {
     fontSize: 25,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
   },
   wrapperMain: {
@@ -136,7 +141,7 @@ const styles = StyleSheet.create({
   },
   TextBtn: {
     fontSize: 20,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
   },
   wrapperPlastic: {
     marginTop: '2%',
@@ -153,11 +158,11 @@ const styles = StyleSheet.create({
   },
   wrapperTextHeader: {
     fontSize: 13,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
   },
   wrapperTextHeaderPlastic: {
     fontSize: 19,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
   },
   wrapperImage: {
     height: 45,
@@ -170,7 +175,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#009966',
     height: '175%',
-    width: '39%',
+    width: '45%',
     // eslint-disable-next-line no-dupe-keys
     alignItems: 'center',
     // eslint-disable-next-line no-dupe-keys
@@ -195,7 +200,7 @@ const styles = StyleSheet.create({
     marginLeft: '12%',
     width: '70%',
     fontSize: 13,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     marginTop: '5%',
     fontWeight: 'bold',
   },

@@ -9,11 +9,12 @@ import {
   Linking,
 } from 'react-native';
 import {useRoute} from '@react-navigation/native';
-
+import {useTranslation} from 'react-i18next';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const ProductDetail = (props) => {
+  const {t, i18n} = useTranslation();
   var i = 0;
   const route = useRoute();
   const HandleCall = () => {
@@ -38,36 +39,38 @@ const ProductDetail = (props) => {
   return (
     <View>
       <View style={styles.wrapperTextHeader}>
-        <Text style={styles.textMain2}>Chi Tiết Gói Hàng</Text>
+        <Text style={styles.textMain2}>{t('PackageDetail')}</Text>
       </View>
 
       <View style={styles.wrapperInforProduct}>
         <View style={styles.wrapperInforProductInLine}>
-          <Text style={styles.styleTextInforProduct}>Gói Hàng: </Text>
+          <Text style={styles.styleTextInforProduct}>{t('Package')}: </Text>
           <Text style={styles.styleTextInforProduct}>
             {route.params.e.Cart.map((data) => data.Name + ', ')}
           </Text>
         </View>
         <View style={styles.wrapperInforProductInLine}>
-          <Text style={styles.styleTextInforProduct}>Mức giá: </Text>
+          <Text style={styles.styleTextInforProduct}>{t('Price')}: </Text>
           <Text style={styles.styleTextInforProduct}>
             {route.params.e.Price}
           </Text>
         </View>
         <View style={styles.wrapperInforProductInLine}>
-          <Text style={styles.styleTextInforProduct}>Số điện thoại: </Text>
+          <Text style={styles.styleTextInforProduct}>{t('Phone')}: </Text>
           <Text style={styles.styleTextInforProduct}>
             {route.params.e.Phone}
           </Text>
         </View>
         <View style={styles.wrapperInforProductInLine}>
-          <Text style={styles.styleTextInforProduct}>Thới gian bán: </Text>
+          <Text style={styles.styleTextInforProduct}>
+            {t('CreateAtTime')}:{' '}
+          </Text>
           <Text style={styles.styleTextInforProduct}>
             {route.params.e.CreateAtTime}
           </Text>
         </View>
         <View style={styles.wrapperInforProductInLine}>
-          <Text style={styles.styleTextInforProduct}>Địa chỉ: </Text>
+          <Text style={styles.styleTextInforProduct}>{t('Address')}: </Text>
           <Text style={styles.styleTextInforProduct}>
             {route.params.e.Address}
           </Text>
@@ -79,10 +82,10 @@ const ProductDetail = (props) => {
             <Text style={styles.stylesText}>STT</Text>
           </View>
           <View style={styles.stylesNameCart}>
-            <Text style={styles.stylesText}>Tên Món Hàng</Text>
+            <Text style={styles.stylesText}>{t('NameOfItem')}</Text>
           </View>
           <View style={styles.stylesAmount}>
-            <Text style={styles.stylesText}>Số Lượng</Text>
+            <Text style={styles.stylesText}>{t('Amount')}</Text>
           </View>
         </View>
         {route.params.e.Cart.map((e) => (
@@ -101,12 +104,12 @@ const ProductDetail = (props) => {
       </ScrollView>
       <View style={styles.wrapperBtnCustomer}>
         <TouchableOpacity style={styles.wrapperBtnDetail} onPress={HandleCall}>
-          <Text style={styles.StyleTextBtn}>Gọi điện</Text>
+          <Text style={styles.StyleTextBtn}>{t('Call')}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.wrapperBtnDetail}
           onPress={HandleMessage}>
-          <Text style={styles.StyleTextBtn}>Nhắn tin</Text>
+          <Text style={styles.StyleTextBtn}>{t('Message')}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.wrapperBtnDetail} onPress={HandleMap}>
           <Text style={styles.StyleTextBtn}>Map</Text>
@@ -139,7 +142,7 @@ const styles = StyleSheet.create({
   stylesSTT: {width: '20%'},
   stylesNameCart: {width: '50%'},
   stylesAmount: {width: '20%', alignItems: 'center'},
-  stylesText: {fontSize: 12, fontFamily: 'monospace'},
+  stylesText: {fontSize: 12, fontFamily: 'Roboto'},
   wrapperHeader: {
     marginTop: '5%',
     marginBottom: '13%',
@@ -158,12 +161,12 @@ const styles = StyleSheet.create({
   },
   Textheader: {
     fontSize: 25,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
   },
   TextSubmit: {
     fontSize: 20,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
     color: 'white',
   },
@@ -178,13 +181,13 @@ const styles = StyleSheet.create({
   },
   textMain: {
     fontSize: 15,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
     marginHorizontal: '1%',
   },
   textMain2: {
     fontSize: 30,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
     marginHorizontal: '1%',
     marginLeft: '4%',
@@ -225,7 +228,7 @@ const styles = StyleSheet.create({
   },
   styleTextInforProduct: {
     fontSize: 12,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
 
     color: 'black',
   },
@@ -240,7 +243,7 @@ const styles = StyleSheet.create({
   },
   StyleTextBtn: {
     fontSize: 15,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
     color: 'white',
   },

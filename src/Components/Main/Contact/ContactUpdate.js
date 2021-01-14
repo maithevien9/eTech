@@ -15,7 +15,9 @@ import MapView, {Marker} from 'react-native-maps';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 import {connect} from 'react-redux';
 import ChangInforUser from '../../../RestAPI/User/change-infor-user-api';
+import {useTranslation} from 'react-i18next';
 const ContactUpdate = (props) => {
+  const {t} = useTranslation();
   const [Name, setName] = useState('');
   const [Address, setAddress] = useState('/');
 
@@ -97,7 +99,7 @@ const ContactUpdate = (props) => {
   return (
     <View>
       <View style={styles.wrapperHeader}>
-        <Text style={styles.textStyleHeader}>CẬP NHẬP THÔNG TIN</Text>
+        <Text style={styles.textStyleHeader}>{t('UpdateInformation')}</Text>
       </View>
       <View style={styles.wrapperLine} />
 
@@ -141,7 +143,7 @@ const ContactUpdate = (props) => {
           </MapView>
         ) : (
           <View style={styles.map2}>
-            <Text style={styles.TextMain}>Vui lòng cập nhập địa chỉ</Text>
+            <Text style={styles.TextMain}>{t('PleaseUpdateYourAddress')}</Text>
           </View>
         )}
       </View>
@@ -153,7 +155,7 @@ const ContactUpdate = (props) => {
           flexWrap: 'wrap',
         }}>
         <GooglePlacesAutocomplete
-          placeholder="Nhập địa chỉ"
+          placeholder={t('Address')}
           minLength={2}
           autoFocus={false}
           returnKeyType={'default'}
@@ -199,13 +201,13 @@ const ContactUpdate = (props) => {
           onChangeText={(text) => setName(text)}
           value={Name}
           style={styles.textInput}
-          placeholder="Tên người dùng"
+          placeholder={t('Name')}
         />
         <TextInput
           onChangeText={(text) => setPhone(text)}
           value={Phone}
           style={styles.textInput}
-          placeholder="Số điện thoại"
+          placeholder={t('Phone')}
         />
 
         <View style={{alignItems: 'center', marginTop: 10, width: '90%'}}>
@@ -214,7 +216,7 @@ const ContactUpdate = (props) => {
             onPress={() => {
               handleUpdate();
             }}>
-            <Text style={styles.wrapperTextupdate}>Cập nhập</Text>
+            <Text style={styles.wrapperTextupdate}>{t('Update')}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -244,7 +246,7 @@ const styles = StyleSheet.create({
   },
   textStyleHeader: {
     fontSize: 28,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'white',
   },
   wrapperLine: {
@@ -272,7 +274,7 @@ const styles = StyleSheet.create({
     width: '95%',
   },
   TextMain: {
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
 
     fontWeight: '500',
     fontSize: 20,
@@ -303,7 +305,7 @@ const styles = StyleSheet.create({
   },
   wrapperTextupdate: {
     fontSize: 20,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'white',
     fontWeight: 'bold',
   },

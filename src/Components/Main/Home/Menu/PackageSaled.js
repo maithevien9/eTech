@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
 import icGift from '.././../../../Images/Icons/grade.png';
 import {connect} from 'react-redux';
-
+import {useTranslation} from 'react-i18next';
 const HistoryRecyclables = (props) => {
+  const {t} = useTranslation();
   const convertDate = (date) => {
     var ts = new Date(date);
     return ts.toLocaleDateString();
@@ -15,7 +16,7 @@ const HistoryRecyclables = (props) => {
   return (
     <View>
       <View style={styles.wrapperHeader}>
-        <Text style={styles.textStyleHeader}>Gói Hàng Đã Bán</Text>
+        <Text style={styles.textStyleHeader}>{t('PackageSold')}</Text>
       </View>
       <ScrollView style={styles.wrapperMain}></ScrollView>
     </View>
@@ -31,8 +32,8 @@ const styles = StyleSheet.create({
   },
 
   textStyleHeader: {
-    fontSize: 28,
-    fontFamily: 'monospace',
+    fontSize: 25,
+    fontFamily: 'Roboto',
     color: 'white',
     fontWeight: 'bold',
   },
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
   },
   StyleText: {
     fontSize: 12,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'black',
   },
 });

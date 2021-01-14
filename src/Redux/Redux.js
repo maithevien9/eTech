@@ -1,6 +1,6 @@
 import {createStore, combineReducers} from 'redux';
-import icMetal1 from '../Images/Icons/paper1.png';
-import icMetal2 from '../Images/Icons/paper2.png';
+import icMetal1 from '../Images/Icons/recycle.png';
+import icMetal2 from '../Images/Icons/recycle.png';
 import {Alert} from 'react-native';
 import CartReducer from './Reducer/CartReducer';
 import ProductsReducer from './Reducer/ProductReducer';
@@ -13,8 +13,8 @@ var CartHistory = [
     CreateAtTime: '19:00:00 22/22/2020',
     Cart: [
       {
-        ID: 6,
-        Name: 'Carton/Bìa Cứng',
+        ID: 1,
+        Name: 'HDPE',
         amount: 2,
         Score: 3000,
         Unit: '1/kg',
@@ -22,7 +22,7 @@ var CartHistory = [
       },
       {
         ID: 2,
-        Name: 'Gia Vị',
+        Name: 'PET',
         amount: 2,
         Score: 3000,
         Unit: '1/kg',

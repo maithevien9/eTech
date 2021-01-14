@@ -79,14 +79,14 @@ const styles = StyleSheet.create({
   },
   textStyleHeader: {
     fontSize: 30,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'white',
     fontWeight: 'bold',
   },
   TextBtnX: {
     color: '#009966',
     fontSize: 13,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
 
     fontWeight: 'bold',
   },
@@ -135,12 +135,12 @@ const styles = StyleSheet.create({
   stylesText: {
     width: windowWidth / 1.4,
     fontSize: 13,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
   },
   TextSubmit: {
     fontSize: 20,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
     color: 'white',
   },

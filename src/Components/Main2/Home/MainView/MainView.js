@@ -128,7 +128,7 @@ const MainView = (props) => {
         <Picker.Item label="Sơn Trà" value="Sơn Trà" />
       </Picker>
       <View style={styles.wrapperBtnAddress}>
-        <Text style={styles.StyleTextBtn}>Tìm kiếm</Text>
+        <Text style={styles.StyleTextBtn}> {t('Search')}</Text>
       </View>
     </View>
   ) : (
@@ -228,18 +228,18 @@ const MainView = (props) => {
           <TouchableOpacity
             style={styles.wrapperCatogoryHeader2}
             onPress={HanldeAdress}>
-            <Text style={styles.TextCatogory}>Địa điểm</Text>
+            <Text style={styles.TextCatogory}> {t('Address')}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.wrapperCatogoryHeader}>
-            <Text style={styles.TextCatogory}>Thời gian</Text>
+            <Text style={styles.TextCatogory}> {t('Time')}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.wrapperCatogoryHeader}>
-            <Text style={styles.TextCatogory}>Mức Giá</Text>
+            <Text style={styles.TextCatogory}> {t('Price')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.wrapperCatogoryHeader3}
             onPress={HandleProduct}>
-            <Text style={styles.TextCatogory}>Mặt Hàng</Text>
+            <Text style={styles.TextCatogory}> {t('Product')}</Text>
           </TouchableOpacity>
         </View>
         {main}
@@ -254,7 +254,7 @@ const MainView = (props) => {
               <Image source={icBox} style={styles.wrapperImage} />
               <View style={styles.wrapperTextInlineProduct}>
                 <View style={styles.wrapperRowScore}>
-                  <Text style={styles.StyleText}>Gói Hàng: </Text>
+                  <Text style={styles.StyleText}>{t('Package')}: </Text>
                   <View style={styles.wrapperTextAddress}>
                     <Text style={styles.StyleText}>
                       {e.Cart.map((data) => data.Name + ', ')}
@@ -262,18 +262,18 @@ const MainView = (props) => {
                   </View>
                 </View>
                 <View style={styles.wrapperRowScore}>
-                  <Text style={styles.StyleText}>Mức Giá: </Text>
+                  <Text style={styles.StyleText}>{t('Price')}: </Text>
                   <Text style={styles.StyleText}>{e.Price}</Text>
                 </View>
                 <View style={styles.wrapperRowScore}>
-                  <Text style={styles.StyleText}>Thời gian: </Text>
+                  <Text style={styles.StyleText}>{t('Time')}: </Text>
                   <View style={styles.wrapperTextAddress}>
                     <Text style={styles.StyleText}>{e.CreateAtTime}</Text>
                   </View>
                 </View>
 
                 <View style={styles.wrapperRowScore}>
-                  <Text style={styles.StyleText}>Địa điểm: </Text>
+                  <Text style={styles.StyleText}>{t('Address')}: </Text>
                   <View style={styles.wrapperTextAddress}>
                     <Text style={styles.StyleText}>{e.Address}</Text>
                   </View>
@@ -363,7 +363,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 20,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'white',
     fontWeight: 'bold',
   },
@@ -398,7 +398,7 @@ const styles = StyleSheet.create({
   },
   TextCatogory: {
     fontSize: 12,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'black',
     fontWeight: 'bold',
   },
@@ -429,12 +429,12 @@ const styles = StyleSheet.create({
   textStyleHeader: {
     fontSize: 28,
     fontWeight: 'bold',
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'white',
   },
   StyleTextBtn: {
     fontSize: 10,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'white',
     fontWeight: 'bold',
   },
@@ -465,12 +465,12 @@ const styles = StyleSheet.create({
   },
   StyleText: {
     fontSize: 10,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'black',
   },
   StyleText2: {
     fontSize: 12,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'red',
     fontWeight: 'bold',
   },

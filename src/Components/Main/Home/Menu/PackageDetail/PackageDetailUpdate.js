@@ -29,7 +29,7 @@ const PackageDetailUpdate = (props) => {
   return (
     <View style={styles.wrapperMain}>
       <View style={styles.wrapperHeader}>
-        <Text style={styles.textStyleHeader}>Chi tiết gói hàng</Text>
+        <Text style={styles.textStyleHeader}>{t('PackageDetail')}</Text>
       </View>
       <ScrollView style={styles.wrapperContent}>
         {route.params.e.Cart.map((e) => (
@@ -39,11 +39,11 @@ const PackageDetailUpdate = (props) => {
               <View style={styles.wrapperText}>
                 <View style={styles.wrapperinLine2}>
                   <Text style={styles.stylesText}>
-                    Tên rác tái chế: {e.Name}
+                    {t('RecyclingName')}: {e.Name}
                   </Text>
                 </View>
                 <Text style={styles.stylesText}>
-                  Số Lượng: {e.amount}
+                  {t('Amount')}: {e.amount}
                   {e.Unit.slice(2, 10)}
                 </Text>
               </View>
@@ -52,7 +52,7 @@ const PackageDetailUpdate = (props) => {
         ))}
       </ScrollView>
       <TouchableOpacity style={styles.wrapperBtn}>
-        <Text style={styles.TextSubmit}>Xác nhận đã bán</Text>
+        <Text style={styles.TextSubmit}> {t('ConfirmedSold')}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -73,14 +73,14 @@ const styles = StyleSheet.create({
   },
   textStyleHeader: {
     fontSize: 30,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'white',
     fontWeight: 'bold',
   },
   TextBtnX: {
     color: '#009966',
     fontSize: 13,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
 
     fontWeight: 'bold',
   },
@@ -129,11 +129,11 @@ const styles = StyleSheet.create({
   stylesText: {
     width: windowWidth / 1.4,
     fontSize: 13,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
   },
   TextSubmit: {
     fontSize: 20,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
     color: 'white',
   },

@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   wrapperImage: {height: 23, width: 23},
   tabTitle: {
     fontSize: 10,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
   },
 });

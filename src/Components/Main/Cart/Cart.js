@@ -21,24 +21,7 @@ const About = (props) => {
   const navigation = useNavigation();
   const {t, i18n} = useTranslation();
   const HanleRecyBooking = () => {
-    Alert.alert(
-      'Thông báo',
-      'Bạn có chắn chắn đặt lịch ?',
-      [
-        {
-          text: 'Hủy',
-          onPress: () => navigation.replace('Main'),
-          style: 'cancel',
-        },
-        {
-          text: 'Đồng ý',
-          onPress: () => {
-            navigation.navigate('Sale');
-          },
-        },
-      ],
-      {cancelable: false},
-    );
+    navigation.navigate('Sale');
   };
   const handleX = (ID) => {
     props.deleteCart(ID);
@@ -73,11 +56,11 @@ const About = (props) => {
                 </TouchableOpacity>
                 <View style={styles.wrapperinLine2}>
                   <Text style={styles.stylesText}>
-                    Tên rác tái chế: {e.Name}
+                    {t('RecyclingName')}: {e.Name}
                   </Text>
                 </View>
                 <Text style={styles.stylesText}>
-                  Số Lượng: {e.amount}
+                  {t('Amount')}: {e.amount}
                   {e.Unit.slice(2, 10)}
                 </Text>
               </View>
@@ -86,7 +69,7 @@ const About = (props) => {
         ))}
       </ScrollView>
       <TouchableOpacity style={styles.wrapperBtn} onPress={HanleRecyBooking}>
-        <Text style={styles.TextSubmit}>Đăng bán</Text>
+        <Text style={styles.TextSubmit}>{t('PostForSale')}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -107,14 +90,14 @@ const styles = StyleSheet.create({
   },
   textStyleHeader: {
     fontSize: 30,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'white',
     fontWeight: 'bold',
   },
   TextBtnX: {
     color: '#009966',
     fontSize: 13,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
 
     fontWeight: 'bold',
   },
@@ -163,11 +146,11 @@ const styles = StyleSheet.create({
   stylesText: {
     width: windowWidth / 1.4,
     fontSize: 13,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
   },
   TextSubmit: {
     fontSize: 20,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
     color: 'white',
   },

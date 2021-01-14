@@ -1,10 +1,10 @@
-import icMetal1 from '../../Images/Icons/paper1.png';
-import icMetal2 from '../../Images/Icons/paper2.png';
+import icMetal1 from '../../Images/Icons/recycle.png';
+import icMetal2 from '../../Images/Icons/recycle.png';
 import {Alert} from 'react-native';
 var Cart = [
   {
-    ID: 5,
-    Name: 'Carton/Bìa Cứng',
+    ID: 1,
+    Name: 'HDPE',
     amount: 2,
     Score: 3000,
     Unit: '1/kg',
@@ -12,7 +12,7 @@ var Cart = [
   },
   {
     ID: 6,
-    Name: 'Giấy vở văn phòng',
+    Name: 'PET',
     amount: 2,
     Score: 3000,
     Unit: '1/kg',

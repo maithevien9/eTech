@@ -12,11 +12,13 @@ import icGift from '.././../../../Images/Icons/cart.png';
 import {connect} from 'react-redux';
 import {useRoute} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
+import {useTranslation} from 'react-i18next';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const PackageOnSale = (props) => {
   const route = useRoute();
+  const {t} = useTranslation();
   const navigation = useNavigation();
   const convertDate = (date) => {
     var ts = new Date(date);
@@ -34,7 +36,7 @@ const PackageOnSale = (props) => {
   return (
     <View>
       <View style={styles.wrapperHeader}>
-        <Text style={styles.textStyleHeader}>Gói Hàng Đang Bán</Text>
+        <Text style={styles.textStyleHeader}>{t('PackageOnSale')}</Text>
       </View>
       <ScrollView style={styles.wrapperMain}>
         {props.CartHistory.map((e) => (
@@ -43,23 +45,23 @@ const PackageOnSale = (props) => {
             <View style={{marginLeft: '5%'}}>
               <View style={styles.wrapperRowFull}>
                 <View style={styles.wrapperRowGift}>
-                  <Text style={styles.StyleText}>Trạng Thái: </Text>
+                  <Text style={styles.StyleText}>{t('Status')}: </Text>
                   <View>
-                    <Text style={styles.StyleText}>Đang bán</Text>
+                    <Text style={styles.StyleText}>{t('OnSale')}</Text>
                   </View>
                 </View>
                 <TouchableOpacity
                   style={styles.wrapperRowScore}
                   onPress={() => hanldePackageDetail(e)}>
-                  <Text style={styles.StyleText2}>Chi tiết </Text>
+                  <Text style={styles.StyleText2}>{t('Detail')} </Text>
                 </TouchableOpacity>
               </View>
               <View style={styles.wrapperRowScore}>
-                <Text style={styles.StyleText}>Mức Giá: </Text>
+                <Text style={styles.StyleText}>{t('Price')}: </Text>
                 <Text style={styles.StyleText}>{e.Price}</Text>
               </View>
               <View style={styles.wrapperRow}>
-                <Text style={styles.StyleText}>Thời gian tạo: </Text>
+                <Text style={styles.StyleText}>{t('CreateAtTime')}: </Text>
                 <Text style={styles.StyleText}>{e.CreateAtTime}</Text>
               </View>
             </View>
@@ -79,9 +81,9 @@ const styles = StyleSheet.create({
   },
 
   textStyleHeader: {
-    fontSize: 28,
+    fontSize: 25,
     fontWeight: 'bold',
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'white',
   },
   wrapperMain: {
@@ -119,12 +121,12 @@ const styles = StyleSheet.create({
   },
   StyleText: {
     fontSize: 12,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'black',
   },
   StyleText2: {
     fontSize: 12,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'red',
     fontWeight: 'bold',
   },

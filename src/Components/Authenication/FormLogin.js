@@ -116,18 +116,18 @@ const styles = StyleSheet.create({
     color: '#BDBDBD',
     fontSize: 15,
 
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
   },
   Text2: {
     color: '#009966',
     fontSize: 18,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
   },
   Text3: {
     fontSize: 15,
 
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'white',
   },
 });

@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     fontSize: 30,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'white',
     fontWeight: 'bold',
   },
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
   },
   textStyleHeader: {
     fontSize: 28,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'white',
   },
 });

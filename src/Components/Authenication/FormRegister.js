@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   Text2: {
     color: '#009966',
     fontSize: 18,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
   },
 });

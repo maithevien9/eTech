@@ -15,6 +15,7 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import {useRoute} from '@react-navigation/native';
 import {connect} from 'react-redux';
+
 const windowWidth = Dimensions.get('window').width;
 
 const windowHeight = Dimensions.get('window').height;
@@ -29,7 +30,7 @@ const PackageDetail = (props) => {
   return (
     <View style={styles.wrapperMain}>
       <View style={styles.wrapperHeader}>
-        <Text style={styles.textStyleHeader}>Chi tiết gói hàng</Text>
+        <Text style={styles.textStyleHeader}>{t('PackageDetail')}</Text>
       </View>
 
       <ScrollView style={styles.wrapperContent}>
@@ -40,11 +41,11 @@ const PackageDetail = (props) => {
               <View style={styles.wrapperText}>
                 <View style={styles.wrapperinLine2}>
                   <Text style={styles.stylesText}>
-                    Tên rác tái chế: {e.Name}
+                    {t('RecyclingName')}: {e.Name}
                   </Text>
                 </View>
                 <Text style={styles.stylesText}>
-                  Số Lượng: {e.amount}
+                  {t('Amount')}: {e.amount}
                   {e.Unit.slice(2, 10)}
                 </Text>
               </View>
@@ -71,14 +72,14 @@ const styles = StyleSheet.create({
   },
   textStyleHeader: {
     fontSize: 30,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'white',
     fontWeight: 'bold',
   },
   TextBtnX: {
     color: '#009966',
     fontSize: 13,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
 
     fontWeight: 'bold',
   },
@@ -127,11 +128,11 @@ const styles = StyleSheet.create({
   stylesText: {
     width: windowWidth / 1.4,
     fontSize: 13,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
   },
   TextSubmit: {
     fontSize: 20,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
     color: 'white',
   },

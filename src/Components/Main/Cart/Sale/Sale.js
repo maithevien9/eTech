@@ -14,9 +14,12 @@ import {useRoute} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 import {connect} from 'react-redux';
 import {AddCartHistory, setCart} from '../../../../Redux/ActionCreators';
+import {useTranslation} from 'react-i18next';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+
 const Sale = (props) => {
+  const {t} = useTranslation();
   var i = 0;
   const [amount, setAmount] = React.useState(0);
   const [Address, setAddress] = React.useState('');
@@ -50,10 +53,10 @@ const Sale = (props) => {
   return (
     <View>
       <View style={styles.wrapperHeader}>
-        <Text style={styles.Textheader}>Đăng Bán Gói Hàng</Text>
+        <Text style={styles.Textheader}>{t('PackagePostSales')}</Text>
       </View>
       <View style={styles.wrapperMain}>
-        <Text style={styles.textMain}>Mức Giá</Text>
+        <Text style={styles.textMain}>{t('Price')}</Text>
         <TextInput
           onChangeText={(text) => setAmount(text)}
           value={amount}
@@ -63,7 +66,7 @@ const Sale = (props) => {
         />
       </View>
       <View style={styles.wrapperMain}>
-        <Text style={styles.textMain}>Địa chỉ</Text>
+        <Text style={styles.textMain}>{t('Address')}</Text>
         <TextInput
           onChangeText={(text) => setAddress(text)}
           value={Address}
@@ -72,7 +75,7 @@ const Sale = (props) => {
         />
       </View>
       <View style={styles.wrapperMain}>
-        <Text style={styles.textMain}>Số điện thoại</Text>
+        <Text style={styles.textMain}>{t('Phone')}</Text>
         <TextInput
           onChangeText={(text) => setPhone(text)}
           value={Phone}
@@ -80,17 +83,17 @@ const Sale = (props) => {
           //   placeholder="data"
         />
       </View>
-      <Text style={styles.textMain2}>Chi Tiết Gói Hàng</Text>
+      <Text style={styles.textMain2}>{t('PackageDetail')}</Text>
       <ScrollView style={styles.wrapperMain2}>
         <View style={styles.wrapperDetailCart}>
           <View style={styles.stylesSTT}>
             <Text style={styles.stylesText}>STT</Text>
           </View>
           <View style={styles.stylesNameCart}>
-            <Text style={styles.stylesText}>Tên Món Hàng</Text>
+            <Text style={styles.stylesText}>{t('NameOfItem')}</Text>
           </View>
           <View style={styles.stylesAmount}>
-            <Text style={styles.stylesText}>Số Lượng</Text>
+            <Text style={styles.stylesText}>{t('Amount')}</Text>
           </View>
         </View>
         {props.Cart.map((e) => (
@@ -109,7 +112,7 @@ const Sale = (props) => {
       </ScrollView>
 
       <TouchableOpacity style={styles.wrapperBtn} onPress={HanldeSale}>
-        <Text style={styles.TextSubmit}>Xác Nhận</Text>
+        <Text style={styles.TextSubmit}>{t('confirm')}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -138,7 +141,7 @@ const styles = StyleSheet.create({
   stylesSTT: {width: '20%'},
   stylesNameCart: {width: '50%'},
   stylesAmount: {width: '20%', alignItems: 'center'},
-  stylesText: {fontSize: 12, fontFamily: 'monospace'},
+  stylesText: {fontSize: 12, fontFamily: 'Roboto'},
   wrapperHeader: {
     marginTop: '5%',
     marginBottom: '13%',
@@ -157,12 +160,12 @@ const styles = StyleSheet.create({
   },
   Textheader: {
     fontSize: 25,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
   },
   TextSubmit: {
     fontSize: 20,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
     color: 'white',
   },
@@ -177,12 +180,12 @@ const styles = StyleSheet.create({
   },
   textMain: {
     fontSize: 12,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     marginHorizontal: '1%',
   },
   textMain2: {
     fontSize: 15,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
     marginHorizontal: '1%',
     marginLeft: '4%',

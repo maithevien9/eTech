@@ -226,20 +226,20 @@ const styles = StyleSheet.create({
     height: 15,
   },
   infoText: {
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: '#AE005E',
     fontWeight: '500',
     fontSize: 13,
   },
   infoText2: {
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'white',
     fontWeight: '500',
     fontSize: 14,
   },
   textStyleHeader: {
     fontSize: 28,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'white',
     fontWeight: 'bold',
   },
@@ -252,14 +252,14 @@ const styles = StyleSheet.create({
     width: '92%',
   },
   TextMain: {
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
 
     fontWeight: '500',
     fontSize: 20,
   },
   wrapperTextupdate: {
     fontSize: 20,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'white',
     fontWeight: 'bold',
   },

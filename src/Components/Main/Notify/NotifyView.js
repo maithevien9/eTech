@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
 
   textStyleHeader: {
     fontSize: 28,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'white',
     fontWeight: 'bold',
   },
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   },
   wrapperTextInNotify: {
     fontSize: 18,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'black',
   },
   wrapperImageInNotify: {
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   },
   StyleTextTime: {
     fontSize: 11,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'black',
   },
 });

@@ -131,13 +131,13 @@ const styles = StyleSheet.create({
   },
   Text: {
     fontSize: 18,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: '#088A68',
   },
   textUSer: {
     marginTop: 20,
     fontSize: 15,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'black',
     paddingTop: 15,
     paddingBottom: 100,
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
   },
   StyleTextBtn: {
     fontSize: 16,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'black',
 
     fontWeight: 'bold',

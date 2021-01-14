@@ -20,7 +20,7 @@ import View2 from './Category/View2';
 import View3 from './Category/View3';
 import {useTranslation} from 'react-i18next';
 // var ScrollableTabView = require('react-native-scrollable-tab-view');
-var ScrollableTabView = require('react-native-scrollable-tab-view');
+import ScrollableTabView from 'react-native-scrollable-tab-view';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const MainView = (props) => {
@@ -68,7 +68,7 @@ const MainView = (props) => {
           tabBarActiveTextColor={'#009966'}
           tabBarUnderlineColor={'#009966'}
           tabBarTextStyle={{
-            fontFamily: 'monospace',
+            fontFamily: 'Roboto',
             fontSize: 15,
             fontWeight: 'bold',
           }}>
@@ -76,28 +76,7 @@ const MainView = (props) => {
           <View2 tabLabel={t('Paper')} />
           <View3 tabLabel={t('Metal')} />
         </ScrollableTabView>
-        {/* <View style={styles.wrapperRowCater}>
-        <TouchableOpacity
-          style={styles.wrapperCategory}
-          onPress={() => {
-            handleCatergery();
-          }}>
-          <Image source={icBin} style={styles.wrapperImage} />
-          <Text style={styles.styleTextInMain}>Hướng dẫn Phân loại</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.wrapperCategory2}
-          onPress={handleCollect}>
-          <Image source={icSchedule} style={styles.wrapperImage} />
-          <Text style={styles.styleTextInMain2}>Thông báo thu gom</Text>
-        </TouchableOpacity>
-      </View> */}
       </View>
-      {/* <View style={styles.wrapperAdd}>
-        <View style={styles.wrapperBtnCartAdd}>
-          <Text style={styles.textAdd}>+</Text>
-        </View>
-      </View> */}
     </View>
   );
 };
@@ -112,7 +91,7 @@ const styles = StyleSheet.create({
   textAdd: {
     color: '#009966',
     fontSize: 49,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
   },
   wrapperBtnCartAdd: {
@@ -144,7 +123,7 @@ const styles = StyleSheet.create({
   },
   styleText: {
     fontSize: 15,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     // color: 'white',
   },
   wrapperCategory: {
@@ -207,7 +186,7 @@ const styles = StyleSheet.create({
   styleTextInMain: {
     fontWeight: 'bold',
     fontSize: 13,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     marginTop: '10%',
 
     color: '#009966',
@@ -215,7 +194,7 @@ const styles = StyleSheet.create({
   styleTextInMain2: {
     fontWeight: 'bold',
     fontSize: 13,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     marginTop: '10%',
 
     color: '#8A4B08',
@@ -223,7 +202,7 @@ const styles = StyleSheet.create({
   styleTextInMain3: {
     fontWeight: 'bold',
     fontSize: 13,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     marginTop: '10%',
 
     color: '#086A87',
@@ -231,7 +210,7 @@ const styles = StyleSheet.create({
   styleTextInMain4: {
     fontWeight: 'bold',
     fontSize: 13,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     marginTop: '10%',
 
     color: '#610B5E',

@@ -12,10 +12,11 @@ import {useNavigation} from '@react-navigation/native';
 import metal1 from '../../../../../Images/Icons/metal1.png';
 import metal2 from '../../../../../Images/Icons/metal2.png';
 import metal3 from '../../../../../Images/Icons/metal3.png';
-
+import {useTranslation} from 'react-i18next';
 const View2 = (props) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const navigation = useNavigation();
+  const {t} = useTranslation();
   const HandleRecyclables = (ID, Score, Unit, Name, Image) => {
     navigation.navigate('CategoryDetail', {
       ID,
@@ -26,25 +27,25 @@ const View2 = (props) => {
     });
   };
   return (
-    <ScrollView style={styles.wrapper}>
+    <View style={styles.wrapper}>
       <View style={styles.wrapperPlastic}>
         <View style={styles.wrapperMain1}>
           <View style={styles.wrapperheaderPlastic}>
             <TouchableOpacity
               style={styles.wrapperheader2Plactic}
               onPress={() => {
-                HandleRecyclables(9, 3000, '1/Kg', 'Vỏ Lon', metal1);
+                HandleRecyclables(9, 3000, '1/Kg', t('Can'), metal1);
               }}>
               <Image source={metal1} style={styles.wrapperImage2} />
-              <Text style={styles.wrapperTextHeader2}>Vỏ Lon</Text>
+              <Text style={styles.wrapperTextHeader2}>{t('Can')}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.wrapperheader2Plactic}
               onPress={() => {
-                HandleRecyclables(9, 3000, '1/Kg', 'Phế Liệu', metal2);
+                HandleRecyclables(9, 3000, '1/Kg', t('Scrap'), metal2);
               }}>
               <Image source={metal2} style={styles.wrapperImage2} />
-              <Text style={styles.wrapperTextHeader2}>Phế Liệu</Text>
+              <Text style={styles.wrapperTextHeader2}>{t('Scrap')}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -58,17 +59,19 @@ const View2 = (props) => {
                   10,
                   3000,
                   '1/Kg',
-                  'Bình Xịt/Hộp Bánh',
+                  t('SprayBottleCakeBox'),
                   metal3,
                 );
               }}>
               <Image source={metal3} style={styles.wrapperImage2} />
-              <Text style={styles.wrapperTextHeader2}>Bình Xịt/Hộp Bánh</Text>
+              <Text style={styles.wrapperTextHeader2}>
+                {t('SprayBottleCakeBox')}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 const styles = StyleSheet.create({
@@ -99,7 +102,7 @@ const styles = StyleSheet.create({
   },
   wrapperText: {
     fontSize: 28,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
   },
   wrapperMain2: {
@@ -120,7 +123,7 @@ const styles = StyleSheet.create({
   },
   Textheader: {
     fontSize: 25,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
   },
   wrapperMain: {
@@ -130,7 +133,7 @@ const styles = StyleSheet.create({
   },
   TextBtn: {
     fontSize: 20,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
   },
   wrapperPlastic: {
     marginTop: '2%',
@@ -147,11 +150,11 @@ const styles = StyleSheet.create({
   },
   wrapperTextHeader: {
     fontSize: 13,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
   },
   wrapperTextHeaderPlastic: {
     fontSize: 19,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
   },
   wrapperImage: {
     height: 45,
@@ -164,11 +167,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#009966',
     height: '175%',
-    width: '39%',
-    // eslint-disable-next-line no-dupe-keys
-    alignItems: 'center',
-    // eslint-disable-next-line no-dupe-keys
-    justifyContent: 'center',
+    width: '45%',
     borderRadius: 15,
   },
   wrapperBottomPlastic: {
@@ -186,10 +185,11 @@ const styles = StyleSheet.create({
     borderStyle: 'dashed',
   },
   wrapperTextHeader2: {
-    marginLeft: '20%',
+    marginLeft: '35%',
+
     width: '70%',
     fontSize: 13,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     marginTop: '5%',
     fontWeight: 'bold',
   },

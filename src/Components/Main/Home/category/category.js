@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
   },
   wrapperText: {
     fontSize: 28,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
   },
   wrapperMain2: {
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
   },
   Textheader: {
     fontSize: 25,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
   },
   wrapperMain: {
@@ -248,7 +248,7 @@ const styles = StyleSheet.create({
   },
   TextBtn: {
     fontSize: 20,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
   },
   wrapperPlastic: {
     height: 250,
@@ -268,11 +268,11 @@ const styles = StyleSheet.create({
   },
   wrapperTextHeader: {
     fontSize: 13,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
   },
   wrapperTextHeaderPlastic: {
     fontSize: 19,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
   },
   wrapperImage: {
     height: 45,
@@ -299,7 +299,7 @@ const styles = StyleSheet.create({
   },
   wrapperTextHeader2: {
     fontSize: 10,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
   },
   wrapperheaderMetal: {
     flexDirection: 'row',

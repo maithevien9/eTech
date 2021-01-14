@@ -14,16 +14,27 @@ import {useRoute} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 import {connect} from 'react-redux';
 import {addCart} from '../../../../../Redux/ActionCreators';
+import {useTranslation} from 'react-i18next';
 const CategoryDetail = (props) => {
-  const [amount, setAmount] = React.useState(0);
+  const [amount, setAmount] = React.useState('0');
+  const {t} = useTranslation();
   const route = useRoute();
   const navigation = useNavigation();
   var ID = route.params.ID;
   var Name = route.params.Name;
   var Score = route.params.Score;
-
+  const ViewProduct = route.params.ListProduct ? (
+    route.params.ListProduct.map((e) => (
+      <View style={styles.WrapperListDetail} key={e.ID}>
+        <Image source={e.Image} style={styles.wrapperImage} />
+        <Text style={styles.texList}>{e.Name}</Text>
+      </View>
+    ))
+  ) : (
+    <View></View>
+  );
   const HandleCart = () => {
-    if (amount) {
+    if (amount != 0) {
       console.log(ID + '/' + Name + '/' + amount + '/' + route.params.Score);
       props.addCart(
         ID,
@@ -51,13 +62,14 @@ const CategoryDetail = (props) => {
       );
     }
   };
+
   return (
     <View style={{alignItems: 'center'}}>
       <View style={styles.wrapperHeader}>
-        <Text style={styles.Textheader}>CHI TIẾT RÁC TÁI CHẾ</Text>
+        <Text style={styles.Textheader}>{t('DetailedGarbageRecycling')}</Text>
       </View>
       <View style={styles.wrapperMain}>
-        <Text style={styles.textMain}>Số lượng</Text>
+        <Text style={styles.textMain}>{t('Amount')}</Text>
         <TextInput
           onChangeText={(text) => setAmount(text)}
           value={amount}
@@ -67,74 +79,31 @@ const CategoryDetail = (props) => {
         />
       </View>
       <View style={styles.wrapperScore}>
-        <Text style={styles.textMain}>Điểm đổi:</Text>
-        <Text style={styles.textMain}>{amount * route.params.Score}</Text>
+        <Text style={styles.textMain}>{t('RedemptionPoint')}:</Text>
+        <Text style={styles.textMain}>{amount * Score}</Text>
       </View>
       {/* <Image
         source={route.params.Image}
         style={{height: 40, width: 40, marginTop: '10%'}}
       /> */}
       <View style={styles.wrapperTextView}>
-        <Text style={styles.TextStyleView}>Một số hình ảnh của sản phẩm: </Text>
+        <Text style={styles.TextStyleView}>
+          {t('SomePicturesOfTheProduct')}
+        </Text>
       </View>
       <ScrollView style={styles.wrapperList}>
         <View style={styles.wrapperListView}>
-          <View style={styles.WrapperListDetail}>
-            <Image source={icText} style={styles.wrapperImage} />
-            <Text style={styles.texList}>Omo</Text>
-          </View>
-          <View style={styles.WrapperListDetail}>
-            <Image source={icText} style={styles.wrapperImage} />
-            <Text style={styles.texList}>Omo</Text>
-          </View>
-          <View style={styles.WrapperListDetail}>
-            <Image source={icText} style={styles.wrapperImage} />
-            <Text style={styles.texList}>Omo</Text>
-          </View>
-          <View style={styles.WrapperListDetail}>
-            <Image source={icText} style={styles.wrapperImage} />
-            <Text style={styles.texList}>Omo</Text>
-          </View>
-          <View style={styles.WrapperListDetail}>
-            <Image source={icText} style={styles.wrapperImage} />
-            <Text style={styles.texList}>Omo</Text>
-          </View>
-          <View style={styles.WrapperListDetail}>
-            <Image source={icText} style={styles.wrapperImage} />
-            <Text style={styles.texList}>Omo</Text>
-          </View>
-          <View style={styles.WrapperListDetail}>
-            <Image source={icText} style={styles.wrapperImage} />
-            <Text style={styles.texList}>Omo</Text>
-          </View>
-          <View style={styles.WrapperListDetail}>
-            <Image source={icText} style={styles.wrapperImage} />
-            <Text style={styles.texList}>Omo</Text>
-          </View>
-          <View style={styles.WrapperListDetail}>
-            <Image source={icText} style={styles.wrapperImage} />
-            <Text style={styles.texList}>Omo</Text>
-          </View>
-          <View style={styles.WrapperListDetail}>
-            <Image source={icText} style={styles.wrapperImage} />
-            <Text style={styles.texList}>Omo</Text>
-          </View>
-          <View style={styles.WrapperListDetail}>
-            <Image source={icText} style={styles.wrapperImage} />
-            <Text style={styles.texList}>Omo</Text>
-          </View>
-          <View style={styles.WrapperListDetail}>
-            <Image source={icText} style={styles.wrapperImage} />
-            <Text style={styles.texList}>Omo</Text>
-          </View>
-          <View style={styles.WrapperListDetail}>
-            <Image source={icText} style={styles.wrapperImage} />
-            <Text style={styles.texList}>Omo</Text>
-          </View>
+          {/* {route.params.ListProduct.map((e) => (
+            <View style={styles.WrapperListDetail} key={e.ID}>
+              <Image source={e.Image} style={styles.wrapperImage} />
+              <Text style={styles.texList}>{e.Name}</Text>
+            </View>
+          ))} */}
+          {ViewProduct}
         </View>
       </ScrollView>
       <TouchableOpacity style={styles.wrapperBtn} onPress={HandleCart}>
-        <Text style={styles.TextSubmit}>Thêm vào Giỏ</Text>
+        <Text style={styles.TextSubmit}>{t('AddToCart')}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -157,12 +126,12 @@ const styles = StyleSheet.create({
   },
   Textheader: {
     fontSize: 25,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
   },
   TextSubmit: {
     fontSize: 20,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
     color: 'white',
   },
@@ -177,7 +146,7 @@ const styles = StyleSheet.create({
   },
   textMain: {
     fontSize: 15,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
     marginHorizontal: '1%',
   },
@@ -190,6 +159,7 @@ const styles = StyleSheet.create({
   wrapperList: {
     height: '55%',
     width: '92%',
+    marginTop: '2%',
   },
   WrapperListDetail: {
     flexDirection: 'row',
@@ -201,8 +171,9 @@ const styles = StyleSheet.create({
     marginTop: '5%',
   },
   wrapperImage: {
-    height: 30,
-    width: 30,
+    height: 40,
+    width: 40,
+    borderRadius: 15,
   },
   wrapperListView: {
     flexDirection: 'row',
@@ -212,8 +183,9 @@ const styles = StyleSheet.create({
   },
   texList: {
     marginLeft: '5%',
-    fontSize: 13,
-    fontFamily: 'monospace',
+    fontSize: 11,
+    fontFamily: 'Roboto',
+    width: '70%',
   },
   wrapperTextView: {
     marginTop: '5%',
@@ -221,7 +193,7 @@ const styles = StyleSheet.create({
   },
   TextStyleView: {
     fontSize: 15,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
   },
 });

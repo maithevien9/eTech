@@ -59,12 +59,11 @@ const Home = (props) => {
     <View style={{flex: 1}}>
       <Drawer
         tapToClose={true}
-        openDrawerOffset={0.2}
+        openDrawerOffset={0.1}
+        tweenHandler={Drawer.tweenPresets.parallax}
         ref={(ref) => setvalue(ref)}
         content={
           <View style={styles.wrapper}>
-            <View></View>
-
             <View style={{height: 50}} />
 
             <TouchableOpacity
@@ -134,13 +133,13 @@ const styles = StyleSheet.create({
   },
   Text: {
     fontSize: 18,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: '#088A68',
   },
   textUSer: {
     marginTop: 20,
     fontSize: 15,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'black',
     paddingTop: 15,
     paddingBottom: 100,
@@ -165,7 +164,7 @@ const styles = StyleSheet.create({
   },
   StyleTextBtn: {
     fontSize: 16,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'black',
 
     fontWeight: 'bold',

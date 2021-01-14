@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   textStyleHeader: {
     fontSize: 28,
     fontWeight: 'bold',
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'white',
   },
   wrapperMain: {
@@ -116,13 +116,13 @@ const styles = StyleSheet.create({
   },
   StyleText: {
     fontSize: 12,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'black',
     fontWeight: 'bold',
   },
   StyleText2: {
     fontSize: 12,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'red',
     fontWeight: 'bold',
   },

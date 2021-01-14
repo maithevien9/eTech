@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   StyleText: {
     color: 'white',
     fontSize: 29,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
   },
 });

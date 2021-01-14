@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   textStyle: {
     fontSize: 33,
     fontWeight: 'bold',
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     color: 'white',
   },
   Button: {
@@ -118,13 +118,13 @@ const styles = StyleSheet.create({
     color: '#BDBDBD',
     fontSize: 15,
 
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
   },
   Text2: {
     color: '#009966',
     fontSize: 15,
     fontWeight: 'bold',
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
   },
   wrapperSectionButton: {
     paddingTop: 300,

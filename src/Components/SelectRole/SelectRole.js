@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   StyleText: {
     color: 'white',
     fontSize: 30,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
     marginTop: '5%',
     marginBottom: '60%',
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   StyleTextBtn: {
     color: '#009966',
     fontSize: 18,
-    fontFamily: 'monospace',
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
     marginRight: '20%',
   },
