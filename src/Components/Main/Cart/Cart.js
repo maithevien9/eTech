@@ -48,7 +48,8 @@ const About = (props) => {
                     paddingBottom: '1%',
                     borderRadius: 20,
                     borderColor: '#009966',
-                  }}
+                  }} 
+                  
                   onPress={() => {
                     handleX(e.ID);
                   }}>
