@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import TabNavigator from 'react-native-tab-navigator';
 import {useNavigation} from '@react-navigation/native';
-import CheckToken from '../../RestAPI/User/check-token';
-import AsyncStorage from '@react-native-community/async-storage';
 import {connect} from 'react-redux';
 import icArrow from '../../Images/Icons/arrowRight.png';
 import {useTranslation} from 'react-i18next';
+import GetInforUser from '../../RestAPI/User/get-infor-user';
+import {setInforUser} from '../../Redux/ActionCreators';
+import GetNotify from '../../RestAPI/Notify/get-notify-api';
 const SelectRole = (props) => {
   const navigation = useNavigation();
   const {t, i18n} = useTranslation();
@@ -17,6 +17,22 @@ const SelectRole = (props) => {
     navigation.navigate('Main2');
   };
 
+  useEffect(() => {
+    async function getDataLogin() {
+      GetInforUser(props.dataLogin.token)
+        .then((json) => {
+          var InforUser = JSON.parse(JSON.stringify(json));
+
+          props.setInforUser(InforUser.data[0]);
+        })
+        .catch((error) => {
+          console.error(error + 'fail');
+        });
+    }
+    getDataLogin();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <View style={styles.wrapper}>
       <Text style={styles.StyleText}>{t('SelectRole')}</Text>
@@ -74,6 +90,9 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    dataLogin: state.dataLogin,
+    InforUser: state.InforUser,
+  };
 }
-export default connect(mapStateToProps)(SelectRole);
+export default connect(mapStateToProps, {setInforUser})(SelectRole);

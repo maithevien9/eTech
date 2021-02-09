@@ -9,8 +9,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Authenication from './src/Components/Authenication/Authenication';
 import Category from './src/Components/Main/Home/category/category';
-
-import HistoryCart from './src/Components/Main/Home/Menu/HistoryCart';
+import WaitForPackageBrowsing from './src/Components/Main/Home/Menu/WaitForPackageBrowsing';
 import PackageOnSale from './src/Components/Main/Home/Menu/PackageOnSale';
 import PackageSaled from './src/Components/Main/Home/Menu/PackageSaled';
 import ContactUpdate from './src/Components/Main/Contact/ContactUpdate';
@@ -39,7 +38,10 @@ const App = () => {
           <Stack.Screen name="SelectRole" component={SelectRole} />
           <Stack.Screen name="Authenication" component={Authenication} />
           <Stack.Screen name="Category" component={Category} />
-          <Stack.Screen name="HistoryCart" component={HistoryCart} />
+          <Stack.Screen
+            name="WaitForPackageBrowsing"
+            component={WaitForPackageBrowsing}
+          />
           <Stack.Screen name="PackageOnSale" component={PackageOnSale} />
           <Stack.Screen name="ContactUpdate" component={ContactUpdate} />
           <Stack.Screen name="CategoryDetail" component={CategoryDetail} />

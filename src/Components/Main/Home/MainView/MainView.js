@@ -12,8 +12,6 @@ import icSchedule from '../../../../Images/Icons/date.png';
 import icGift from '../../../../Images/Icons/giftbox.png';
 import icScore from '../../../../Images/Icons/scoreboard.png';
 import {useNavigation} from '@react-navigation/native';
-import GetScore from '../../../../RestAPI/Member/get-score-api';
-import CheckRycuclables from '../../../../RestAPI/Member/get-score-api';
 import {connect} from 'react-redux';
 import View1 from './Category/View1';
 import View2 from './Category/View2';

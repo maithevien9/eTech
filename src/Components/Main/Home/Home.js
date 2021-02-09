@@ -11,16 +11,13 @@ import {
 import Drawer from 'react-native-drawer';
 
 import {useNavigation} from '@react-navigation/native';
-
 import {connect} from 'react-redux';
 import HomeView from './HomeView';
 import SaveDataLogin from '../../../AsyncStorage/SaveDataLogin';
-import GetHistoryGift from '../../../RestAPI/Gift/get-history-gift-api';
-import HistoryScore from '../../../RestAPI/Member/get-history-score-api';
-import GetHistoryRecyclables from '../../../RestAPI/Recyclables/get-history-recyclables';
 import {LogBox} from 'react-native';
-import GetInforUser from '../../../RestAPI/User/get-infor-user';
+import GetHistoryRecyclablesAPI from '../../../RestAPI/Recyclables/get-history-recyclables';
 import {useTranslation} from 'react-i18next';
+import {setHistoryReducer} from '../../../Redux/ActionCreators';
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
 const Home = (props) => {
@@ -38,29 +35,63 @@ const Home = (props) => {
   const [dataUser, setDataUser] = useState({});
 
   const HandlerLogOut = () => {
+    SaveDataLogin('');
     navigation.replace('Authenication');
   };
   const handleSelectRoleMenu = () => {
     navigation.navigate('Main2');
   };
-  const HandleHistoryCart = () => {
-    navigation.navigate('HistoryCart');
+  const HandleWaitForPackageBrowsing = () => {
+    GetHistoryRecyclablesAPI(props.dataLogin.token, 1)
+      .then((json) => {
+        var dataCartHistory = JSON.parse(JSON.stringify(json));
+        if (dataCartHistory.dataString === 'THANH_CONG') {
+          props.setHistoryReducer(dataCartHistory.data);
+          navigation.navigate('WaitForPackageBrowsing');
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error(error + 'fail');
+      });
   };
   const HandlePackageOnSale = () => {
-    navigation.navigate('PackageOnSale');
-  };
-  const HandleHistoryRecyclables = () => {
-    navigation.navigate('HistoryRecyclables');
+    GetHistoryRecyclablesAPI(props.dataLogin.token, 2)
+      .then((json) => {
+        var dataCartHistory = JSON.parse(JSON.stringify(json));
+        if (dataCartHistory.dataString === 'THANH_CONG') {
+          props.setHistoryReducer(dataCartHistory.data);
+          navigation.navigate('PackageOnSale');
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error(error + 'fail');
+      });
   };
   const HandlePackageSaled = () => {
-    navigation.navigate('PackageSaled');
+    GetHistoryRecyclablesAPI(props.dataLogin.token, 3)
+      .then((json) => {
+        var dataCartHistory = JSON.parse(JSON.stringify(json));
+        if (dataCartHistory.dataString === 'THANH_CONG') {
+          props.setHistoryReducer(dataCartHistory.data);
+          navigation.navigate('PackageSaled');
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error(error + 'fail');
+      });
   };
   return (
     <View style={{flex: 1}}>
       <Drawer
-        tapToClose={true}
+        type="overlay"
+        tweenHandler={(ratio) => ({
+          main: {opacity: (2 - ratio) / 2},
+        })}
         openDrawerOffset={0.1}
-        tweenHandler={Drawer.tweenPresets.parallax}
+        tapToClose={true}
         ref={(ref) => setvalue(ref)}
         content={
           <View style={styles.wrapper}>
@@ -68,7 +99,7 @@ const Home = (props) => {
 
             <TouchableOpacity
               style={styles.WrapperBtnLogOut}
-              onPress={HandleHistoryCart}>
+              onPress={HandleWaitForPackageBrowsing}>
               <Text style={styles.StyleTextBtn}>{t('RigisterRecy')}</Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -106,7 +137,7 @@ function mapStateToProps(state) {
     historyGift: state.historyGift,
   };
 }
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, {setHistoryReducer})(Home);
 
 const styles = StyleSheet.create({
   wrapper: {

@@ -14,7 +14,9 @@ import {useRoute} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 import {connect} from 'react-redux';
 import {AddCartHistory, setCart} from '../../../../Redux/ActionCreators';
+import NewRecyclablesAPI from '../../../../RestAPI/Recyclables/new-recyclables-api';
 import {useTranslation} from 'react-i18next';
+import CreateNotifyAPI from '../../../../RestAPI/Notify/create-notify-api';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -22,10 +24,24 @@ const Sale = (props) => {
   const {t} = useTranslation();
   var i = 0;
   const [amount, setAmount] = React.useState(0);
-  const [Address, setAddress] = React.useState('');
-  const [Phone, setPhone] = React.useState('');
+  const [Address, setAddress] = React.useState(
+    props.InforUser.Address ? props.InforUser.Address : '',
+  );
+  const [Phone, setPhone] = React.useState(
+    props.InforUser.Phone ? props.InforUser.Phone : '',
+  );
   const route = useRoute();
   const navigation = useNavigation();
+
+  useEffect(() => {
+    if (
+      props.InforUser.Name === '' &&
+      props.InforUser.Address === '' &&
+      props.Phone === ''
+    ) {
+      navigation.navigate('ContactUpdate');
+    }
+  });
   const HanldeSale = () => {
     let ts = Date.now();
 
@@ -40,15 +56,35 @@ const Sale = (props) => {
 
     var dateTime =
       year + '-' + month + '-' + date + ' ' + hour + ':' + min + ':' + sec;
-    props.AddCartHistory(dateTime, amount, props.Cart, Address, Phone);
-
-    props.setCart();
-    Alert.alert(
-      'Nofity',
-      'Thành Công',
-      [{text: 'OK', onPress: () => navigation.replace('Main')}],
-      {cancelable: false},
-    );
+    NewRecyclablesAPI(props.dataLogin.token, amount, Address, Phone, props.Cart)
+      .then((json) => {
+        var data = JSON.parse(JSON.stringify(json));
+        if (data.dataString === 'THANH_CONG') {
+          // props.AddCartHistory(dateTime, amount, props.Cart, Address, Phone);
+          props.setCart([]);
+          CreateNotifyAPI(
+            props.dataLogin.token,
+            'Tạo gói hàng',
+            'Tạo gói hàng thành công',
+          );
+          Alert.alert(
+            'Nofity',
+            'Thành Công',
+            [{text: 'OK', onPress: () => navigation.replace('Main')}],
+            {cancelable: false},
+          );
+        } else {
+          Alert.alert(
+            'Nofity',
+            'Không Thành Công',
+            [{text: 'OK', onPress: () => navigation.replace('Main')}],
+            {cancelable: false},
+          );
+        }
+      })
+      .catch((error) => {
+        console.error(error + 'fail');
+      });
   };
   return (
     <View>
@@ -209,6 +245,7 @@ function mapStateToProps(state) {
     dataLogin: state.dataLogin,
     Scores: state.Scores,
     Cart: state.Cart,
+    InforUser: state.InforUser,
   };
 }
 export default connect(mapStateToProps, {AddCartHistory, setCart})(Sale);

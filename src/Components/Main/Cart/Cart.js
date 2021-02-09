@@ -21,7 +21,16 @@ const About = (props) => {
   const navigation = useNavigation();
   const {t, i18n} = useTranslation();
   const HanleRecyBooking = () => {
-    navigation.navigate('Sale');
+    if (props.Cart.length == 0) {
+      Alert.alert(
+        'Thông Báo',
+        'giỏ hàng hiện tại không có gì, vui lòng thêm sản phẩm vào giỏ hàng',
+        [{text: 'Xác nhận'}],
+        {cancelable: false},
+      );
+    } else {
+      navigation.navigate('Sale');
+    }
   };
   const handleX = (ID) => {
     props.deleteCart(ID);
@@ -32,7 +41,7 @@ const About = (props) => {
         <Text style={styles.textStyleHeader}>{t('Cart')}</Text>
       </View>
       <ScrollView style={styles.wrapperContent}>
-        {props.Cart.map((e) => (
+        {props.PackageDetail.map((e) => (
           <View style={styles.wrapperMainCart}>
             <View style={styles.wrapperinLine}>
               <Image source={e.Image} style={styles.wrapperImage} />
@@ -56,7 +65,7 @@ const About = (props) => {
                 </TouchableOpacity>
                 <View style={styles.wrapperinLine2}>
                   <Text style={styles.stylesText}>
-                    {t('RecyclingName')}: {e.Name}
+                    {t('RecyclingName')}: {e.NameProduct}
                   </Text>
                 </View>
                 <Text style={styles.stylesText}>
@@ -162,6 +171,7 @@ function mapStateToProps(state) {
     InforUser: state.InforUser,
     dataCheckLocal: state.dataCheckLocal,
     Cart: state.Cart,
+    PackageDetail: state.PackageDetail,
   };
 }
 export default connect(mapStateToProps, {deleteCart})(About);

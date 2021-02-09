@@ -41,6 +41,7 @@ const Contact = (props) => {
     wrapper,
     infoContainer,
     rowInfoContainer,
+    textAddress,
     imageStyle,
     infoText,
     wrapperBtnlc,
@@ -120,17 +121,23 @@ const Contact = (props) => {
       <View style={infoContainer}>
         <View style={rowInfoContainer}>
           <Image source={mailIcon} style={imageStyle} />
-          <Text style={infoText}>Mai Thế Viễn</Text>
+          <Text style={infoText}>
+            {props.InforUser.Name ? props.InforUser.Name : ''}
+          </Text>
         </View>
         <View style={rowInfoContainer}>
           <Image source={locationIcon} style={imageStyle} />
-          <View style={{width: '75%'}}>
-            <Text style={infoText}>64 Nhơn Hòa 5, Cẩm Lệ, Đà Nẵng</Text>
+          <View style={textAddress}>
+            <Text style={infoText}>
+              {props.InforUser.Address ? props.InforUser.Address : ''}
+            </Text>
           </View>
         </View>
         <View style={rowInfoContainer}>
           <Image source={phoneIcon} style={imageStyle} />
-          <Text style={infoText}>0869040015</Text>
+          <Text style={infoText}>
+            {props.InforUser.Phone ? props.InforUser.Phone : ''}
+          </Text>
         </View>
 
         {/* <View style={[rowInfoContainer, {borderBottomWidth: 0}]}>
@@ -213,7 +220,6 @@ const styles = StyleSheet.create({
   },
   rowInfoContainer: {
     height: 60,
-
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -253,7 +259,6 @@ const styles = StyleSheet.create({
   },
   TextMain: {
     fontFamily: 'Roboto',
-
     fontWeight: '500',
     fontSize: 20,
   },
@@ -262,6 +267,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
     color: 'white',
     fontWeight: 'bold',
+  },
+  textAddress: {
+    width: '70%',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
 });
 

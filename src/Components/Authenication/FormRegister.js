@@ -16,43 +16,42 @@ const FormRegister = (props) => {
   const {t} = useTranslation();
   const HandleRegister = () => {
     if (mk === mk2 && user !== '' && mk !== '') {
-      // registerAPI(user, mk)
-      //   .then((json) => {
-      //     var Data = JSON.parse(JSON.stringify(json));
-      //     //console.log(DataLoginUser);
-      //     if (Data.dataString === 'THANH_CONG') {
-      //       Alert.alert(
-      //         'Nofity',
-      //         'SUCCESS',
-      //         [
-      //           {
-      //             text: 'Cancel',
-      //             onPress: () => console.log('Cancel Pressed'),
-      //             style: 'cancel',
-      //           },
-      //           {text: 'OK', onPress: () => console.log('OK Pressed')},
-      //         ],
-      //         {cancelable: false},
-      //       );
-      //     } else {
-      //       Alert.alert(
-      //         'Nofity',
-      //         'Register not Success',
-      //         [
-      //           {
-      //             text: 'Cancel',
-      //             onPress: () => console.log('Cancel Pressed'),
-      //             style: 'cancel',
-      //           },
-      //           {text: 'OK', onPress: () => console.log('OK Pressed')},
-      //         ],
-      //         {cancelable: false},
-      //       );
-      //     }
-      //   })
-      //   .catch((error) => {
-      //     console.error(error + 'fail');
-      //   });
+      registerAPI(user, mk)
+        .then((json) => {
+          var Data = json;
+          if (Data.dataString === 'THANH_CONG') {
+            Alert.alert(
+              'Nofity',
+              'SUCCESS',
+              [
+                {
+                  text: 'Cancel',
+                  onPress: () => console.log('Cancel Pressed'),
+                  style: 'cancel',
+                },
+                {text: 'OK', onPress: () => console.log('OK Pressed')},
+              ],
+              {cancelable: false},
+            );
+          } else {
+            Alert.alert(
+              'Nofity',
+              'Register not Success',
+              [
+                {
+                  text: 'Cancel',
+                  onPress: () => console.log('Cancel Pressed'),
+                  style: 'cancel',
+                },
+                {text: 'OK', onPress: () => console.log('OK Pressed')},
+              ],
+              {cancelable: false},
+            );
+          }
+        })
+        .catch((error) => {
+          console.error(error + 'fail');
+        });
     } else {
       Alert.alert(
         'Nofity',

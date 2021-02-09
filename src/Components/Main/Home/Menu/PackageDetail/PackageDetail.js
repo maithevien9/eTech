@@ -10,12 +10,11 @@ import {
 } from 'react-native';
 
 import {Dimensions} from 'react-native';
-
+import imageRecy from '../../../../../Images/Icons/recycle.png';
 import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import {useRoute} from '@react-navigation/native';
 import {connect} from 'react-redux';
-
 const windowWidth = Dimensions.get('window').width;
 
 const windowHeight = Dimensions.get('window').height;
@@ -24,9 +23,6 @@ const PackageDetail = (props) => {
   const route = useRoute();
   const navigation = useNavigation();
 
-  useEffect(() => {
-    console.log(route.params.e);
-  });
   return (
     <View style={styles.wrapperMain}>
       <View style={styles.wrapperHeader}>
@@ -34,19 +30,19 @@ const PackageDetail = (props) => {
       </View>
 
       <ScrollView style={styles.wrapperContent}>
-        {route.params.e.Cart.map((e) => (
+        {props.PackageDetail.map((e) => (
           <View style={styles.wrapperMainCart}>
             <View style={styles.wrapperinLine}>
-              <Image source={e.Image} style={styles.wrapperImage} />
+              <Image source={imageRecy} style={styles.wrapperImage} />
               <View style={styles.wrapperText}>
                 <View style={styles.wrapperinLine2}>
                   <Text style={styles.stylesText}>
-                    {t('RecyclingName')}: {e.Name}
+                    {t('RecyclingName')}: {e.NameProduct}
                   </Text>
                 </View>
                 <Text style={styles.stylesText}>
                   {t('Amount')}: {e.amount}
-                  {e.Unit.slice(2, 10)}
+                  {/* {e.Unit.slice(2, 10)} */}
                 </Text>
               </View>
             </View>
@@ -124,6 +120,9 @@ const styles = StyleSheet.create({
   },
   wrapperText: {
     marginLeft: '6%',
+    marginTop: '5%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   stylesText: {
     width: windowWidth / 1.4,
@@ -144,6 +143,7 @@ function mapStateToProps(state) {
     InforUser: state.InforUser,
     dataCheckLocal: state.dataCheckLocal,
     Cart: state.Cart,
+    PackageDetail: state.PackageDetail,
   };
 }
 export default connect(mapStateToProps)(PackageDetail);

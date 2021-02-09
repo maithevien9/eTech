@@ -26,9 +26,44 @@ export function AddCartHistory(dateTime, amount, Cart, Address, Phone) {
   };
 }
 
-export function setCart(ID) {
+export function setCart(data) {
   return {
     type: 'setCart',
-    data: [],
+    data: data,
+  };
+}
+
+export function setDataLogin(data) {
+  return {
+    type: 'setDataLogin',
+    data: data,
+  };
+}
+
+export function setInforUser(data) {
+  return {
+    type: 'setInforUser',
+    data: data,
+  };
+}
+
+export function setdataNotify(data) {
+  return {
+    type: 'setdataNotify',
+    data: data,
+  };
+}
+
+export function setHistoryReducer(data) {
+  return {
+    type: 'setCartHistory',
+    data: data,
+  };
+}
+
+export function setPackageDetail(data) {
+  return {
+    type: 'setPackageDetail',
+    data: data,
   };
 }

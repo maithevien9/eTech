@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
 import icNotify from '../../Images/Icons/notification.png';
@@ -20,43 +20,32 @@ import GetInforUser from '../../RestAPI/User/get-infor-user';
 import {connect} from 'react-redux';
 import NotifyAPI from '../../RestAPI/Notify/get-notify-api';
 import {useTranslation} from 'react-i18next';
+import SaveDataCart from '../../AsyncStorage/SaveDataCart';
+import GetNotify from '../../RestAPI/Notify/get-notify-api';
+import {setdataNotify} from '../../Redux/ActionCreators';
 const Main = (props) => {
   const [selectedTab, setSelectedTab] = React.useState('home');
   const {t, i18n} = useTranslation();
+
+  useEffect(() => {
+    SaveDataCart(props.Cart);
+    GetNotify(props.dataLogin.token)
+      .then((json) => {
+        var dataNotify = JSON.parse(JSON.stringify(json));
+        props.setdataNotify(dataNotify.data);
+      })
+      .catch((error) => {
+        console.error(error + 'fail');
+      });
+  });
   const HandleSelectContact = () => {
-    // GetInforUser(props.dataLogin.token)
-    //   .then((json) => {
-    //     var data = JSON.parse(JSON.stringify(json));
-    //     // console.log(data);
-    //     if (data.dataString === 'THANH_CONG') {
-    //       props.dispatch({
-    //         type: 'setInforUser',
-    //         data: data.data,
-    //       });
-    //       // setSelectedTab('Contact');
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error(error + 'fail');
-    //   });
     setSelectedTab('Contact');
   };
+
   const HandleSelectNotify = () => {
-    // NotifyAPI(props.dataLogin.token)
-    //   .then((json) => {
-    //     var data = JSON.parse(JSON.stringify(json));
-    //     console.log(data);
-    //     props.dispatch({
-    //       type: 'setdataNotify',
-    //       data: data.data,
-    //     });
-    //     if (data.dataString === 'THANH_CONG') {
-    //       setSelectedTab('notify');
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error(error + 'fail');
-    //   });
+    setSelectedTab('Notify');
+  };
+  const HandleSelectCart = () => {
     setSelectedTab('Cart');
   };
   return (
@@ -84,7 +73,7 @@ const Main = (props) => {
           <Image source={icNotify2} style={styles.wrapperImage} />
         )}
         onPress={() => {
-          HandleSelectNotify();
+          HandleSelectCart();
         }}>
         <Cart />
       </TabNavigator.Item>
@@ -98,7 +87,9 @@ const Main = (props) => {
         renderSelectedIcon={() => (
           <Image source={icNote} style={styles.wrapperImage} />
         )}
-        onPress={() => setSelectedTab('Notify')}>
+        onPress={() => {
+          HandleSelectNotify();
+        }}>
         <Notify />
       </TabNavigator.Item>
       <TabNavigator.Item
@@ -129,4 +120,4 @@ function mapStateToProps(state) {
     Cart: state.Cart,
   };
 }
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps, {setdataNotify})(Main);

@@ -51,9 +51,10 @@ const Header = (props) => {
         <TouchableOpacity
           onPress={() => {
             props.onOpen();
+            // props.goToPage && props.goToPage();
           }}
           style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Image source={icMenu} style={styles.iconStyle}></Image>
+          <Image source={icMenu} style={styles.iconStyle} />
         </TouchableOpacity>
         <View style={{justifyContent: 'center', alignItems: 'center'}}>
           <Text style={styles.textStyle}>Etech Dream</Text>

@@ -1,6 +1,13 @@
-const GetHistoryRecyclablesAPI = async (Token) => {
-  var url = `http://192.168.1.5:8001/GetHistoryRecyclables/${Token}`;
-  return await fetch(url).then((response) => response.json());
+const GetHistoryRecyclablesAPI = async (Token, status) => {
+  var url = `http://192.168.43.72:8001/GetRycyclables/${status}`;
+  return await fetch(url, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `bearer ${Token}`,
+    },
+  }).then((response) => response.json());
 };
 
 export default GetHistoryRecyclablesAPI;

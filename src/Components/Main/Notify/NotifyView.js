@@ -17,9 +17,6 @@ const NotifyView = (props) => {
     return ts.toLocaleTimeString();
   };
   return (
-    // <View>
-    //   <Text>{t('Hello')}</Text>
-    // </View>
     <ScrollView>
       <View style={styles.wrapperHeader}>
         <Text style={styles.textStyleHeader}>{t('Nofity')}</Text>

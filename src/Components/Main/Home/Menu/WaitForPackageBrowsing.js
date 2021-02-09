@@ -12,7 +12,8 @@ import icGift from '.././../../../Images/Icons/cart.png';
 import {connect} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
-
+import GetRycyclableDetail from '../../../../RestAPI/Recyclables/get-recyclable-detail-api';
+import {setPackageDetail} from '../../../../Redux/ActionCreators';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const HistoryCart = (props) => {
@@ -27,9 +28,20 @@ const HistoryCart = (props) => {
     return ts.toLocaleTimeString();
   };
   const hanldePackageDetail = (e) => {
-    navigation.navigate('PackageDetail', {
-      e,
-    });
+    GetRycyclableDetail(e.ID)
+      .then((json) => {
+        var dataCartHistoryDetail = JSON.parse(JSON.stringify(json));
+
+        if (dataCartHistoryDetail.dataString === 'THANH_CONG') {
+          console.log(dataCartHistoryDetail.data);
+          props.setPackageDetail(dataCartHistoryDetail.data);
+          navigation.navigate('PackageDetail');
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error(error + 'fail');
+      });
   };
   return (
     <View>
@@ -62,7 +74,10 @@ const HistoryCart = (props) => {
               </View>
               <View style={styles.wrapperRow}>
                 <Text style={styles.StyleText}>{t('CreateAtTime')}: </Text>
-                <Text style={styles.StyleText}>{e.CreateAtTime}</Text>
+                <Text style={styles.StyleText}>
+                  {' '}
+                  {convertDate(e.CreateAtTime)} {convertDate2(e.CreateAtTime)}
+                </Text>
               </View>
             </View>
           </View>
@@ -139,4 +154,4 @@ function mapStateToProps(state) {
     historyGift: state.historyGift,
   };
 }
-export default connect(mapStateToProps)(HistoryCart);
+export default connect(mapStateToProps, {setPackageDetail})(HistoryCart);

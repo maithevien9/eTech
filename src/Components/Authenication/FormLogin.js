@@ -15,6 +15,8 @@ import SaveDataLogin from '../../AsyncStorage/SaveDataLogin';
 import LoginAPI from '../../RestAPI/User/login-api';
 import {connect} from 'react-redux';
 import {useTranslation} from 'react-i18next';
+import {setDataLogin} from '../../Redux/ActionCreators';
+
 const FormLogin = (props) => {
   const navigation = useNavigation();
   const {t} = useTranslation();
@@ -23,9 +25,30 @@ const FormLogin = (props) => {
 
   const HandleLogin = () => {
     if (emailLogin !== '' && mkLogin !== '') {
-      navigation.navigate('SelectRole');
+      LoginAPI(emailLogin, mkLogin)
+        .then((json) => {
+          var dataLogin = json;
+          if (dataLogin.dataString === 'THANH_CONG') {
+            SaveDataLogin(dataLogin);
+            props.setDataLogin(dataLogin);
+            navigation.navigate('SelectRole');
+          } else {
+            Alert.alert(
+              'Thông Báo',
+              'Không thành công, vui lòng nhập lại',
+              [{text: 'Xác nhận'}],
+              {cancelable: false},
+            );
+          }
+        })
+        .catch((error) => console.error(error));
     } else {
-      navigation.navigate('SelectRole');
+      Alert.alert(
+        'Thông Báo',
+        'Vui lòng nhập thông tin',
+        [{text: 'Xác nhận'}],
+        {cancelable: false},
+      );
     }
   };
   return (
@@ -38,6 +61,7 @@ const FormLogin = (props) => {
       />
       <TextInput
         onChangeText={(text) => setmkLogin(text)}
+        secureTextEntry={true}
         value={mkLogin}
         style={styles.textInput}
         placeholder={t('PassWord')}
@@ -50,7 +74,7 @@ const FormLogin = (props) => {
   );
 };
 
-export default connect()(FormLogin);
+export default connect(null, {setDataLogin})(FormLogin);
 const styles = StyleSheet.create({
   wrapper: {
     paddingTop: 10,

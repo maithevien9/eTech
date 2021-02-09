@@ -1,54 +1,11 @@
 import {createStore, combineReducers} from 'redux';
-import icMetal1 from '../Images/Icons/recycle.png';
-import icMetal2 from '../Images/Icons/recycle.png';
-import {Alert} from 'react-native';
+import CartHistoryReducer from './Reducer/CartHistoryReducer';
 import CartReducer from './Reducer/CartReducer';
 import ProductsReducer from './Reducer/ProductReducer';
 import dataLoginReducer from './Reducer/dataLoginReducer';
 import dataNotifyReducer from './Reducer/NotifyReducer';
 import InforUserReducer from './Reducer/InforUserReducer';
-
-var CartHistory = [
-  {
-    CreateAtTime: '19:00:00 22/22/2020',
-    Cart: [
-      {
-        ID: 1,
-        Name: 'HDPE',
-        amount: 2,
-        Score: 3000,
-        Unit: '1/kg',
-        Image: icMetal1,
-      },
-      {
-        ID: 2,
-        Name: 'PET',
-        amount: 2,
-        Score: 3000,
-        Unit: '1/kg',
-        Image: icMetal2,
-      },
-    ],
-    Price: '20000',
-    Address: '64 Nhơn Hòa 5, Cẩm Lệ, Đà Nẵng',
-    Phone: '0869040015',
-  },
-];
-
-const CartHistoryReducer = (state = CartHistory, action) => {
-  if (action.type === 'AddCartHistory') {
-    return [
-      {
-        CreateAtTime: action.CreateAtTime,
-        Cart: action.arrayCart,
-        Price: action.Price,
-        Address: action.Address,
-        Phone: action.Phone,
-      },
-    ].concat(state);
-  }
-  return state;
-};
+import PackageDetailReducer from './Reducer/PackageDetailReducer';
 
 const reducer = combineReducers({
   dataLogin: dataLoginReducer,
@@ -57,6 +14,7 @@ const reducer = combineReducers({
   Cart: CartReducer,
   CartHistory: CartHistoryReducer,
   Products: ProductsReducer,
+  PackageDetail: PackageDetailReducer,
 });
 const store = createStore(reducer);
 

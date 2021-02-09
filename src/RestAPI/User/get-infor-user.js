@@ -1,6 +1,13 @@
 const GetInforUser = async (Token) => {
-  var url = `http://192.168.1.5:8001/GetInfor/${Token}`;
-  return await fetch(url).then((response) => response.json());
+  var url = `http://192.168.43.72:8001/GetInfor`;
+  return await fetch(url, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `bearer ${Token}`,
+    },
+  }).then((response) => response.json());
 };
 
 export default GetInforUser;

@@ -13,6 +13,8 @@ import {connect} from 'react-redux';
 import {useRoute} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
+import {setPackageDetail} from '../../../../Redux/ActionCreators';
+import GetRycyclableDetail from '../../../../RestAPI/Recyclables/get-recyclable-detail-api';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -29,9 +31,19 @@ const PackageOnSale = (props) => {
     return ts.toLocaleTimeString();
   };
   const hanldePackageDetail = (e) => {
-    navigation.navigate('PackageDetailUpdate', {
-      e,
-    });
+    GetRycyclableDetail(e.ID)
+      .then((json) => {
+        var dataCartHistoryDetail = JSON.parse(JSON.stringify(json));
+        if (dataCartHistoryDetail.dataString === 'THANH_CONG') {
+          console.log(dataCartHistoryDetail.data);
+          props.setPackageDetail(dataCartHistoryDetail.data);
+          navigation.navigate('PackageDetailUpdate');
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error(error + 'fail');
+      });
   };
   return (
     <View>
@@ -62,7 +74,9 @@ const PackageOnSale = (props) => {
               </View>
               <View style={styles.wrapperRow}>
                 <Text style={styles.StyleText}>{t('CreateAtTime')}: </Text>
-                <Text style={styles.StyleText}>{e.CreateAtTime}</Text>
+                <Text style={styles.StyleText}>
+                  {convertDate(e.CreateAtTime)} {convertDate2(e.CreateAtTime)}
+                </Text>
               </View>
             </View>
           </View>
@@ -139,4 +153,4 @@ function mapStateToProps(state) {
     historyGift: state.historyGift,
   };
 }
-export default connect(mapStateToProps)(PackageOnSale);
+export default connect(mapStateToProps, {setPackageDetail})(PackageOnSale);

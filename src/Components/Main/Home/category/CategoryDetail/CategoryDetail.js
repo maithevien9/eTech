@@ -15,6 +15,8 @@ import {useNavigation} from '@react-navigation/native';
 import {connect} from 'react-redux';
 import {addCart} from '../../../../../Redux/ActionCreators';
 import {useTranslation} from 'react-i18next';
+import SaveDataCart from '../../.././../../AsyncStorage/SaveDataCart';
+
 const CategoryDetail = (props) => {
   const [amount, setAmount] = React.useState('0');
   const {t} = useTranslation();
@@ -35,7 +37,6 @@ const CategoryDetail = (props) => {
   );
   const HandleCart = () => {
     if (amount != 0) {
-      console.log(ID + '/' + Name + '/' + amount + '/' + route.params.Score);
       props.addCart(
         ID,
         Name,
@@ -202,6 +203,7 @@ function mapStateToProps(state) {
   return {
     dataLogin: state.dataLogin,
     Scores: state.Scores,
+    Cart: state.Cart,
   };
 }
 export default connect(mapStateToProps, {addCart})(CategoryDetail);

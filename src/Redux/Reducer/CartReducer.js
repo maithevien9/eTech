@@ -1,24 +1,6 @@
-import icMetal1 from '../../Images/Icons/recycle.png';
-import icMetal2 from '../../Images/Icons/recycle.png';
 import {Alert} from 'react-native';
-var Cart = [
-  {
-    ID: 1,
-    Name: 'HDPE',
-    amount: 2,
-    Score: 3000,
-    Unit: '1/kg',
-    Image: icMetal1,
-  },
-  {
-    ID: 6,
-    Name: 'PET',
-    amount: 2,
-    Score: 3000,
-    Unit: '1/kg',
-    Image: icMetal2,
-  },
-];
+
+var Cart = [];
 const CartReducer = (state = Cart, action) => {
   if (action.type === 'setCart') return action.data;
   if (action.type === 'addCart') {
