@@ -41,7 +41,7 @@ const About = (props) => {
         <Text style={styles.textStyleHeader}>{t('Cart')}</Text>
       </View>
       <ScrollView style={styles.wrapperContent}>
-        {props.PackageDetail.map((e) => (
+        {props.Cart.map((e) => (
           <View style={styles.wrapperMainCart}>
             <View style={styles.wrapperinLine}>
               <Image source={e.Image} style={styles.wrapperImage} />
@@ -65,7 +65,7 @@ const About = (props) => {
                 </TouchableOpacity>
                 <View style={styles.wrapperinLine2}>
                   <Text style={styles.stylesText}>
-                    {t('RecyclingName')}: {e.NameProduct}
+                    {t('RecyclingName')}: {e.Name}
                   </Text>
                 </View>
                 <Text style={styles.stylesText}>

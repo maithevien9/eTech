@@ -67,3 +67,10 @@ export function setPackageDetail(data) {
     data: data,
   };
 }
+
+export function setProduct(data) {
+  return {
+    type: 'setProduct',
+    data: data,
+  };
+}

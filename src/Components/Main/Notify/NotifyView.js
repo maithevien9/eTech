@@ -35,6 +35,9 @@ const NotifyView = (props) => {
                 <View style={{width: '85%'}}>
                   <Text style={styles.wrapperTextInNotify}>{e.Name}</Text>
                 </View>
+                <View style={{width: '85%'}}>
+                  <Text style={styles.wrapperTextInNotify2}>{e.Detail}</Text>
+                </View>
                 <Text style={styles.StyleTextTime}>
                   {convertDate(e.CreateAtTime)} {convertDate2(e.CreateAtTime)}
                 </Text>
@@ -85,9 +88,9 @@ const styles = StyleSheet.create({
   },
   wrapperNotify: {
     height: 80,
-    width: '97%',
+    width: '95%',
     backgroundColor: '#FFFFFF',
-    borderWidth: 1,
+    borderBottomWidth: 1,
     borderColor: 'black',
     borderRadius: 5,
     marginTop: 12,
@@ -103,6 +106,12 @@ const styles = StyleSheet.create({
   },
   wrapperTextInNotify: {
     fontSize: 18,
+    fontFamily: 'Roboto',
+    color: 'black',
+  },
+  wrapperTextInNotify2: {
+    fontSize: 14,
+    marginBottom: 3,
     fontFamily: 'Roboto',
     color: 'black',
   },

@@ -33,11 +33,14 @@ const PackageOnSale = (props) => {
   const hanldePackageDetail = (e) => {
     GetRycyclableDetail(e.ID)
       .then((json) => {
+        var IDRecy = e.ID;
         var dataCartHistoryDetail = JSON.parse(JSON.stringify(json));
         if (dataCartHistoryDetail.dataString === 'THANH_CONG') {
           console.log(dataCartHistoryDetail.data);
           props.setPackageDetail(dataCartHistoryDetail.data);
-          navigation.navigate('PackageDetailUpdate');
+          navigation.navigate('PackageDetailUpdate', {
+            IDRecy,
+          });
         } else {
         }
       })

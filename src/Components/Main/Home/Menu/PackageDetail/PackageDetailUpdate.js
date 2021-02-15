@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import imageRecy from '../../../../../Images/Icons/recycle.png';
 import {Dimensions} from 'react-native';
-
+import ChangeStatusRecyAPI from '../../../../../RestAPI/Recyclables/change-status-api';
 import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import {useRoute} from '@react-navigation/native';
@@ -23,6 +23,22 @@ const PackageDetailUpdate = (props) => {
   const route = useRoute();
   const navigation = useNavigation();
 
+  const handleChangeStatusRecy = () => {
+    ChangeStatusRecyAPI(route.params.IDRecy)
+      .then((json) => {
+        var data = JSON.parse(JSON.stringify(json));
+        if (data.dataString === 'THANH_CONG') {
+          Alert.alert('Thông Báo', 'Thành công', [{text: 'Xác nhận'}], {
+            cancelable: false,
+          });
+          navigation.replace('Main');
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error(error + 'fail');
+      });
+  };
   return (
     <View style={styles.wrapperMain}>
       <View style={styles.wrapperHeader}>
@@ -48,7 +64,9 @@ const PackageDetailUpdate = (props) => {
           </View>
         ))}
       </ScrollView>
-      <TouchableOpacity style={styles.wrapperBtn}>
+      <TouchableOpacity
+        style={styles.wrapperBtn}
+        onPress={handleChangeStatusRecy}>
         <Text style={styles.TextSubmit}> {t('ConfirmedSold')}</Text>
       </TouchableOpacity>
     </View>

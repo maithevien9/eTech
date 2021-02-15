@@ -17,7 +17,8 @@ import {useTranslation} from 'react-i18next';
 import IcSearch from '../../../../Images/Icons/Search.png';
 import Swiper from 'react-native-swiper';
 import icBox from '../../../../Images/Icons/paper1.png';
-
+import GetRecyclablesFullAPI from '../../../../RestAPI/Recyclables/get-recyclables-full-api';
+import {setProduct} from '../../../../Redux/ActionCreators';
 // var ScrollableTabView = require('react-native-scrollable-tab-view');
 var ScrollableTabView = require('react-native-scrollable-tab-view');
 const windowWidth = Dimensions.get('window').width;
@@ -46,6 +47,18 @@ const MainView = (props) => {
     PE: 'PE',
   };
   const {t, i18n} = useTranslation();
+
+  useEffect(() => {
+    GetRecyclablesFullAPI()
+      .then((json) => {
+        // console.log(json);
+        var data = JSON.parse(JSON.stringify(json));
+        props.setProduct(data.data);
+      })
+      .catch((error) => {
+        console.error(error + 'fail');
+      });
+  });
   const HandleChangArrayProduct = (value) => {
     if (value === 0) {
       console.log(0);
@@ -80,6 +93,14 @@ const MainView = (props) => {
   const HanldeAdress = () => {
     setDataCheckProduct(false);
     setDataCheck(!dataCheck);
+  };
+  const convertDate = (date) => {
+    var ts = new Date(date);
+    return ts.toLocaleDateString();
+  };
+  const convertDate2 = (date) => {
+    var ts = new Date(date);
+    return ts.toLocaleTimeString();
   };
   const main = dataCheck ? (
     <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
@@ -132,7 +153,7 @@ const MainView = (props) => {
       </View>
     </View>
   ) : (
-    <View></View>
+    <View />
   );
   const main2 = dataCheckProduct ? (
     <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
@@ -189,7 +210,7 @@ const MainView = (props) => {
       </View>
     </View>
   ) : (
-    <View></View>
+    <View />
   );
 
   const HandleProduct = () => {
@@ -202,7 +223,7 @@ const MainView = (props) => {
         <TouchableOpacity
           style={styles.wrapperImageSearch}
           onPress={HandleSearch}>
-          <Image source={IcSearch} style={styles.iconStyle}></Image>
+          <Image source={IcSearch} style={styles.iconStyle} />
         </TouchableOpacity>
         <TextInput
           style={styles.WrapperTextSearch}
@@ -210,19 +231,6 @@ const MainView = (props) => {
           value={textSearch}
         />
       </View>
-      {/* <View style={styles.wrapperSwiper}>
-        <Swiper>
-          <View style={styles.slide1}>
-            <Text style={styles.text}>Lợi ích của việc phân loại rác</Text>
-          </View>
-          <View style={styles.slide2}>
-            <Text style={styles.text}>Tác hại của môi trường</Text>
-          </View>
-          <View style={styles.slide3}>
-            <Text style={styles.text}>And simple</Text>
-          </View>
-        </Swiper>
-      </View> */}
       <View style={styles.wrapperMainCatogory}>
         <View style={styles.WrapperCatogory}>
           <TouchableOpacity
@@ -256,9 +264,7 @@ const MainView = (props) => {
                 <View style={styles.wrapperRowScore}>
                   <Text style={styles.StyleText}>{t('Package')}: </Text>
                   <View style={styles.wrapperTextAddress}>
-                    <Text style={styles.StyleText}>
-                      {e.Cart.map((data) => data.Name + ', ')}
-                    </Text>
+                    <Text style={styles.StyleText}>{e.NameProduct}</Text>
                   </View>
                 </View>
                 <View style={styles.wrapperRowScore}>
@@ -268,7 +274,10 @@ const MainView = (props) => {
                 <View style={styles.wrapperRowScore}>
                   <Text style={styles.StyleText}>{t('Time')}: </Text>
                   <View style={styles.wrapperTextAddress}>
-                    <Text style={styles.StyleText}>{e.CreateAtTime}</Text>
+                    <Text style={styles.StyleText}>
+                      {convertDate(e.CreateAtTime)}{' '}
+                      {convertDate2(e.CreateAtTime)}
+                    </Text>
                   </View>
                 </View>
 
@@ -489,4 +498,4 @@ function mapStateToProps(state) {
     Products: state.Products,
   };
 }
-export default connect(mapStateToProps)(MainView);
+export default connect(mapStateToProps, {setProduct})(MainView);

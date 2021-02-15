@@ -17,8 +17,9 @@ const Loading = (props) => {
         props.setCart(valueCart);
         var value = await AsyncStorage.getItem('@save');
         value = JSON.parse(value);
-        if (value !== '') {
+        if (value) {
           props.setDataLogin(value);
+          console.log(value);
           if (value.token !== '') {
             CheckToken(value.token)
               .then((json) => {
