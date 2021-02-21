@@ -19,6 +19,8 @@ import Swiper from 'react-native-swiper';
 import icBox from '../../../../Images/Icons/paper1.png';
 import GetRecyclablesFullAPI from '../../../../RestAPI/Recyclables/get-recyclables-full-api';
 import {setProduct} from '../../../../Redux/ActionCreators';
+import SearchRecyclablesAPI from '../../../../RestAPI/Recyclables/search-recyclable-api';
+import GetRecyclablesDetailAPI from '../../../../RestAPI/Recyclables/get-recyclable-detail-api';
 // var ScrollableTabView = require('react-native-scrollable-tab-view');
 var ScrollableTabView = require('react-native-scrollable-tab-view');
 const windowWidth = Dimensions.get('window').width;
@@ -31,11 +33,11 @@ const MainView = (props) => {
   const [dataCheckProduct, setDataCheckProduct] = useState(false);
   const [textSearch, setTextSearch] = useState('');
   const [selectedValue1, setSelectedValue1] = useState('Đà Nẵng');
-  const [selectedValue2, setSelectedValue2] = useState('');
+  const [selectedValue2, setSelectedValue2] = useState('Đà Nẵng');
   const [selectedValue3, setSelectedValue3] = useState('Nhựa');
-  const [selectedValue4, setSelectedValue4] = useState('');
+  const [selectedValue4, setSelectedValue4] = useState(',');
   const [arrDataProduct, setArrDataProduct] = useState({
-    ' ': '',
+    '': '',
     HDPE: 'HDPE',
     PET: 'PET',
     PE: 'PE',
@@ -49,21 +51,24 @@ const MainView = (props) => {
   const {t, i18n} = useTranslation();
 
   useEffect(() => {
+    GetRecyclablesFull();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const GetRecyclablesFull = () => {
     GetRecyclablesFullAPI()
       .then((json) => {
-        // console.log(json);
         var data = JSON.parse(JSON.stringify(json));
         props.setProduct(data.data);
       })
       .catch((error) => {
         console.error(error + 'fail');
       });
-  });
+  };
   const HandleChangArrayProduct = (value) => {
     if (value === 0) {
       console.log(0);
       setArrDataProduct({
-        ' ': '',
+        '': '',
         HDPE: 'HDPE',
         PET: 'PET',
         PE: 'PE',
@@ -71,24 +76,46 @@ const MainView = (props) => {
     }
     if (value === 1) {
       setArrDataProduct({
-        ' ': '',
+        '': '',
         Giấy: 'Giấy',
         Thùng: 'Thùng',
       });
     }
     if (value === 2) {
       setArrDataProduct({
-        ' ': '',
+        '': '',
         Sắt: 'Sắt',
         Nhôm: 'Nhôm',
       });
     }
   };
   const HandleProductDetail = (e) => {
-    navigation.navigate('ProductDetail', {e});
+    console.log(e.ID);
+    GetRecyclablesDetailAPI(e.ID)
+      .then((json) => {
+        console.log(json);
+        var data = json.data;
+        navigation.navigate('ProductDetail', {e, data});
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    //
   };
-  const HandleSearch = () => {
-    navigation.navigate('ListProducts');
+  const HandleSearch = (keyWord) => {
+    console.log(keyWord);
+    SearchRecyclablesAPI(keyWord)
+      .then((json) => {
+        console.log(json);
+        var data = JSON.parse(JSON.stringify(json));
+        props.setProduct(data.data);
+        navigation.navigate('ListProducts');
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    // navigation.navigate('ListProducts');
   };
   const HanldeAdress = () => {
     setDataCheckProduct(false);
@@ -101,6 +128,9 @@ const MainView = (props) => {
   const convertDate2 = (date) => {
     var ts = new Date(date);
     return ts.toLocaleTimeString();
+  };
+  const handleSearchItem = (keyWord) => {
+    console.log(keyWord);
   };
   const main = dataCheck ? (
     <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
@@ -140,7 +170,7 @@ const MainView = (props) => {
         onValueChange={(itemValue, itemIndex) => {
           setSelectedValue2(itemValue);
         }}>
-        <Picker.Item label=" " value=" " />
+        <Picker.Item label="" value="Đà Nẵng" />
         <Picker.Item label="Hải Châu" value="Hải Châu" />
         <Picker.Item label="Liên Chiểu" value="Liên Chiểu" />
         <Picker.Item label="Cẩm Lệ" value="Cẩm Lệ" />
@@ -148,9 +178,11 @@ const MainView = (props) => {
         <Picker.Item label="Ngũ Hành Sơn" value="Ngũ Hành Sơn" />
         <Picker.Item label="Sơn Trà" value="Sơn Trà" />
       </Picker>
-      <View style={styles.wrapperBtnAddress}>
+      <TouchableOpacity
+        style={styles.wrapperBtnAddress}
+        onPress={() => HandleSearch(selectedValue2)}>
         <Text style={styles.StyleTextBtn}> {t('Search')}</Text>
-      </View>
+      </TouchableOpacity>
     </View>
   ) : (
     <View />
@@ -205,9 +237,11 @@ const MainView = (props) => {
           return <Picker.Item label={key} value={key} key={key} />; //if you have a bunch of keys value pair
         })}
       </Picker>
-      <View style={styles.wrapperBtnAddress}>
-        <Text style={styles.StyleTextBtn}>Tìm kiếm</Text>
-      </View>
+      <TouchableOpacity
+        style={styles.wrapperBtnAddress}
+        onPress={() => HandleSearch(selectedValue4)}>
+        <Text style={styles.StyleTextBtn}>{t('Search')}</Text>
+      </TouchableOpacity>
     </View>
   ) : (
     <View />
@@ -217,12 +251,23 @@ const MainView = (props) => {
     setDataCheck(false);
     setDataCheckProduct(!dataCheckProduct);
   };
+  const handleSortPrice = () => {
+    var arr = props.Products.sort(function (a, b) {
+      return a.Price - b.Price;
+    });
+
+    props.setProduct(JSON.parse(JSON.stringify(arr)));
+  };
+
+  const handleSortTime = () => {
+    GetRecyclablesFull();
+  };
   return (
     <View style={styles.wrapperMain}>
       <View style={styles.WrapperSearch}>
         <TouchableOpacity
           style={styles.wrapperImageSearch}
-          onPress={HandleSearch}>
+          onPress={() => HandleSearch(textSearch)}>
           <Image source={IcSearch} style={styles.iconStyle} />
         </TouchableOpacity>
         <TextInput
@@ -238,10 +283,14 @@ const MainView = (props) => {
             onPress={HanldeAdress}>
             <Text style={styles.TextCatogory}> {t('Address')}</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.wrapperCatogoryHeader}>
+          <TouchableOpacity
+            style={styles.wrapperCatogoryHeader}
+            onPress={handleSortTime}>
             <Text style={styles.TextCatogory}> {t('Time')}</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.wrapperCatogoryHeader}>
+          <TouchableOpacity
+            style={styles.wrapperCatogoryHeader}
+            onPress={handleSortPrice}>
             <Text style={styles.TextCatogory}> {t('Price')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -258,7 +307,8 @@ const MainView = (props) => {
               style={styles.wrapperProduct}
               onPress={() => {
                 HandleProductDetail(e);
-              }}>
+              }}
+              key={e.ID}>
               <Image source={icBox} style={styles.wrapperImage} />
               <View style={styles.wrapperTextInlineProduct}>
                 <View style={styles.wrapperRowScore}>

@@ -17,7 +17,9 @@ import {useTranslation} from 'react-i18next';
 import IcSearch from '../../../../../Images/Icons/Search.png';
 import Swiper from 'react-native-swiper';
 import icBox from '../../../../../Images/Icons/paper1.png';
-
+import SearchRecyclablesAPI from '../../../../../RestAPI/Recyclables/search-recyclable-api';
+import {setProduct} from '../../../../../Redux/ActionCreators';
+import GetRecyclablesDetailAPI from '../../../../../RestAPI/Recyclables/get-recyclable-detail-api';
 // import {Picker} from '@react-native-community/picker';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -26,9 +28,9 @@ const ListProducts = (props) => {
   const navigation = useNavigation();
   const [dataCheckProduct, setDataCheckProduct] = useState(false);
   const [selectedValue1, setSelectedValue1] = useState('Đà Nẵng');
-  const [selectedValue2, setSelectedValue2] = useState('');
+  const [selectedValue2, setSelectedValue2] = useState('Đà Nẵng');
   const [selectedValue3, setSelectedValue3] = useState('Nhựa');
-  const [selectedValue4, setSelectedValue4] = useState('');
+  const [selectedValue4, setSelectedValue4] = useState(',');
   const [arrDataProduct, setArrDataProduct] = useState({
     ' ': '',
     HDPE: 'HDPE',
@@ -39,8 +41,31 @@ const ListProducts = (props) => {
   const [dataCheck, setDataCheck] = useState(false);
   const [textSearch, setTextSearch] = useState('');
   const {t, i18n} = useTranslation();
+  const HandleSearch = (keyWord) => {
+    console.log(keyWord);
+    SearchRecyclablesAPI(keyWord)
+      .then((json) => {
+        console.log(json);
+        var data = JSON.parse(JSON.stringify(json));
+        props.setProduct(data.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   const HandleProductDetail = (e) => {
-    navigation.navigate('ProductDetail', {e});
+    console.log(e.ID);
+    GetRecyclablesDetailAPI(e.ID)
+      .then((json) => {
+        console.log(json);
+        var data = json.data;
+        navigation.navigate('ProductDetail', {e, data});
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    //
   };
   const HanldeAdress = () => {
     setDataCheckProduct(false);
@@ -122,9 +147,11 @@ const ListProducts = (props) => {
         <Picker.Item label="Ngũ Hành Sơn" value="Ngũ Hành Sơn" />
         <Picker.Item label="Sơn Trà" value="Sơn Trà" />
       </Picker>
-      <View style={styles.wrapperBtnAddress}>
-        <Text style={styles.StyleTextBtn}>Tìm kiếm</Text>
-      </View>
+      <TouchableOpacity
+        style={styles.wrapperBtnAddress}
+        onPress={() => HandleSearch(selectedValue2)}>
+        <Text style={styles.StyleTextBtn}> {t('Search')}</Text>
+      </TouchableOpacity>
     </View>
   ) : (
     <View></View>
@@ -179,13 +206,23 @@ const ListProducts = (props) => {
           return <Picker.Item label={key} value={key} key={key} />; //if you have a bunch of keys value pair
         })}
       </Picker>
-      <View style={styles.wrapperBtnAddress}>
+      <TouchableOpacity
+        style={styles.wrapperBtnAddress}
+        onPress={() => HandleSearch(selectedValue4)}>
         <Text style={styles.StyleTextBtn}>{t('Search')}</Text>
-      </View>
+      </TouchableOpacity>
     </View>
   ) : (
     <View></View>
   );
+  const convertDate = (date) => {
+    var ts = new Date(date);
+    return ts.toLocaleDateString();
+  };
+  const convertDate2 = (date) => {
+    var ts = new Date(date);
+    return ts.toLocaleTimeString();
+  };
 
   return (
     <View style={styles.wrapperMain}>
@@ -211,9 +248,11 @@ const ListProducts = (props) => {
         <Picker.Item label="JavaScript" value="js" />
       </Picker> */}
       <View style={styles.WrapperSearch}>
-        <View style={styles.wrapperImageSearch}>
+        <TouchableOpacity
+          style={styles.wrapperImageSearch}
+          onPress={() => HandleSearch(textSearch)}>
           <Image source={IcSearch} style={styles.iconStyle}></Image>
-        </View>
+        </TouchableOpacity>
         <TextInput
           style={styles.WrapperTextSearch}
           onChangeText={(text) => setTextSearch(text)}
@@ -248,14 +287,15 @@ const ListProducts = (props) => {
               style={styles.wrapperProduct}
               onPress={() => {
                 HandleProductDetail(e);
-              }}>
+              }}
+              key={e.ID}>
               <Image source={icBox} style={styles.wrapperImage} />
               <View style={styles.wrapperTextInlineProduct}>
                 <View style={styles.wrapperRowScore}>
                   <Text style={styles.StyleText}>{t('Package')}: </Text>
                   <View style={styles.wrapperTextAddress}>
                     <Text style={styles.StyleText}>
-                      {e.Cart.map((data) => data.Name + ', ')}
+                      <Text style={styles.StyleText}>{e.NameProduct}</Text>
                     </Text>
                   </View>
                 </View>
@@ -266,7 +306,10 @@ const ListProducts = (props) => {
                 <View style={styles.wrapperRowScore}>
                   <Text style={styles.StyleText}>{t('Time')}: </Text>
                   <View style={styles.wrapperTextAddress}>
-                    <Text style={styles.StyleText}>{e.CreateAtTime}</Text>
+                    <Text style={styles.StyleText}>
+                      {convertDate(e.CreateAtTime)}{' '}
+                      {convertDate2(e.CreateAtTime)}
+                    </Text>
                   </View>
                 </View>
 
@@ -491,4 +534,4 @@ function mapStateToProps(state) {
     Products: state.Products,
   };
 }
-export default connect(mapStateToProps)(ListProducts);
+export default connect(mapStateToProps, {setProduct})(ListProducts);

@@ -15,6 +15,7 @@ import {useTranslation} from 'react-i18next';
 import {useNavigation} from '@react-navigation/native';
 import {useRoute} from '@react-navigation/native';
 import {connect} from 'react-redux';
+import CreateNotifyAPI from '../../../../../RestAPI/Notify/create-notify-api';
 const windowWidth = Dimensions.get('window').width;
 
 const windowHeight = Dimensions.get('window').height;
@@ -27,7 +28,17 @@ const PackageDetailUpdate = (props) => {
     ChangeStatusRecyAPI(route.params.IDRecy)
       .then((json) => {
         var data = JSON.parse(JSON.stringify(json));
+
         if (data.dataString === 'THANH_CONG') {
+          CreateNotifyAPI(
+            props.dataLogin.token,
+            'Thông tin gói hàng',
+            'Gói hàng đã bán thành công',
+          )
+            .then((json) => {})
+            .catch((error) => {
+              console.error(error);
+            });
           Alert.alert('Thông Báo', 'Thành công', [{text: 'Xác nhận'}], {
             cancelable: false,
           });

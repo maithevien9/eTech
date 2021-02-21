@@ -26,8 +26,8 @@ const ProductDetail = (props) => {
     );
   };
   const HandleMap = () => {
-    var latitude = 16.047559536535516;
-    var longitude = 108.17248364031836;
+    var latitude = route.params.e.X;
+    var longitude = route.params.e.Y;
     Linking.canOpenURL(`geo:${latitude},${longitude}`).then((supported) => {
       if (supported) {
         Linking.openURL(`geo:${latitude},${longitude}`);
@@ -35,6 +35,14 @@ const ProductDetail = (props) => {
         console.log("Don't know how to go");
       }
     });
+  };
+  const convertDate = (date) => {
+    var ts = new Date(date);
+    return ts.toLocaleDateString();
+  };
+  const convertDate2 = (date) => {
+    var ts = new Date(date);
+    return ts.toLocaleTimeString();
   };
   return (
     <View>
@@ -46,7 +54,8 @@ const ProductDetail = (props) => {
         <View style={styles.wrapperInforProductInLine}>
           <Text style={styles.styleTextInforProduct}>{t('Package')}: </Text>
           <Text style={styles.styleTextInforProduct}>
-            {route.params.e.Cart.map((data) => data.Name + ', ')}
+            {route.params.e.NameProduct}
+            {/* {route.params.e.Cart.map((data) => data.Name + ', ')} */}
           </Text>
         </View>
         <View style={styles.wrapperInforProductInLine}>
@@ -66,7 +75,8 @@ const ProductDetail = (props) => {
             {t('CreateAtTime')}:{' '}
           </Text>
           <Text style={styles.styleTextInforProduct}>
-            {route.params.e.CreateAtTime}
+            {convertDate(route.params.e.CreateAtTime)}{' '}
+            {convertDate2(route.params.e.CreateAtTime)}
           </Text>
         </View>
         <View style={styles.wrapperInforProductInLine}>
@@ -88,13 +98,13 @@ const ProductDetail = (props) => {
             <Text style={styles.stylesText}>{t('Amount')}</Text>
           </View>
         </View>
-        {route.params.e.Cart.map((e) => (
-          <View style={styles.wrapperDetailCart2}>
+        {route.params.data.map((e) => (
+          <View style={styles.wrapperDetailCart2} key={e.ID}>
             <View style={styles.stylesSTT}>
               <Text style={styles.stylesText}>{(i = i + 1)}</Text>
             </View>
             <View style={styles.stylesNameCart}>
-              <Text style={styles.stylesText}>{e.Name}</Text>
+              <Text style={styles.stylesText}>{e.NameProduct}</Text>
             </View>
             <View style={styles.stylesAmount}>
               <Text style={styles.stylesText}>{e.amount}</Text>
@@ -199,7 +209,7 @@ const styles = StyleSheet.create({
   wrapperMain2: {
     marginTop: '5%',
     marginLeft: '4%',
-    height: windowHeight / 2.7,
+    height: windowHeight / 3,
   },
   wrapperScore: {
     flexDirection: 'row',
