@@ -14,7 +14,12 @@ const Loading = (props) => {
       async function getDataLogin() {
         var valueCart = await AsyncStorage.getItem('@saveCart');
         valueCart = JSON.parse(valueCart);
-        props.setCart(valueCart);
+        if (valueCart) {
+          props.setCart(valueCart);
+        } else {
+          props.setCart([]);
+        }
+
         var value = await AsyncStorage.getItem('@save');
         value = JSON.parse(value);
         if (value) {

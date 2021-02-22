@@ -56,6 +56,7 @@ const Sale = (props) => {
 
     var dateTime =
       year + '-' + month + '-' + date + ' ' + hour + ':' + min + ':' + sec;
+    console.log(Address);
     NewRecyclablesAPI(props.dataLogin.token, amount, Address, Phone, props.Cart)
       .then((json) => {
         var data = JSON.parse(JSON.stringify(json));
@@ -64,7 +65,7 @@ const Sale = (props) => {
           props.setCart([]);
           CreateNotifyAPI(
             props.dataLogin.token,
-            'Tạo gói hàng',
+            'Gói Hàng',
             'Tạo gói hàng thành công',
           );
           Alert.alert(

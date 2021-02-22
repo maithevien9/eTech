@@ -28,10 +28,11 @@ const HistoryCart = (props) => {
     return ts.toLocaleTimeString();
   };
   const hanldePackageDetail = (e) => {
+    console.log(e);
     GetRycyclableDetail(e.ID)
       .then((json) => {
         var dataCartHistoryDetail = JSON.parse(JSON.stringify(json));
-
+        // console.log(dataCartHistoryDetail);
         if (dataCartHistoryDetail.dataString === 'THANH_CONG') {
           console.log(dataCartHistoryDetail.data);
           props.setPackageDetail(dataCartHistoryDetail.data);

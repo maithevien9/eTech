@@ -6,9 +6,9 @@ const ChangInforUser = async (Token, Name, Address, Phone, X, Y) => {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
+      Authorization: `bearer ${Token}`,
     },
     body: JSON.stringify({
-      Token: Token,
       Name: Name,
       Address: Address,
       Phone: Phone,

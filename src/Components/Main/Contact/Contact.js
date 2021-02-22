@@ -15,23 +15,16 @@ import mailIcon from '../../../Images/Icons/mail.png';
 import messageIcon from '../../../Images/Icons/message.png';
 import locationIcon from '../../../Images/Icons/location.png';
 
-// import MapView, {Polyline} from 'react-native-maps';
 import MapView, {Marker} from 'react-native-maps';
 
 import {useNavigation} from '@react-navigation/native';
-// import Geolocation from '@react-native-community/geolocation';
-// import {Platform, PermissionsAndroid} from 'react-native';
-// import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
+
 import {YellowBox} from 'react-native';
 import GetInforUser from '../../../RestAPI/User/get-infor-user';
 import {connect} from 'react-redux';
 import {useTranslation} from 'react-i18next';
-// import LocationView from 'react-native-location-view';
+import {setInforUser} from '../../../Redux/ActionCreators';
 const {width} = Dimensions.get('window');
-
-// YellowBox.ignoreWarnings([
-//   'VirtualizedLists should never be nested', // TODO: Remove when fixed
-// ]);
 
 const Contact = (props) => {
   const navigation = useNavigation();
@@ -47,15 +40,23 @@ const Contact = (props) => {
     wrapperBtnlc,
     infoText2,
   } = styles;
-  const [region, setRegion] = useState({
-    latitude: 51.5079145,
-    longitude: -0.0899163,
-    error: null,
-  });
   const [local, setlocal] = useState({});
-  const [latitude, setlatitude] = useState(0);
-  const [longitude, setlongitude] = useState(0);
+  const [latitude, setlatitude] = useState(
+    props.InforUser.X ? props.InforUser.X : 16.05458951827007,
+  );
+  const [longitude, setlongitude] = useState(
+    props.InforUser.Y ? props.InforUser.Y : 108.20207062068158,
+  );
   useEffect(() => {
+    // GetInforUser(props.dataLogin.token)
+    //   .then((json) => {
+    //     var InforUser = JSON.parse(JSON.stringify(json));
+    //     props.setInforUser(InforUser.data[0]);
+    //   })
+    //   .catch((error) => {
+    //     console.error(error + 'fail');
+    //   });
+    // console.log(props.InforUser);
     // Geolocation.getCurrentPosition(
     //   (position) => {
     //     //const location = JSON.stringify(position);
@@ -102,21 +103,28 @@ const Contact = (props) => {
         <Text style={styles.textStyleHeader}>{t('Contact')}</Text>
       </View>
       <View style={mapContainer}>
-        <MapView
-          style={styles.map}
-          initialRegion={{
-            latitude: 16.04736,
-            longitude: 108.1725,
-            latitudeDelta: 0.01,
-            longitudeDelta: 0.01,
-          }}>
-          <Marker
-            coordinate={{
-              latitude: 16.04736,
-              longitude: 108.1725,
-            }}
-          />
-        </MapView>
+        {props.InforUser.X ? (
+          <MapView
+            style={styles.map}
+            initialRegion={{
+              latitude: props.InforUser.X,
+              longitude: props.InforUser.Y,
+              latitudeDelta: 0.01,
+              longitudeDelta: 0.01,
+            }}>
+            <Marker
+              coordinate={{
+                latitude: props.InforUser.X,
+                longitude: props.InforUser.Y,
+                // title: props.InforUser.Address,
+              }}
+              title={t('Address')}
+              description={props.InforUser.Address}
+            />
+          </MapView>
+        ) : (
+          <Text>Vui lòng cập nhập địa chỉ</Text>
+        )}
       </View>
       <View style={infoContainer}>
         <View style={rowInfoContainer}>
@@ -282,4 +290,4 @@ function mapStateToProps(state) {
     dataCheckLocal: state.dataCheckLocal,
   };
 }
-export default connect(mapStateToProps)(Contact);
+export default connect(mapStateToProps, {setInforUser})(Contact);

@@ -22,7 +22,6 @@ const SelectRole = (props) => {
       GetInforUser(props.dataLogin.token)
         .then((json) => {
           var InforUser = JSON.parse(JSON.stringify(json));
-
           props.setInforUser(InforUser.data[0]);
         })
         .catch((error) => {

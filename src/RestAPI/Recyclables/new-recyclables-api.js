@@ -5,7 +5,7 @@ const NewRecyclablesAPI = async (
   Phone,
   InforRecyclable,
 ) => {
-  var url = 'http://192.168.43.72:8001/NewRecyclables';
+  var url = 'http://192.168.1.5:8001/NewRecyclables';
 
   return await fetch(url, {
     method: 'POST',

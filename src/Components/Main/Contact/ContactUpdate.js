@@ -16,6 +16,7 @@ import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete'
 import {connect} from 'react-redux';
 import ChangInforUser from '../../../RestAPI/User/change-infor-user-api';
 import {useTranslation} from 'react-i18next';
+import {setInforUser} from '../../../Redux/ActionCreators';
 const ContactUpdate = (props) => {
   const {t} = useTranslation();
   const [Name, setName] = useState('');
@@ -37,64 +38,57 @@ const ContactUpdate = (props) => {
     setheight(300);
   };
   const handleUpdate = () => {
-    // if (latitude === 21.0277644 || longitude === 105.8341598) {
-    //   Alert.alert(
-    //     'Nofity',
-    //     'Vui lòng nhập địa chỉ',
-    //     [{text: 'OK', onPress: () => console.log('?')}],
-    //     {cancelable: false},
-    //   );
-    // } else {
-    //   ChangInforUser(
-    //     props.dataLogin.token,
-    //     Name,
-    //     Address,
-    //     Phone,
-    //     latitude,
-    //     longitude,
-    //   )
-    //     .then((json) => {
-    //       var data = JSON.parse(JSON.stringify(json));
-    //       console.log(data);
-    //       if (data.dataString === 'THANH_CONG') {
-    //         props.dispatch({
-    //           type: 'setInforUser',
-    //           data: [
-    //             {
-    //               ID: 8,
-    //               Name: Name,
-    //               Address: Address,
-    //               X: latitude,
-    //               Y: longitude,
-    //               Phone: Phone,
-    //               IDdecentralization: 1,
-    //             },
-    //           ],
-    //         });
-    //         props.dispatch({
-    //           type: 'setdataCheckLocal',
-    //           data: true,
-    //         });
-    //         Alert.alert(
-    //           'Nofity',
-    //           'Thanh Cong',
-    //           [
-    //             {
-    //               text: 'Cancel',
-    //               onPress: () => navigation.goBack(),
-    //               style: 'cancel',
-    //             },
-    //             {text: 'OK', onPress: () => navigation.goBack()},
-    //           ],
-    //           {cancelable: false},
-    //         );
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       console.error(error + 'fail');
-    //     });
-    // }
-    navigation.goBack();
+    if (latitude === 21.0277644 || longitude === 105.8341598) {
+      Alert.alert(
+        'Nofity',
+        'Vui lòng nhập địa chỉ',
+        [{text: 'OK', onPress: () => console.log('?')}],
+        {cancelable: false},
+      );
+    } else {
+      ChangInforUser(
+        props.dataLogin.token,
+        Name,
+        Address,
+        Phone,
+        latitude,
+        longitude,
+      )
+        .then((json) => {
+          var data = JSON.parse(JSON.stringify(json));
+          //   console.log(data);
+          if (data.dataString === 'THANH_CONG') {
+            props.setInforUser([
+              {
+                ID: props.InforUser.ID,
+                Name: Name,
+                Address: Address,
+                X: latitude,
+                Y: longitude,
+                Phone: Phone,
+                IDdecentralization: props.InforUser.IDdecentralization,
+              },
+            ]);
+
+            Alert.alert(
+              'Nofity',
+              'Thanh Cong',
+              [
+                {
+                  text: 'OK',
+                  onPress: () => {
+                    navigation.replace('SelectRole');
+                  },
+                },
+              ],
+              {cancelable: false},
+            );
+          }
+        })
+        .catch((error) => {
+          console.error(error + 'fail');
+        });
+    }
   };
   return (
     <View>
@@ -320,4 +314,4 @@ function mapStateToProps(state) {
     ZoomX: state.ZoomX,
   };
 }
-export default connect(mapStateToProps)(ContactUpdate);
+export default connect(mapStateToProps, {setInforUser})(ContactUpdate);

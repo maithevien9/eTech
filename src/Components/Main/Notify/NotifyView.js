@@ -1,13 +1,22 @@
 import React, {useEffect} from 'react';
-import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
-import icEmail from '../../../Images/Icons/email.png';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
+import icEmail from '../../../Images/Icons/notification2.png';
 import Notify from '../../../RestAPI/Notify/get-notify-api';
 import {connect} from 'react-redux';
-
+import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
-
+import GetHistoryRecyclablesAPI from '../../../RestAPI/Recyclables/get-history-recyclables';
+import {setHistoryReducer} from '../../../Redux/ActionCreators';
 const NotifyView = (props) => {
   const {t, i18n} = useTranslation();
+  const navigation = useNavigation();
   const convertDate = (date) => {
     var ts = new Date(date);
     return ts.toLocaleDateString();
@@ -15,6 +24,38 @@ const NotifyView = (props) => {
   const convertDate2 = (date) => {
     var ts = new Date(date);
     return ts.toLocaleTimeString();
+  };
+  const HandleClickNotify = (text) => {
+    if (text === 'Gói hàng đã bán thành công') {
+      GetHistoryRecyclablesAPI(props.dataLogin.token, 3)
+        .then((json) => {
+          var dataCartHistory = JSON.parse(JSON.stringify(json));
+          if (dataCartHistory.dataString === 'THANH_CONG') {
+            props.setHistoryReducer(dataCartHistory.data);
+            navigation.navigate('PackageSaled');
+          } else {
+          }
+        })
+        .catch((error) => {
+          console.error(error + 'fail');
+        });
+      //   navigation.navigate('PackageSaled');
+    } else {
+      GetHistoryRecyclablesAPI(props.dataLogin.token, 1)
+        .then((json) => {
+          var dataCartHistory = JSON.parse(JSON.stringify(json));
+          if (dataCartHistory.dataString === 'THANH_CONG') {
+            props.setHistoryReducer(dataCartHistory.data);
+            navigation.navigate('WaitForPackageBrowsing');
+          } else {
+          }
+        })
+        .catch((error) => {
+          console.error(error + 'fail');
+        });
+      //   navigation.navigate('WaitForPackageBrowsing');
+    }
+    //   navigation.navigate('')
   };
   return (
     <ScrollView>
@@ -26,7 +67,12 @@ const NotifyView = (props) => {
 
       <View style={styles.wrapperMain}>
         {props.dataNotify.map((e) => (
-          <View style={styles.wrapperNotify} key={e.ID}>
+          <TouchableOpacity
+            style={styles.wrapperNotify}
+            key={e.ID}
+            onPress={() => {
+              HandleClickNotify(e.Detail);
+            }}>
             <View style={styles.wrapperInNotyfi}>
               <View style={styles.wrapperImageInNotify}>
                 <Image source={icEmail} style={styles.wrapperImage} />
@@ -43,7 +89,7 @@ const NotifyView = (props) => {
                 </Text>
               </View>
             </View>
-          </View>
+          </TouchableOpacity>
         ))}
       </View>
     </ScrollView>
@@ -57,7 +103,7 @@ function mapStateToProps(state) {
     dataNotify: state.dataNotify,
   };
 }
-export default connect(mapStateToProps)(NotifyView);
+export default connect(mapStateToProps, {setHistoryReducer})(NotifyView);
 
 const styles = StyleSheet.create({
   wrapperMain: {

@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Linking,
+  Platform,
 } from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
@@ -28,13 +29,36 @@ const ProductDetail = (props) => {
   const HandleMap = () => {
     var latitude = route.params.e.X;
     var longitude = route.params.e.Y;
-    Linking.canOpenURL(`geo:${latitude},${longitude}`).then((supported) => {
+    const label = route.params.e.Address;
+
+    const url = Platform.select({
+      ios: 'maps:' + latitude + ',' + longitude + '?q=' + label,
+      android: 'geo:' + latitude + ',' + longitude + '?q=' + label,
+    });
+
+    Linking.canOpenURL(url).then((supported) => {
       if (supported) {
-        Linking.openURL(`geo:${latitude},${longitude}`);
+        return Linking.openURL(url);
       } else {
-        console.log("Don't know how to go");
+        const browser_url =
+          'https://www.google.de/maps/@' +
+          latitude +
+          ',' +
+          longitude +
+          '?q=' +
+          label;
+        return Linking.openURL(browser_url);
       }
     });
+    // var latitude = route.params.e.X;
+    // var longitude = route.params.e.Y;
+    // Linking.canOpenURL(`geo:${latitude},${longitude}`).then((supported) => {
+    //   if (supported) {
+    //     Linking.openURL(`geo:${latitude},${longitude}`);
+    //   } else {
+    //     console.log("Don't know how to go");
+    //   }
+    // });
   };
   const convertDate = (date) => {
     var ts = new Date(date);

@@ -32,7 +32,7 @@ const PackageDetailUpdate = (props) => {
         if (data.dataString === 'THANH_CONG') {
           CreateNotifyAPI(
             props.dataLogin.token,
-            'Thông tin gói hàng',
+            'Gói hàng',
             'Gói hàng đã bán thành công',
           )
             .then((json) => {})

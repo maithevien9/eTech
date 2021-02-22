@@ -1,5 +1,5 @@
 const LoginAPI = async (user, password) => {
-  var url = 'http://192.168.43.72:8001/Login';
+  var url = 'http://192.168.1.5:8001/Login';
 
   return await fetch(url, {
     method: 'POST',
