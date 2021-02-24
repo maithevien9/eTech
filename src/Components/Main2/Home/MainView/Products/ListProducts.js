@@ -20,7 +20,6 @@ import icBox from '../../../../../Images/Icons/paper1.png';
 import SearchRecyclablesAPI from '../../../../../RestAPI/Recyclables/search-recyclable-api';
 import {setProduct} from '../../../../../Redux/ActionCreators';
 import GetRecyclablesDetailAPI from '../../../../../RestAPI/Recyclables/get-recyclable-detail-api';
-// import {Picker} from '@react-native-community/picker';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const widthImageICSearch = (windowHeight * 0.5) / 10;
@@ -42,30 +41,26 @@ const ListProducts = (props) => {
   const [textSearch, setTextSearch] = useState('');
   const {t, i18n} = useTranslation();
   const HandleSearch = (keyWord) => {
-    console.log(keyWord);
-    SearchRecyclablesAPI(keyWord)
-      .then((json) => {
-        console.log(json);
-        var data = JSON.parse(JSON.stringify(json));
-        props.setProduct(data.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    if (keyWord !== '') {
+      SearchRecyclablesAPI(keyWord)
+        .then((json) => {
+          var data = JSON.parse(JSON.stringify(json));
+          props.setProduct(data.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   };
   const HandleProductDetail = (e) => {
-    console.log(e.ID);
     GetRecyclablesDetailAPI(e.ID)
       .then((json) => {
-        console.log(json);
         var data = json.data;
         navigation.navigate('ProductDetail', {e, data});
       })
       .catch((error) => {
         console.error(error);
       });
-
-    //
   };
   const HanldeAdress = () => {
     setDataCheckProduct(false);
@@ -73,7 +68,6 @@ const ListProducts = (props) => {
   };
   const HandleChangArrayProduct = (value) => {
     if (value === 0) {
-      console.log(0);
       setArrDataProduct({
         ' ': '',
         HDPE: 'HDPE',
@@ -118,7 +112,6 @@ const ListProducts = (props) => {
         }}
         onValueChange={(itemValue, itemIndex) => {
           setSelectedValue1(itemValue);
-          console.log(itemIndex);
         }}>
         <Picker.Item label="Đà Nẵng" value="Đà Nẵng" />
       </Picker>
@@ -139,7 +132,7 @@ const ListProducts = (props) => {
         onValueChange={(itemValue, itemIndex) => {
           setSelectedValue2(itemValue);
         }}>
-        <Picker.Item label=" " value=" " />
+        <Picker.Item label="" value="Đà Nẵng" />
         <Picker.Item label="Hải Châu" value="Hải Châu" />
         <Picker.Item label="Liên Chiểu" value="Liên Chiểu" />
         <Picker.Item label="Cẩm Lệ" value="Cẩm Lệ" />
@@ -197,11 +190,7 @@ const ListProducts = (props) => {
         }}
         onValueChange={(itemValue, itemIndex) => {
           setSelectedValue4(itemValue);
-          console.log(itemValue);
         }}>
-        {/* <Picker.Item label=" " value=" " />
-        <Picker.Item label="HDPE" value="HDPE" />
-        <Picker.Item label="PET" value="PET" /> */}
         {Object.keys(arrDataProduct).map((key) => {
           return <Picker.Item label={key} value={key} key={key} />; //if you have a bunch of keys value pair
         })}
@@ -226,27 +215,6 @@ const ListProducts = (props) => {
 
   return (
     <View style={styles.wrapperMain}>
-      {/* <Picker
-        selectedValue={selectedValue}
-        style={{
-          height: (windowHeight * 0.5) / 10,
-          width: (windowWidth * 15) / 40,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-        itemStyle={{
-          backgroundColor: 'grey',
-          color: 'blue',
-          fontFamily: 'Ebrima',
-          fontSize: 17,
-        }}
-        onValueChange={(itemValue, itemIndex) => {
-          setSelectedValue(itemValue);
-          console.log(itemIndex);
-        }}>
-        <Picker.Item label="Java" value="java" />
-        <Picker.Item label="JavaScript" value="js" />
-      </Picker> */}
       <View style={styles.WrapperSearch}>
         <TouchableOpacity
           style={styles.wrapperImageSearch}
@@ -340,7 +308,6 @@ const styles = StyleSheet.create({
   },
   wrapperMainCatogory: {
     marginTop: '2%',
-    // height: (windowHeight * 5.35) / 10,
     height: (windowHeight * 7.5) / 10,
     width: (windowWidth * 9.7) / 10,
   },
@@ -471,10 +438,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
     color: 'white',
   },
-  // wrapperMain: {
-  //   marginLeft: '3%',
-  //   marginTop: '3%',
-  // },
   wrapperForm: {
     width: '95%',
     height: windowHeight / 8,

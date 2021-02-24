@@ -47,52 +47,7 @@ const Contact = (props) => {
   const [longitude, setlongitude] = useState(
     props.InforUser.Y ? props.InforUser.Y : 108.20207062068158,
   );
-  useEffect(() => {
-    // GetInforUser(props.dataLogin.token)
-    //   .then((json) => {
-    //     var InforUser = JSON.parse(JSON.stringify(json));
-    //     props.setInforUser(InforUser.data[0]);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error + 'fail');
-    //   });
-    // console.log(props.InforUser);
-    // Geolocation.getCurrentPosition(
-    //   (position) => {
-    //     //const location = JSON.stringify(position);
-    //     // setlocal(JSON.parse(location));
-    //     console.log(position);
-    //     // setRegion({
-    //     //   latitude: JSON.parse(location).coords.latitude,
-    //     //   longitude: JSON.parse(location).coords.longitude,
-    //     //   error: null,
-    //     // });
-    //     setlatitude(position.coords.latitude);
-    //     setlongitude(position.coords.longitude);
-    //   },
-    //   (e) => {
-    //     console.log(e);
-    //   },
-    //   {timeout: 20000},
-    // );
-    // if (props.InforUser[0].X) {
-    //   props.dispatch({
-    //     type: 'setdataCheckLocal',
-    //     data: true,
-    //   });
-    // } else {
-    //   props.dispatch({
-    //     type: 'setdataCheckLocal',
-    //     data: false,
-    //   });
-    // }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  // const ref = useRef();
 
-  // useEffect(() => {
-  //   ref.current?.setAddressText('Some Text');
-  // }, []);
 
   const handleUpdateUser = () => {
     navigation.navigate('ContactUpdate');
@@ -116,7 +71,7 @@ const Contact = (props) => {
               coordinate={{
                 latitude: props.InforUser.X,
                 longitude: props.InforUser.Y,
-                // title: props.InforUser.Address,
+           
               }}
               title={t('Address')}
               description={props.InforUser.Address}

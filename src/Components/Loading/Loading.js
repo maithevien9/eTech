@@ -24,7 +24,7 @@ const Loading = (props) => {
         value = JSON.parse(value);
         if (value) {
           props.setDataLogin(value);
-          console.log(value);
+
           if (value.token !== '') {
             CheckToken(value.token)
               .then((json) => {
@@ -44,7 +44,7 @@ const Loading = (props) => {
         } else {
           navigation.replace('Authenication');
         }
-        // navigation.replace('Authenication');
+      
       }
       getDataLogin();
     }, 1500);

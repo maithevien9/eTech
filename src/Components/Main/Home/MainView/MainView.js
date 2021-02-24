@@ -17,7 +17,6 @@ import View1 from './Category/View1';
 import View2 from './Category/View2';
 import View3 from './Category/View3';
 import {useTranslation} from 'react-i18next';
-// var ScrollableTabView = require('react-native-scrollable-tab-view');
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -26,24 +25,7 @@ const MainView = (props) => {
   const [scores, SetScores] = useState(0);
 
   const {t, i18n} = useTranslation();
-  useEffect(() => {
-    async function CheckRecyle() {
-      // CheckRycuclables(props.dataLogin.token)
-      //   .then((json) => {
-      //     var data = JSON.parse(JSON.stringify(json));
-      //     console.log(data.data[0].score);
-      //     props.dispatch({
-      //       type: 'setScore',
-      //       data: data.data[0].score,
-      //     });
-      //   })
-      //   .catch((error) => {
-      //     console.error(error + 'fail');
-      //   });
-    }
-    CheckRecyle();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
   const handleCatergery = () => {
     navigation.navigate('Category');
   };
@@ -54,8 +36,6 @@ const MainView = (props) => {
     navigation.navigate('Gift');
   };
   const handlePoints = () => {
-    console.log(JSON.stringify(props.Scores));
-
     navigation.navigate('Points');
   };
   return (
@@ -122,7 +102,6 @@ const styles = StyleSheet.create({
   styleText: {
     fontSize: 15,
     fontFamily: 'Roboto',
-    // color: 'white',
   },
   wrapperCategory: {
     height: 150,

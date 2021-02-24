@@ -50,15 +50,6 @@ const ProductDetail = (props) => {
         return Linking.openURL(browser_url);
       }
     });
-    // var latitude = route.params.e.X;
-    // var longitude = route.params.e.Y;
-    // Linking.canOpenURL(`geo:${latitude},${longitude}`).then((supported) => {
-    //   if (supported) {
-    //     Linking.openURL(`geo:${latitude},${longitude}`);
-    //   } else {
-    //     console.log("Don't know how to go");
-    //   }
-    // });
   };
   const convertDate = (date) => {
     var ts = new Date(date);

@@ -28,13 +28,10 @@ const HistoryCart = (props) => {
     return ts.toLocaleTimeString();
   };
   const hanldePackageDetail = (e) => {
-    console.log(e);
     GetRycyclableDetail(e.ID)
       .then((json) => {
         var dataCartHistoryDetail = JSON.parse(JSON.stringify(json));
-        // console.log(dataCartHistoryDetail);
         if (dataCartHistoryDetail.dataString === 'THANH_CONG') {
-          console.log(dataCartHistoryDetail.data);
           props.setPackageDetail(dataCartHistoryDetail.data);
           navigation.navigate('PackageDetail');
         } else {
@@ -53,7 +50,7 @@ const HistoryCart = (props) => {
       </View>
       <ScrollView style={styles.wrapperMain}>
         {props.CartHistory.map((e) => (
-          <View style={styles.wrapperForm}>
+          <View style={styles.wrapperForm} key={e.ID}>
             <Image source={icGift} style={styles.wrapperImage} />
             <View style={{marginLeft: '5%'}}>
               <View style={styles.wrapperRowFull}>

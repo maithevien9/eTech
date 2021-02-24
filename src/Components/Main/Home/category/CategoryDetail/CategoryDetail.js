@@ -18,7 +18,7 @@ import {useTranslation} from 'react-i18next';
 import SaveDataCart from '../../.././../../AsyncStorage/SaveDataCart';
 
 const CategoryDetail = (props) => {
-  const [amount, setAmount] = React.useState('0');
+  const [amount, setAmount] = React.useState();
   const {t} = useTranslation();
   const route = useRoute();
   const navigation = useNavigation();
@@ -79,29 +79,18 @@ const CategoryDetail = (props) => {
           placeholder={route.params.Unit}
         />
       </View>
-      <View style={styles.wrapperScore}>
+      {/* <View style={styles.wrapperScore}>
         <Text style={styles.textMain}>{t('RedemptionPoint')}:</Text>
         <Text style={styles.textMain}>{amount * Score}</Text>
-      </View>
-      {/* <Image
-        source={route.params.Image}
-        style={{height: 40, width: 40, marginTop: '10%'}}
-      /> */}
+      </View> */}
+
       <View style={styles.wrapperTextView}>
         <Text style={styles.TextStyleView}>
           {t('SomePicturesOfTheProduct')}
         </Text>
       </View>
       <ScrollView style={styles.wrapperList}>
-        <View style={styles.wrapperListView}>
-          {/* {route.params.ListProduct.map((e) => (
-            <View style={styles.WrapperListDetail} key={e.ID}>
-              <Image source={e.Image} style={styles.wrapperImage} />
-              <Text style={styles.texList}>{e.Name}</Text>
-            </View>
-          ))} */}
-          {ViewProduct}
-        </View>
+        <View style={styles.wrapperListView}>{ViewProduct}</View>
       </ScrollView>
       <TouchableOpacity style={styles.wrapperBtn} onPress={HandleCart}>
         <Text style={styles.TextSubmit}>{t('AddToCart')}</Text>

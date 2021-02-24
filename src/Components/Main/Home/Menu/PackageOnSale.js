@@ -36,7 +36,6 @@ const PackageOnSale = (props) => {
         var IDRecy = e.ID;
         var dataCartHistoryDetail = JSON.parse(JSON.stringify(json));
         if (dataCartHistoryDetail.dataString === 'THANH_CONG') {
-          console.log(dataCartHistoryDetail.data);
           props.setPackageDetail(dataCartHistoryDetail.data);
           navigation.navigate('PackageDetailUpdate', {
             IDRecy,
@@ -55,7 +54,7 @@ const PackageOnSale = (props) => {
       </View>
       <ScrollView style={styles.wrapperMain}>
         {props.CartHistory.map((e) => (
-          <View style={styles.wrapperForm}>
+          <View style={styles.wrapperForm} key={e.ID}>
             <Image source={icGift} style={styles.wrapperImage} />
             <View style={{marginLeft: '5%'}}>
               <View style={styles.wrapperRowFull}>

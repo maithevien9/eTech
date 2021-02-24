@@ -57,7 +57,7 @@ const PackageDetailUpdate = (props) => {
       </View>
       <ScrollView style={styles.wrapperContent}>
         {props.PackageDetail.map((e) => (
-          <View style={styles.wrapperMainCart}>
+          <View style={styles.wrapperMainCart} key={e.NameProduct}>
             <View style={styles.wrapperinLine}>
               <Image source={imageRecy} style={styles.wrapperImage} />
               <View style={styles.wrapperText}>
@@ -126,13 +126,11 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   wrapperMainCart: {
-    // height: (windowHeight * 0.9) / 10,
     width: '90%',
     marginLeft: '5%',
     borderBottomWidth: 1,
     marginTop: '3%',
     paddingBottom: '4%',
-    // justifyContent: 'center',
   },
   wrapperImage: {
     marginTop: '5%',
@@ -146,8 +144,6 @@ const styles = StyleSheet.create({
   },
   wrapperinLine2: {
     flexDirection: 'row',
-    // marginLeft: '2%',
-    // alignItems: 'center',
   },
   wrapperText: {
     marginLeft: '6%',

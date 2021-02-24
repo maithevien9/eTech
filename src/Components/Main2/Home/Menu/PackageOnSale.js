@@ -32,7 +32,6 @@ const PackageOnSale = (props) => {
   const hanldePackageDetail = (e) => {
     GetRycyclableDetail(e.ID)
       .then((json) => {
-        console.log(json);
         var IDRecy = e.ID;
         var dataCartHistoryDetail = JSON.parse(JSON.stringify(json));
 
@@ -54,7 +53,7 @@ const PackageOnSale = (props) => {
       </View>
       <ScrollView style={styles.wrapperMain}>
         {props.CartHistory.map((e) => (
-          <View style={styles.wrapperForm}>
+          <View style={styles.wrapperForm} key={e.ID}>
             <Image source={icGift} style={styles.wrapperImage} />
             <View style={{marginLeft: '5%'}}>
               <View style={styles.wrapperRowFull}>

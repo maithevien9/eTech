@@ -43,7 +43,9 @@ const ContactUpdate = (props) => {
         'Nofity',
         'Vui lòng nhập địa chỉ',
         [{text: 'OK', onPress: () => console.log('?')}],
-        {cancelable: false},
+        {
+          cancelable: false,
+        },
       );
     } else {
       ChangInforUser(
@@ -56,7 +58,6 @@ const ContactUpdate = (props) => {
       )
         .then((json) => {
           var data = JSON.parse(JSON.stringify(json));
-          //   console.log(data);
           if (data.dataString === 'THANH_CONG') {
             props.setInforUser([
               {
@@ -98,25 +99,6 @@ const ContactUpdate = (props) => {
       <View style={styles.wrapperLine} />
 
       <View style={styles.wrapperMapFull}>
-        {/* <View style={styles.wrapperMap} /> */}
-
-        {/* <MapView
-          style={styles.map}
-          initialRegion={{
-            latitude: latitude,
-            longitude: longitude,
-            latitudeDelta: ZoomX,
-            longitudeDelta: ZoomY,
-          }}>
-          <Marker
-            coordinate={{
-              latitude: latitude,
-              longitude: longitude,
-            }}
-            // title={'Vien'}
-            // description={Address}
-          />
-        </MapView> */}
         {DataCheckMap ? (
           <MapView
             style={styles.map}
@@ -131,8 +113,6 @@ const ContactUpdate = (props) => {
                 latitude: latitude,
                 longitude: longitude,
               }}
-              // title={'Vien'}
-              // description={Address}
             />
           </MapView>
         ) : (
@@ -172,14 +152,10 @@ const ContactUpdate = (props) => {
             },
           }}
           onPress={(data, details = null) => {
-            // 'details' is provided when fetchDetails = true
-            console.log(data.description);
             setAddress(data.description);
             setDataCheckMap(true);
             setlatitude(details.geometry.location.lat);
-            console.log(latitude);
             setlongitude(details.geometry.location.lng);
-            console.log(longitude);
             setZoomX(0.3);
             setZoomY(0.3);
           }}
@@ -187,7 +163,6 @@ const ContactUpdate = (props) => {
             key: 'AIzaSyAE8jGKDc99bqKIup4jFl_17OtQKoTkG_k',
             language: 'vn',
           }}
-          // predefinedPlaces={[homePlace, workPlace]}
         />
       </View>
       <View style={styles.wrapperInput}>
@@ -283,7 +258,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     height: 40,
     width: 300,
-    // borderWidth: 0.5,
   },
   map: {width: '95%', height: 255},
   map2: {

@@ -14,12 +14,9 @@ const dataNotifyReducer = (state = dataNotify, action) => {
     var min = date_ob.getMinutes();
     var sec = date_ob.getSeconds();
 
-    // console.log(
-    //   year + '-' + month + '-' + date + ' ' + hour + ':' + min + ':' + sec,
-    // );
     var dateTime =
       year + '-' + month + '-' + date + ' ' + hour + ':' + min + ':' + sec;
-    console.log(dateTime);
+
     return [
       {
         ID: Math.random().toString(36).substr(2, 9),

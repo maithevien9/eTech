@@ -8,7 +8,6 @@ import Loading from './src/Components/Loading/Loading';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Authenication from './src/Components/Authenication/Authenication';
-import Category from './src/Components/Main/Home/category/category';
 import WaitForPackageBrowsing from './src/Components/Main/Home/Menu/WaitForPackageBrowsing';
 import PackageOnSale from './src/Components/Main/Home/Menu/PackageOnSale';
 import PackageSaled from './src/Components/Main/Home/Menu/PackageSaled';
@@ -37,7 +36,6 @@ const App = () => {
           <Stack.Screen name="PackageDetail" component={PackageDetail} />
           <Stack.Screen name="SelectRole" component={SelectRole} />
           <Stack.Screen name="Authenication" component={Authenication} />
-          <Stack.Screen name="Category" component={Category} />
           <Stack.Screen
             name="WaitForPackageBrowsing"
             component={WaitForPackageBrowsing}

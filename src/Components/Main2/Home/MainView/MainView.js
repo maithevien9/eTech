@@ -21,7 +21,6 @@ import GetRecyclablesFullAPI from '../../../../RestAPI/Recyclables/get-recyclabl
 import {setProduct} from '../../../../Redux/ActionCreators';
 import SearchRecyclablesAPI from '../../../../RestAPI/Recyclables/search-recyclable-api';
 import GetRecyclablesDetailAPI from '../../../../RestAPI/Recyclables/get-recyclable-detail-api';
-// var ScrollableTabView = require('react-native-scrollable-tab-view');
 var ScrollableTabView = require('react-native-scrollable-tab-view');
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -66,7 +65,6 @@ const MainView = (props) => {
   };
   const HandleChangArrayProduct = (value) => {
     if (value === 0) {
-      console.log(0);
       setArrDataProduct({
         '': '',
         HDPE: 'HDPE',
@@ -90,32 +88,27 @@ const MainView = (props) => {
     }
   };
   const HandleProductDetail = (e) => {
-    console.log(e.ID);
     GetRecyclablesDetailAPI(e.ID)
       .then((json) => {
-        console.log(json);
         var data = json.data;
         navigation.navigate('ProductDetail', {e, data});
       })
       .catch((error) => {
         console.error(error);
       });
-
-    //
   };
   const HandleSearch = (keyWord) => {
-    console.log(keyWord);
-    SearchRecyclablesAPI(keyWord)
-      .then((json) => {
-        console.log(json);
-        var data = JSON.parse(JSON.stringify(json));
-        props.setProduct(data.data);
-        navigation.navigate('ListProducts');
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    // navigation.navigate('ListProducts');
+    if (keyWord !== '') {
+      SearchRecyclablesAPI(keyWord)
+        .then((json) => {
+          var data = JSON.parse(JSON.stringify(json));
+          props.setProduct(data.data);
+          navigation.navigate('ListProducts');
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   };
   const HanldeAdress = () => {
     setDataCheckProduct(false);
@@ -129,9 +122,7 @@ const MainView = (props) => {
     var ts = new Date(date);
     return ts.toLocaleTimeString();
   };
-  const handleSearchItem = (keyWord) => {
-    console.log(keyWord);
-  };
+
   const main = dataCheck ? (
     <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
       <Picker
@@ -228,11 +219,7 @@ const MainView = (props) => {
         }}
         onValueChange={(itemValue, itemIndex) => {
           setSelectedValue4(itemValue);
-          console.log(itemValue);
         }}>
-        {/* <Picker.Item label=" " value=" " />
-        <Picker.Item label="HDPE" value="HDPE" />
-        <Picker.Item label="PET" value="PET" /> */}
         {Object.keys(arrDataProduct).map((key) => {
           return <Picker.Item label={key} value={key} key={key} />; //if you have a bunch of keys value pair
         })}
@@ -352,7 +339,6 @@ const styles = StyleSheet.create({
   },
   wrapperMainCatogory: {
     marginTop: '2%',
-    // height: (windowHeight * 5.35) / 10,
     height: (windowHeight * 7.5) / 10,
     width: (windowWidth * 9.7) / 10,
   },

@@ -1,5 +1,5 @@
 const GetInforUser = async (Token) => {
-  var url = `http://192.168.1.5:8001/GetInfor`;
+  var url = `http://192.168.1.2:8001/GetInfor`;
   return await fetch(url, {
     method: 'GET',
     headers: {

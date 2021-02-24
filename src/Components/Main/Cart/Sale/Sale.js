@@ -56,12 +56,12 @@ const Sale = (props) => {
 
     var dateTime =
       year + '-' + month + '-' + date + ' ' + hour + ':' + min + ':' + sec;
-    console.log(Address);
+
     NewRecyclablesAPI(props.dataLogin.token, amount, Address, Phone, props.Cart)
       .then((json) => {
         var data = JSON.parse(JSON.stringify(json));
         if (data.dataString === 'THANH_CONG') {
-          // props.AddCartHistory(dateTime, amount, props.Cart, Address, Phone);
+         
           props.setCart([]);
           CreateNotifyAPI(
             props.dataLogin.token,
@@ -99,7 +99,7 @@ const Sale = (props) => {
           value={amount}
           keyboardType="numeric"
           style={styles.textInput}
-          //   placeholder="data"
+       
         />
       </View>
       <View style={styles.wrapperMain}>
@@ -108,7 +108,7 @@ const Sale = (props) => {
           onChangeText={(text) => setAddress(text)}
           value={Address}
           style={styles.textInput}
-          //   placeholder="data"
+       
         />
       </View>
       <View style={styles.wrapperMain}>
@@ -117,7 +117,7 @@ const Sale = (props) => {
           onChangeText={(text) => setPhone(text)}
           value={Phone}
           style={styles.textInput}
-          //   placeholder="data"
+     
         />
       </View>
       <Text style={styles.textMain2}>{t('PackageDetail')}</Text>
