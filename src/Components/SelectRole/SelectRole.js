@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {connect} from 'react-redux';
@@ -6,19 +6,38 @@ import icArrow from '../../Images/Icons/arrowRight.png';
 import {useTranslation} from 'react-i18next';
 import GetInforUser from '../../RestAPI/User/get-infor-user';
 import {setInforUser} from '../../Redux/ActionCreators';
-import GetNotify from '../../RestAPI/Notify/get-notify-api';
+import Geolocation from 'react-native-geolocation-service';
+import {PermissionsAndroid} from 'react-native';
 const SelectRole = (props) => {
   const navigation = useNavigation();
   const {t, i18n} = useTranslation();
-  const handleSelect1 = () => {
-    navigation.navigate('Main');
-  };
-  const handleSelect2 = () => {
-    navigation.navigate('Main2');
+  const [location, setLocation] = useState();
+  const [checkLocal, setCheckLocal] = useState(true);
+
+  const getLocal = async () => {
+    await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+    );
+    Geolocation.getCurrentPosition(
+      (position) => {
+        const {latitude, longitude} = position.coords;
+       
+        setCheckLocal(false);
+        setLocation({
+          latitude,
+          longitude,
+        });
+      },
+      (error) => {
+        console.log(error.code, error.message);
+      },
+      {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+    );
   };
 
   useEffect(() => {
     async function getDataLogin() {
+      
       GetInforUser(props.dataLogin.token)
         .then((json) => {
           var InforUser = JSON.parse(JSON.stringify(json));
@@ -28,10 +47,18 @@ const SelectRole = (props) => {
           console.error(error + 'fail');
         });
     }
+    getLocal();
     getDataLogin();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, props.dataLogin.token);
+
+  const handleSelect1 = () => {
+    navigation.navigate('Main');
+  };
+  const handleSelect2 = () => {
+    navigation.navigate('Main2', {location, checkLocal});
+  };
   return (
     <View style={styles.wrapper}>
       <Text style={styles.StyleText}>{t('SelectRole')}</Text>

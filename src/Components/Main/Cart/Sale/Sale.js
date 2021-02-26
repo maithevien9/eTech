@@ -34,17 +34,24 @@ const Sale = (props) => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    if (
-      props.InforUser.Name === '' &&
-      props.InforUser.Address === '' &&
-      props.Phone === ''
-    ) {
-      navigation.navigate('ContactUpdate');
+    if (props.InforUser.Address === null || props.InforUser.Phone === null) {
+      Alert.alert(
+        t('Nofity'),
+        t('PleaseUpdateUserInformation'),
+        [
+          {
+            text: 'Cancel',
+            onPress: () => navigation.goBack(),
+            style: 'cancel',
+          },
+          {text: 'OK', onPress: () => navigation.navigate('ContactUpdate')},
+        ],
+        {cancelable: false},
+      );
     }
   });
   const HanldeSale = () => {
     let ts = Date.now();
-
     let date_ob = new Date(ts);
     let date = date_ob.getDate();
     let month = date_ob.getMonth() + 1;
@@ -61,7 +68,6 @@ const Sale = (props) => {
       .then((json) => {
         var data = JSON.parse(JSON.stringify(json));
         if (data.dataString === 'THANH_CONG') {
-         
           props.setCart([]);
           CreateNotifyAPI(
             props.dataLogin.token,
@@ -99,25 +105,22 @@ const Sale = (props) => {
           value={amount}
           keyboardType="numeric"
           style={styles.textInput}
-       
         />
       </View>
       <View style={styles.wrapperMain}>
         <Text style={styles.textMain}>{t('Address')}</Text>
         <TextInput
           onChangeText={(text) => setAddress(text)}
-          value={Address}
+          value={props.InforUser.Address ? props.InforUser.Address : ''}
           style={styles.textInput}
-       
         />
       </View>
       <View style={styles.wrapperMain}>
         <Text style={styles.textMain}>{t('Phone')}</Text>
         <TextInput
           onChangeText={(text) => setPhone(text)}
-          value={Phone}
+          value={props.InforUser.Phone ? props.InforUser.Phone : ''}
           style={styles.textInput}
-     
         />
       </View>
       <Text style={styles.textMain2}>{t('PackageDetail')}</Text>
@@ -134,7 +137,7 @@ const Sale = (props) => {
           </View>
         </View>
         {props.Cart.map((e) => (
-          <View style={styles.wrapperDetailCart2}>
+          <View style={styles.wrapperDetailCart2} key={e.ID}>
             <View style={styles.stylesSTT}>
               <Text style={styles.stylesText}>{(i = i + 1)}</Text>
             </View>

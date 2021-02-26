@@ -44,7 +44,6 @@ const Loading = (props) => {
         } else {
           navigation.replace('Authenication');
         }
-      
       }
       getDataLogin();
     }, 1500);

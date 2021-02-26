@@ -102,6 +102,8 @@ const resources = {
       Package: 'Package',
       Call: 'Call',
       Message: 'Message',
+      Distance: 'Distance',
+      PleaseUpdateUserInformation: 'Please update user information',
     },
   },
   vn: {
@@ -204,6 +206,8 @@ const resources = {
       Package: 'Gói hàng',
       Call: 'Gọi điện',
       Message: 'Nhắn tin',
+      Distance: 'khoảng cách',
+      PleaseUpdateUserInformation: 'Vui lòng cập nhập thông tin người dùng',
     },
   },
 };

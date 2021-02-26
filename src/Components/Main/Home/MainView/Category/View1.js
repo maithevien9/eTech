@@ -282,8 +282,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   wrapperMain1: {
-    height: '15%',
-    marginTop: '24%',
+    height: '16%',
+    marginTop: '23%',
   },
   wrapperMain2Parient: {
     height: '45%',
@@ -329,7 +329,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
   },
   wrapperPlastic: {
-    marginTop: '5%',
+    marginTop: '14%',
     width: '96%',
     borderRadius: 40,
     marginLeft: '2%',
@@ -360,7 +360,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#009966',
     height: '175%',
-    width: '40%',
+    width: '45%',
     // eslint-disable-next-line no-dupe-keys
     alignItems: 'center',
     // eslint-disable-next-line no-dupe-keys

@@ -48,7 +48,6 @@ const Contact = (props) => {
     props.InforUser.Y ? props.InforUser.Y : 108.20207062068158,
   );
 
-
   const handleUpdateUser = () => {
     navigation.navigate('ContactUpdate');
   };
@@ -64,14 +63,13 @@ const Contact = (props) => {
             initialRegion={{
               latitude: props.InforUser.X,
               longitude: props.InforUser.Y,
-              latitudeDelta: 0.01,
-              longitudeDelta: 0.01,
+              latitudeDelta: 0.1,
+              longitudeDelta: 0.1,
             }}>
             <Marker
               coordinate={{
                 latitude: props.InforUser.X,
                 longitude: props.InforUser.Y,
-           
               }}
               title={t('Address')}
               description={props.InforUser.Address}

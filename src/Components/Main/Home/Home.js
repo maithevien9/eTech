@@ -18,13 +18,23 @@ import {LogBox} from 'react-native';
 import GetHistoryRecyclablesAPI from '../../../RestAPI/Recyclables/get-history-recyclables';
 import {useTranslation} from 'react-i18next';
 import {setHistoryReducer} from '../../../Redux/ActionCreators';
+
+import Geolocation from 'react-native-geolocation-service';
+import {PermissionsAndroid} from 'react-native';
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
 const Home = (props) => {
   const [value, setvalue] = React.useState();
   const navigation = useNavigation();
+  const [location, setLocation] = useState();
+  const [checkLocal, setCheckLocal] = useState(true);
   const {dataCheckLoginSuccess} = props;
   const {t} = useTranslation();
+
+  useEffect(() => {
+    getLocal();
+    // eslint-disable-next-line prettier/prettier
+  }, []);
 
   const closeControlPanel = () => {
     value.close();
@@ -39,7 +49,7 @@ const Home = (props) => {
     navigation.replace('Authenication');
   };
   const handleSelectRoleMenu = () => {
-    navigation.navigate('Main2');
+    navigation.navigate('Main2', {location, checkLocal});
   };
   const HandleWaitForPackageBrowsing = () => {
     GetHistoryRecyclablesAPI(props.dataLogin.token, 1)
@@ -82,6 +92,27 @@ const Home = (props) => {
       .catch((error) => {
         console.error(error + 'fail');
       });
+  };
+
+  const getLocal = async () => {
+    await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+    );
+    Geolocation.getCurrentPosition(
+      (position) => {
+        const {latitude, longitude} = position.coords;
+      
+        setCheckLocal(false);
+        setLocation({
+          latitude,
+          longitude,
+        });
+      },
+      (error) => {
+        console.log(error.code, error.message);
+      },
+      {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+    );
   };
   return (
     <View style={{flex: 1}}>

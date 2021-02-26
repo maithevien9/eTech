@@ -11,6 +11,7 @@ import {
   ScrollView,
 } from 'react-native';
 
+import {useRoute} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
 import {connect} from 'react-redux';
 import {useTranslation} from 'react-i18next';
@@ -21,12 +22,16 @@ import GetRecyclablesFullAPI from '../../../../RestAPI/Recyclables/get-recyclabl
 import {setProduct} from '../../../../Redux/ActionCreators';
 import SearchRecyclablesAPI from '../../../../RestAPI/Recyclables/search-recyclable-api';
 import GetRecyclablesDetailAPI from '../../../../RestAPI/Recyclables/get-recyclable-detail-api';
+import {getDistance, getPreciseDistance} from 'geolib';
+import Geolocation from 'react-native-geolocation-service';
+import {Platform, PermissionsAndroid} from 'react-native';
 var ScrollableTabView = require('react-native-scrollable-tab-view');
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const widthImageICSearch = (windowHeight * 0.5) / 10;
 const MainView = (props) => {
+  const route = useRoute();
   const navigation = useNavigation();
   const [dataCheck, setDataCheck] = useState(false);
   const [dataCheckProduct, setDataCheckProduct] = useState(false);
@@ -51,8 +56,24 @@ const MainView = (props) => {
 
   useEffect(() => {
     GetRecyclablesFull();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleGetDistance = (X, Y) => {
+    if (route.params.checkLocal === true) {
+      return 0;
+    } else {
+      var pdis = getPreciseDistance(
+        {
+          latitude: route.params.location.latitude,
+          longitude: route.params.location.longitude,
+        },
+        {latitude: X, longitude: Y},
+      );
+      return pdis / 1000;
+    }
+  };
   const GetRecyclablesFull = () => {
     GetRecyclablesFullAPI()
       .then((json) => {
@@ -91,7 +112,11 @@ const MainView = (props) => {
     GetRecyclablesDetailAPI(e.ID)
       .then((json) => {
         var data = json.data;
-        navigation.navigate('ProductDetail', {e, data});
+
+        navigation.navigate('ProductDetail', {
+          e,
+          data,
+        });
       })
       .catch((error) => {
         console.error(error);
@@ -103,7 +128,14 @@ const MainView = (props) => {
         .then((json) => {
           var data = JSON.parse(JSON.stringify(json));
           props.setProduct(data.data);
-          navigation.navigate('ListProducts');
+          var checklocal = route.params.checkLocal;
+          var latitude = route.params.location.latitude;
+          var longitude = route.params.location.longitude;
+          navigation.navigate('ListProducts', {
+            checklocal,
+            latitude,
+            longitude,
+          });
         })
         .catch((error) => {
           console.error(error);
@@ -322,6 +354,15 @@ const MainView = (props) => {
                   <Text style={styles.StyleText}>{t('Address')}: </Text>
                   <View style={styles.wrapperTextAddress}>
                     <Text style={styles.StyleText}>{e.Address}</Text>
+                  </View>
+                </View>
+
+                <View style={styles.wrapperRowScore}>
+                  <Text style={styles.StyleText}>{t('Distance')}: </Text>
+                  <View style={styles.wrapperTextAddress}>
+                    <Text style={styles.StyleText}>
+                      {handleGetDistance(e.X, e.Y) + ' KM'}
+                    </Text>
                   </View>
                 </View>
               </View>

@@ -14,6 +14,7 @@ import {useNavigation} from '@react-navigation/native';
 import {connect} from 'react-redux';
 
 import {deleteCart} from '../../../Redux/ActionCreators';
+import icRemove from '../../../Images/Icons/remove.png';
 const windowWidth = Dimensions.get('window').width;
 
 const windowHeight = Dimensions.get('window').height;
@@ -51,17 +52,14 @@ const About = (props) => {
                     height: 15,
                     alignSelf: 'flex-end',
                     width: 15,
-                    borderWidth: 1,
                     justifyContent: 'center',
                     alignItems: 'center',
-                    paddingBottom: '1%',
-                    borderRadius: 20,
-                    borderColor: '#009966',
+                    paddingBottom: '-1%',
                   }}
                   onPress={() => {
                     handleX(e.ID);
                   }}>
-                  <Text style={styles.TextBtnX}>x</Text>
+                  <Image source={icRemove} style={styles.wrapperImageRemove} />
                 </TouchableOpacity>
                 <View style={styles.wrapperinLine2}>
                   <Text style={styles.stylesText}>
@@ -158,6 +156,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
     fontWeight: 'bold',
     color: 'white',
+  },
+  wrapperImageRemove: {
+    height: 15,
+    width: 15,
   },
 });
 

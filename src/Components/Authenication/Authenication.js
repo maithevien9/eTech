@@ -33,6 +33,7 @@ const Authentication = (props) => {
           height: height / 8,
           backgroundColor: '#009966',
           padding: 13,
+          marginTop: 10,
         }}>
         <View style={styles.wrapper1}>
           <TouchableOpacity
@@ -127,7 +128,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
   },
   wrapperSectionButton: {
-    paddingTop: 300,
+    paddingTop: 268,
     paddingLeft: 20,
     paddingRight: 20,
 

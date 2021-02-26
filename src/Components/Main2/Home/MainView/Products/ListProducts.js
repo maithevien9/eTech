@@ -20,11 +20,15 @@ import icBox from '../../../../../Images/Icons/paper1.png';
 import SearchRecyclablesAPI from '../../../../../RestAPI/Recyclables/search-recyclable-api';
 import {setProduct} from '../../../../../Redux/ActionCreators';
 import GetRecyclablesDetailAPI from '../../../../../RestAPI/Recyclables/get-recyclable-detail-api';
+import {useRoute} from '@react-navigation/native';
+import {getDistance, getPreciseDistance} from 'geolib';
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const widthImageICSearch = (windowHeight * 0.5) / 10;
 const ListProducts = (props) => {
   const navigation = useNavigation();
+  const route = useRoute();
   const [dataCheckProduct, setDataCheckProduct] = useState(false);
   const [selectedValue1, setSelectedValue1] = useState('Đà Nẵng');
   const [selectedValue2, setSelectedValue2] = useState('Đà Nẵng');
@@ -213,6 +217,20 @@ const ListProducts = (props) => {
     return ts.toLocaleTimeString();
   };
 
+  const handleGetDistance = (X, Y) => {
+    if (route.params.checkLocal === true) {
+      return 0;
+    } else {
+      var pdis = getPreciseDistance(
+        {
+          latitude: route.params.latitude,
+          longitude: route.params.longitude,
+        },
+        {latitude: X, longitude: Y},
+      );
+      return pdis / 1000;
+    }
+  };
   return (
     <View style={styles.wrapperMain}>
       <View style={styles.WrapperSearch}>
@@ -285,6 +303,14 @@ const ListProducts = (props) => {
                   <Text style={styles.StyleText}>{t('Address')}: </Text>
                   <View style={styles.wrapperTextAddress}>
                     <Text style={styles.StyleText}>{e.Address}</Text>
+                  </View>
+                </View>
+                <View style={styles.wrapperRowScore}>
+                  <Text style={styles.StyleText}>{t('Distance')}: </Text>
+                  <View style={styles.wrapperTextAddress}>
+                    <Text style={styles.StyleText}>
+                      {handleGetDistance(e.X, e.Y) + ' KM'}
+                    </Text>
                   </View>
                 </View>
               </View>

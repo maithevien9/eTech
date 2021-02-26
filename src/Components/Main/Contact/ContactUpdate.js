@@ -59,17 +59,15 @@ const ContactUpdate = (props) => {
         .then((json) => {
           var data = JSON.parse(JSON.stringify(json));
           if (data.dataString === 'THANH_CONG') {
-            props.setInforUser([
-              {
-                ID: props.InforUser.ID,
-                Name: Name,
-                Address: Address,
-                X: latitude,
-                Y: longitude,
-                Phone: Phone,
-                IDdecentralization: props.InforUser.IDdecentralization,
-              },
-            ]);
+            props.setInforUser({
+              ID: props.InforUser.ID,
+              Name: Name,
+              Address: Address,
+              X: latitude,
+              Y: longitude,
+              Phone: Phone,
+              IDdecentralization: props.InforUser.IDdecentralization,
+            });
 
             Alert.alert(
               'Nofity',
@@ -78,7 +76,7 @@ const ContactUpdate = (props) => {
                 {
                   text: 'OK',
                   onPress: () => {
-                    navigation.replace('SelectRole');
+                    navigation.goBack();
                   },
                 },
               ],
@@ -152,10 +150,14 @@ const ContactUpdate = (props) => {
             },
           }}
           onPress={(data, details = null) => {
+            // 'details' is provided when fetchDetails = true
+     
             setAddress(data.description);
             setDataCheckMap(true);
             setlatitude(details.geometry.location.lat);
+          
             setlongitude(details.geometry.location.lng);
+            
             setZoomX(0.3);
             setZoomY(0.3);
           }}
@@ -163,6 +165,7 @@ const ContactUpdate = (props) => {
             key: 'AIzaSyAE8jGKDc99bqKIup4jFl_17OtQKoTkG_k',
             language: 'vn',
           }}
+          // predefinedPlaces={[homePlace, workPlace]}
         />
       </View>
       <View style={styles.wrapperInput}>

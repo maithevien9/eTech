@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
   wrapperMain1: {
     height: '15%',
-    marginTop: '27%',
+    marginTop: '26%',
   },
   wrapperMain2Parient: {
     height: '45%',
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
   },
   wrapperPlastic: {
-    marginTop: '2%',
+    marginTop: '10%',
     width: '96%',
     borderRadius: 40,
     marginLeft: '2%',
@@ -168,6 +168,10 @@ const styles = StyleSheet.create({
     borderColor: '#009966',
     height: '175%',
     width: '45%',
+    // eslint-disable-next-line no-dupe-keys
+    alignItems: 'center',
+    // eslint-disable-next-line no-dupe-keys
+    justifyContent: 'center',
     borderRadius: 15,
   },
   wrapperBottomPlastic: {
@@ -185,8 +189,7 @@ const styles = StyleSheet.create({
     borderStyle: 'dashed',
   },
   wrapperTextHeader2: {
-    marginLeft: '35%',
-
+    marginLeft: 50,
     width: '70%',
     fontSize: 13,
     fontFamily: 'Roboto',

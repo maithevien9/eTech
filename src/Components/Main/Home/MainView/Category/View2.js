@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   },
   wrapperMain1: {
     height: '15%',
-    marginTop: '27%',
+    marginTop: '26%',
   },
   wrapperMain2Parient: {
     height: '45%',
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
   },
   wrapperPlastic: {
-    marginTop: '2%',
+    marginTop: '10%',
     width: '96%',
     borderRadius: 40,
     marginLeft: '2%',
