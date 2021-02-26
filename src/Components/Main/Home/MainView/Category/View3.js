@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
   wrapperMain1: {
     height: '15%',
-    marginTop: '26%',
+    marginTop: '28%',
   },
   wrapperMain2Parient: {
     height: '45%',
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
   },
   wrapperPlastic: {
-    marginTop: '10%',
+    marginTop: '7%',
     width: '96%',
     borderRadius: 40,
     marginLeft: '2%',
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderWidth: 1,
     borderColor: '#009966',
-    height: '175%',
+    height: 150,
     width: '45%',
     // eslint-disable-next-line no-dupe-keys
     alignItems: 'center',
