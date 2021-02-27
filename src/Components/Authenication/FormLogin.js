@@ -34,9 +34,9 @@ const FormLogin = (props) => {
             navigation.navigate('SelectRole');
           } else {
             Alert.alert(
-              'Thông Báo',
-              'Không thành công, vui lòng nhập lại',
-              [{text: 'Xác nhận'}],
+              `${t('Nofity')}`,
+              `${t('UnsuccessfulPleaseReEnter')}`,
+              [{text: `${t('confirm')}`}],
               {cancelable: false},
             );
           }
@@ -44,8 +44,8 @@ const FormLogin = (props) => {
         .catch((error) => console.error(error));
     } else {
       Alert.alert(
-        'Thông Báo',
-        'Vui lòng nhập thông tin',
+        `${t('Nofity')}`,
+        `${t('PleaseEnterTheInformation')}`,
         [{text: 'Xác nhận'}],
         {cancelable: false},
       );

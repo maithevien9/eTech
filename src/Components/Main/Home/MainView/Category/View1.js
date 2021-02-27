@@ -220,7 +220,7 @@ const View1 = (props) => {
             <TouchableOpacity
               style={styles.wrapperheader2Plactic}
               onPress={() => {
-                HandleRecyclables(1, 3000, '1/Kg', 'HDPE', icPlastic, HDPE);
+                HandleRecyclables(1, 4000, '1/Kg', 'HDPE', icPlastic, HDPE);
               }}>
               <Image source={icPlastic} style={styles.wrapperImage2} />
               <Text style={styles.wrapperTextHeader2}>HDPE</Text>
@@ -228,7 +228,7 @@ const View1 = (props) => {
             <TouchableOpacity
               style={styles.wrapperheader2Plactic}
               onPress={() => {
-                HandleRecyclables(2, 3000, '1/Kg', 'PET', icPlastic, PET);
+                HandleRecyclables(2, 4000, '1/Kg', 'PET', icPlastic, PET);
               }}>
               <Image source={icPlastic} style={styles.wrapperImage2} />
               <Text style={styles.wrapperTextHeader2}>PET</Text>

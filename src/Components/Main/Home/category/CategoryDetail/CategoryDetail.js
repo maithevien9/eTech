@@ -18,7 +18,7 @@ import {useTranslation} from 'react-i18next';
 import SaveDataCart from '../../.././../../AsyncStorage/SaveDataCart';
 
 const CategoryDetail = (props) => {
-  const [amount, setAmount] = React.useState();
+  const [amount, setAmount] = React.useState(0);
   const {t} = useTranslation();
   const route = useRoute();
   const navigation = useNavigation();
@@ -49,8 +49,8 @@ const CategoryDetail = (props) => {
       navigation.navigate('Main');
     } else {
       Alert.alert(
-        'Nofity',
-        'Vui lòng nhập số lượng',
+        `${t('Nofity')}`,
+        `${t('PleaseEnterTheNumberOf')}`,
         [
           {
             text: 'Cancel',
@@ -79,10 +79,10 @@ const CategoryDetail = (props) => {
           placeholder={route.params.Unit}
         />
       </View>
-      {/* <View style={styles.wrapperScore}>
+      <View style={styles.wrapperScore}>
         <Text style={styles.textMain}>{t('RedemptionPoint')}:</Text>
         <Text style={styles.textMain}>{amount * Score}</Text>
-      </View> */}
+      </View>
 
       <View style={styles.wrapperTextView}>
         <Text style={styles.TextStyleView}>

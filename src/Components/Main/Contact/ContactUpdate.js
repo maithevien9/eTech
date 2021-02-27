@@ -40,8 +40,8 @@ const ContactUpdate = (props) => {
   const handleUpdate = () => {
     if (latitude === 21.0277644 || longitude === 105.8341598) {
       Alert.alert(
-        'Nofity',
-        'Vui lòng nhập địa chỉ',
+        `${t('Nofity')}`,
+        `${t('PleaseEnterTheInformation')}`,
         [{text: 'OK', onPress: () => console.log('?')}],
         {
           cancelable: false,
@@ -70,8 +70,8 @@ const ContactUpdate = (props) => {
             });
 
             Alert.alert(
-              'Nofity',
-              'Thanh Cong',
+              `${t('Nofity')}`,
+              `${t('Success')}`,
               [
                 {
                   text: 'OK',
@@ -151,13 +151,13 @@ const ContactUpdate = (props) => {
           }}
           onPress={(data, details = null) => {
             // 'details' is provided when fetchDetails = true
-     
+
             setAddress(data.description);
             setDataCheckMap(true);
             setlatitude(details.geometry.location.lat);
-          
+
             setlongitude(details.geometry.location.lng);
-            
+
             setZoomX(0.3);
             setZoomY(0.3);
           }}

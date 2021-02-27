@@ -21,8 +21,8 @@ const FormRegister = (props) => {
           var Data = json;
           if (Data.dataString === 'THANH_CONG') {
             Alert.alert(
-              'Nofity',
-              'SUCCESS',
+              `${t('Nofity')}`,
+              `${t('Success')}`,
               [
                 {
                   text: 'Cancel',
@@ -35,8 +35,8 @@ const FormRegister = (props) => {
             );
           } else {
             Alert.alert(
-              'Nofity',
-              'Register not Success',
+              `${t('Nofity')}`,
+              `${t('UnsuccessfulPleaseReEnter')}`,
               [
                 {
                   text: 'Cancel',
@@ -54,8 +54,8 @@ const FormRegister = (props) => {
         });
     } else {
       Alert.alert(
-        'Nofity',
-        'Please Input Text Again',
+        `${t('Nofity')}`,
+        `${t('PleaseEnterTheInformation')}`,
         [
           {
             text: 'Cancel',

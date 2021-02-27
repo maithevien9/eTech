@@ -21,7 +21,7 @@ const SelectRole = (props) => {
     Geolocation.getCurrentPosition(
       (position) => {
         const {latitude, longitude} = position.coords;
-       
+
         setCheckLocal(false);
         setLocation({
           latitude,
@@ -37,7 +37,6 @@ const SelectRole = (props) => {
 
   useEffect(() => {
     async function getDataLogin() {
-      
       GetInforUser(props.dataLogin.token)
         .then((json) => {
           var InforUser = JSON.parse(JSON.stringify(json));
@@ -51,7 +50,7 @@ const SelectRole = (props) => {
     getDataLogin();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, props.dataLogin.token);
+  }, [props.dataLogin.token]);
 
   const handleSelect1 = () => {
     navigation.navigate('Main');

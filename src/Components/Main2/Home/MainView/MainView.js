@@ -392,8 +392,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   iconStyle: {
-    height: 23,
-    width: 23,
+    height: 18,
+    width: 18,
   },
   wrapperImageSearch: {
     backgroundColor: '#009966',

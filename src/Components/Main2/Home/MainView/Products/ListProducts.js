@@ -22,6 +22,7 @@ import {setProduct} from '../../../../../Redux/ActionCreators';
 import GetRecyclablesDetailAPI from '../../../../../RestAPI/Recyclables/get-recyclable-detail-api';
 import {useRoute} from '@react-navigation/native';
 import {getDistance, getPreciseDistance} from 'geolib';
+import GetRecyclablesFullAPI from '../../../../../RestAPI/Recyclables/get-recyclables-full-api';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -64,6 +65,26 @@ const ListProducts = (props) => {
       })
       .catch((error) => {
         console.error(error);
+      });
+  };
+  const handleSortPrice = () => {
+    var arr = props.Products.sort(function (a, b) {
+      return a.Price - b.Price;
+    });
+
+    props.setProduct(JSON.parse(JSON.stringify(arr)));
+  };
+  const handleSortTime = () => {
+    GetRecyclablesFull();
+  };
+  const GetRecyclablesFull = () => {
+    GetRecyclablesFullAPI()
+      .then((json) => {
+        var data = JSON.parse(JSON.stringify(json));
+        props.setProduct(data.data);
+      })
+      .catch((error) => {
+        console.error(error + 'fail');
       });
   };
   const HanldeAdress = () => {
@@ -151,7 +172,7 @@ const ListProducts = (props) => {
       </TouchableOpacity>
     </View>
   ) : (
-    <View></View>
+    <View />
   );
   const main2 = dataCheckProduct ? (
     <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
@@ -206,7 +227,7 @@ const ListProducts = (props) => {
       </TouchableOpacity>
     </View>
   ) : (
-    <View></View>
+    <View />
   );
   const convertDate = (date) => {
     var ts = new Date(date);
@@ -237,7 +258,7 @@ const ListProducts = (props) => {
         <TouchableOpacity
           style={styles.wrapperImageSearch}
           onPress={() => HandleSearch(textSearch)}>
-          <Image source={IcSearch} style={styles.iconStyle}></Image>
+          <Image source={IcSearch} style={styles.iconStyle} />
         </TouchableOpacity>
         <TextInput
           style={styles.WrapperTextSearch}
@@ -253,10 +274,14 @@ const ListProducts = (props) => {
             onPress={HanldeAdress}>
             <Text style={styles.TextCatogory}>{t('Address')}</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.wrapperCatogoryHeader}>
+          <TouchableOpacity
+            style={styles.wrapperCatogoryHeader}
+            onPress={handleSortTime}>
             <Text style={styles.TextCatogory}>{t('Time')}</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.wrapperCatogoryHeader}>
+          <TouchableOpacity
+            style={styles.wrapperCatogoryHeader}
+            onPress={handleSortPrice}>
             <Text style={styles.TextCatogory}>{t('Price')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -346,8 +371,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   iconStyle: {
-    height: 23,
-    width: 23,
+    height: 18,
+    width: 18,
   },
   wrapperImageSearch: {
     backgroundColor: '#009966',

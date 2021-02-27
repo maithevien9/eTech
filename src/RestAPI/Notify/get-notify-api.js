@@ -1,5 +1,5 @@
 const GetNotify = async (Token) => {
-  var url = `http://192.168.1.2:8001/GetNotify`;
+  var url = `http://192.168.1.157:8001/GetNotify`;
 
   return await fetch(url, {
     method: 'GET',

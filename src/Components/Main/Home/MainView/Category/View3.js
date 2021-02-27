@@ -34,7 +34,7 @@ const View2 = (props) => {
             <TouchableOpacity
               style={styles.wrapperheader2Plactic}
               onPress={() => {
-                HandleRecyclables(9, 3000, '1/Kg', t('Can'), metal1);
+                HandleRecyclables(9, 4000, '1/Kg', t('Can'), metal1);
               }}>
               <Image source={metal1} style={styles.wrapperImage2} />
               <Text style={styles.wrapperTextHeader2}>{t('Can')}</Text>
@@ -42,7 +42,7 @@ const View2 = (props) => {
             <TouchableOpacity
               style={styles.wrapperheader2Plactic}
               onPress={() => {
-                HandleRecyclables(9, 3000, '1/Kg', t('Scrap'), metal2);
+                HandleRecyclables(9, 4000, '1/Kg', t('Scrap'), metal2);
               }}>
               <Image source={metal2} style={styles.wrapperImage2} />
               <Text style={styles.wrapperTextHeader2}>{t('Scrap')}</Text>
@@ -57,7 +57,7 @@ const View2 = (props) => {
               onPress={() => {
                 HandleRecyclables(
                   10,
-                  3000,
+                  4000,
                   '1/Kg',
                   t('SprayBottleCakeBox'),
                   metal3,

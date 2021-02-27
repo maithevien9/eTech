@@ -39,9 +39,14 @@ const PackageDetailUpdate = (props) => {
             .catch((error) => {
               console.error(error);
             });
-          Alert.alert('Thông Báo', 'Thành công', [{text: 'Xác nhận'}], {
-            cancelable: false,
-          });
+          Alert.alert(
+            `${t('Nofity')}`,
+            `${t('Success')}`,
+            [{text: 'Xác nhận'}],
+            {
+              cancelable: false,
+            },
+          );
           navigation.replace('Main');
         } else {
         }

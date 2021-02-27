@@ -24,13 +24,21 @@ const About = (props) => {
   const HanleRecyBooking = () => {
     if (props.Cart.length == 0) {
       Alert.alert(
-        'Thông Báo',
-        'giỏ hàng hiện tại không có gì, vui lòng thêm sản phẩm vào giỏ hàng',
-        [{text: 'Xác nhận'}],
+        `${t('Nofity')}`,
+        `${t('NofityCart')}`,
+        [{text: `${t('confirm')}`}],
         {cancelable: false},
       );
     } else {
-      navigation.navigate('Sale');
+      var scoreData = 0;
+      props.Cart.map((e) => {
+        console.log(e.amount);
+        console.log(e.Score);
+        scoreData = scoreData + e.amount * e.Score;
+      });
+      console.log(scoreData);
+      var value = `${t('RecommendedPrice')} ${scoreData}`;
+      navigation.navigate('Sale', {value});
     }
   };
   const handleX = (ID) => {

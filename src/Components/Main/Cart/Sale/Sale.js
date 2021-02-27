@@ -23,21 +23,21 @@ const windowHeight = Dimensions.get('window').height;
 const Sale = (props) => {
   const {t} = useTranslation();
   var i = 0;
-  const [amount, setAmount] = React.useState(0);
+  const [amount, setAmount] = React.useState();
   const [Address, setAddress] = React.useState(
     props.InforUser.Address ? props.InforUser.Address : '',
   );
   const [Phone, setPhone] = React.useState(
     props.InforUser.Phone ? props.InforUser.Phone : '',
   );
+
   const route = useRoute();
   const navigation = useNavigation();
-
   useEffect(() => {
     if (props.InforUser.Address === null || props.InforUser.Phone === null) {
       Alert.alert(
-        t('Nofity'),
-        t('PleaseUpdateUserInformation'),
+        `${t('Nofity')}`,
+        `${t('PleaseUpdateUserInformation')}`,
         [
           {
             text: 'Cancel',
@@ -49,7 +49,8 @@ const Sale = (props) => {
         {cancelable: false},
       );
     }
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const HanldeSale = () => {
     let ts = Date.now();
     let date_ob = new Date(ts);
@@ -75,15 +76,17 @@ const Sale = (props) => {
             'Tạo gói hàng thành công',
           );
           Alert.alert(
-            'Nofity',
-            'Thành Công',
+            `${t('Nofity')}`,
+            `${t('Success')}`,
             [{text: 'OK', onPress: () => navigation.replace('Main')}],
-            {cancelable: false},
+            {
+              cancelable: false,
+            },
           );
         } else {
           Alert.alert(
-            'Nofity',
-            'Không Thành Công',
+            `${t('Nofity')}`,
+            `${t('notSuccess')}`,
             [{text: 'OK', onPress: () => navigation.replace('Main')}],
             {cancelable: false},
           );
@@ -105,8 +108,10 @@ const Sale = (props) => {
           value={amount}
           keyboardType="numeric"
           style={styles.textInput}
+          placeholder={route.params.value}
         />
       </View>
+
       <View style={styles.wrapperMain}>
         <Text style={styles.textMain}>{t('Address')}</Text>
         <TextInput
@@ -215,8 +220,9 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderBottomWidth: 0.7,
     paddingLeft: 20,
+    paddingTop: 10,
     marginBottom: 15,
-    fontSize: 14,
+    fontSize: 12,
   },
   textMain: {
     fontSize: 12,

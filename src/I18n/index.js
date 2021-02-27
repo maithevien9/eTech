@@ -104,6 +104,14 @@ const resources = {
       Message: 'Message',
       Distance: 'Distance',
       PleaseUpdateUserInformation: 'Please update user information',
+      RecommendedPrice: 'Recommended price',
+      PleaseEnterTheNumberOf: 'Please enter the number of',
+      UnsuccessfulPleaseReEnter: 'Unsuccessful, please re-enter',
+      PleaseEnterTheInformation: 'Please enter the information',
+      NofityCart: 'Current cart is empty, please add product to cart',
+      Success: 'Success',
+      notSuccess: 'Not Success',
+      CheckBack: 'You have already added this product, please check back',
     },
   },
   vn: {
@@ -208,7 +216,16 @@ const resources = {
       Message: 'Nhắn tin',
       Distance: 'khoảng cách',
       PleaseUpdateUserInformation: 'Vui lòng cập nhập thông tin người dùng',
+      RecommendedPrice: 'Mức giá đề xuất',
+      PleaseEnterTheNumberOf: 'Vui lòng nhập số lượng',
+      UnsuccessfulPleaseReEnter: 'Không thành công, vui lòng nhập lại',
+      PleaseEnterTheInformation: 'Vui lòng nhập thông tin',
+      NofityCart:
+        'Giỏ hàng hiện tại không có gì, vui lòng thêm sản phẩm vào giỏ hàng',
     },
+    Success: 'Thành công',
+    notSuccess: ' Không Thành công',
+    CheckBack:"Bạn đã thêm sản phẩm này rồi, vui lòng kiểm tra lại",
   },
 };
 
