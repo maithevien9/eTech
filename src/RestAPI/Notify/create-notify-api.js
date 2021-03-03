@@ -1,5 +1,5 @@
 const CreateNotifyAPI = async (token, Name, Detail) => {
-  var url = 'http://192.168.1.157:8001/CreateNotify';
+  var url = 'https://ba-e-project2.herokuapp.com/CreateNotify';
 
   return await fetch(url, {
     method: 'POST',

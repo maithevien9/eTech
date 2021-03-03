@@ -24,8 +24,8 @@ const About = (props) => {
   const HanleRecyBooking = () => {
     if (props.Cart.length == 0) {
       Alert.alert(
-        `${t('Nofity')}`,
-        `${t('NofityCart')}`,
+        `${t('Notifi')}`,
+        `${t('NotifiCart')}`,
         [{text: `${t('confirm')}`}],
         {cancelable: false},
       );
@@ -37,7 +37,7 @@ const About = (props) => {
         scoreData = scoreData + e.amount * e.Score;
       });
       console.log(scoreData);
-      var value = `${t('RecommendedPrice')} ${scoreData}`;
+      var value = `${t('RecommendedPrice')} ${scoreData} VND`;
       navigation.navigate('Sale', {value});
     }
   };
@@ -70,9 +70,7 @@ const About = (props) => {
                   <Image source={icRemove} style={styles.wrapperImageRemove} />
                 </TouchableOpacity>
                 <View style={styles.wrapperinLine2}>
-                  <Text style={styles.stylesText}>
-                    {t('RecyclingName')}: {e.Name}
-                  </Text>
+                  <Text style={styles.stylesText}>{e.Name}</Text>
                 </View>
                 <Text style={styles.stylesText}>
                   {t('Amount')}: {e.amount}

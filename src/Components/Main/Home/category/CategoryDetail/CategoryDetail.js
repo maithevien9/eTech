@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   Text,
@@ -10,16 +10,16 @@ import {
   ScrollView,
 } from 'react-native';
 import icText from '../../../../../Images/Icons/recycle.png';
-import {useRoute} from '@react-navigation/native';
-import {useNavigation} from '@react-navigation/native';
-import {connect} from 'react-redux';
-import {addCart} from '../../../../../Redux/ActionCreators';
-import {useTranslation} from 'react-i18next';
+import { useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+import { connect } from 'react-redux';
+import { addCart } from '../../../../../Redux/ActionCreators';
+import { useTranslation } from 'react-i18next';
 import SaveDataCart from '../../.././../../AsyncStorage/SaveDataCart';
 
 const CategoryDetail = (props) => {
   const [amount, setAmount] = React.useState(0);
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const route = useRoute();
   const navigation = useNavigation();
   var ID = route.params.ID;
@@ -33,8 +33,8 @@ const CategoryDetail = (props) => {
       </View>
     ))
   ) : (
-    <View></View>
-  );
+      <View></View>
+    );
   const HandleCart = () => {
     if (amount != 0) {
       props.addCart(
@@ -49,23 +49,16 @@ const CategoryDetail = (props) => {
       navigation.navigate('Main');
     } else {
       Alert.alert(
-        `${t('Nofity')}`,
+        `${t('Notifi')}`,
         `${t('PleaseEnterTheNumberOf')}`,
-        [
-          {
-            text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
-            style: 'cancel',
-          },
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ],
-        {cancelable: false},
+        [{ text: `${t('confirm')}`, onPress: () => console.log('OK Pressed') }],
+        { cancelable: false },
       );
     }
   };
 
   return (
-    <View style={{alignItems: 'center'}}>
+    <View style={{ alignItems: 'center' }}>
       <View style={styles.wrapperHeader}>
         <Text style={styles.Textheader}>{t('DetailedGarbageRecycling')}</Text>
       </View>
@@ -81,7 +74,7 @@ const CategoryDetail = (props) => {
       </View>
       <View style={styles.wrapperScore}>
         <Text style={styles.textMain}>{t('RedemptionPoint')}:</Text>
-        <Text style={styles.textMain}>{amount * Score}</Text>
+        <Text style={styles.textMain}>{amount * Score} VND</Text>
       </View>
 
       <View style={styles.wrapperTextView}>
@@ -195,4 +188,4 @@ function mapStateToProps(state) {
     Cart: state.Cart,
   };
 }
-export default connect(mapStateToProps, {addCart})(CategoryDetail);
+export default connect(mapStateToProps, { addCart })(CategoryDetail);

@@ -4,7 +4,6 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Alert,
   Image,
   ScrollView,
 } from 'react-native';
@@ -34,7 +33,7 @@ const View2 = (props) => {
             <TouchableOpacity
               style={styles.wrapperheader2Plactic}
               onPress={() => {
-                HandleRecyclables(9, 4000, '1/Kg', t('Can'), metal1);
+                HandleRecyclables(8, 4000, '1/Kg', t('Can'), metal1);
               }}>
               <Image source={metal1} style={styles.wrapperImage2} />
               <Text style={styles.wrapperTextHeader2}>{t('Can')}</Text>

@@ -19,10 +19,14 @@ import {useTranslation} from 'react-i18next';
 import {setInforUser} from '../../../Redux/ActionCreators';
 const ContactUpdate = (props) => {
   const {t} = useTranslation();
-  const [Name, setName] = useState('');
+  const [Name, setName] = useState(
+    props.InforUser.Name ? props.InforUser.Name : '',
+  );
   const [Address, setAddress] = useState('/');
 
-  const [Phone, setPhone] = useState('');
+  const [Phone, setPhone] = useState(
+    props.InforUser.Phone ? props.InforUser.Phone : '',
+  );
 
   const navigation = useNavigation();
   const [latitude, setlatitude] = useState(21.0277644);
@@ -40,9 +44,9 @@ const ContactUpdate = (props) => {
   const handleUpdate = () => {
     if (latitude === 21.0277644 || longitude === 105.8341598) {
       Alert.alert(
-        `${t('Nofity')}`,
+        `${t('Notifi')}`,
         `${t('PleaseEnterTheInformation')}`,
-        [{text: 'OK', onPress: () => console.log('?')}],
+        [{text: `${t('confirm')}`, onPress: () => console.log('?')}],
         {
           cancelable: false,
         },
@@ -70,11 +74,11 @@ const ContactUpdate = (props) => {
             });
 
             Alert.alert(
-              `${t('Nofity')}`,
+              `${t('Notifi')}`,
               `${t('Success')}`,
               [
                 {
-                  text: 'OK',
+                  text: `${t('confirm')}`,
                   onPress: () => {
                     navigation.goBack();
                   },

@@ -1,13 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Alert,
-  Image,
-  ScrollView,
-} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
 

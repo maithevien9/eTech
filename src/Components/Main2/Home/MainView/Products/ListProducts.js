@@ -312,7 +312,7 @@ const ListProducts = (props) => {
                 </View>
                 <View style={styles.wrapperRowScore}>
                   <Text style={styles.StyleText}>{t('Price')}: </Text>
-                  <Text style={styles.StyleText}>{e.Price}</Text>
+                  <Text style={styles.StyleText}>{e.Price} VND</Text>
                 </View>
                 <View style={styles.wrapperRowScore}>
                   <Text style={styles.StyleText}>{t('Time')}: </Text>

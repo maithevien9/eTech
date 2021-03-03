@@ -13,8 +13,8 @@ const CartReducer = (state = Cart, action) => {
     });
     if (temp == 0) {
       Alert.alert(
-        'Nofity',
-        'Thành Công',
+        'Thành công / Success',
+        ' ',
         [
           {
             text: 'Cancel',
@@ -37,8 +37,8 @@ const CartReducer = (state = Cart, action) => {
       ].concat(state);
     } else {
       Alert.alert(
-        'Nofity',
-        'Bạn đã thêm rồi, vui lòng kiểm tra lại',
+        ' ',
+        'Bạn đã thêm rồi, vui lòng kiểm tra lại / You have already added it, please check back ',
         [
           {
             text: 'Cancel',

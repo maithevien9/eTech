@@ -40,9 +40,9 @@ const PackageDetailUpdate = (props) => {
               console.error(error);
             });
           Alert.alert(
-            `${t('Nofity')}`,
+            `${t('Notifi')}`,
             `${t('Success')}`,
-            [{text: 'Xác nhận'}],
+            [{text: `${t('confirm')}`}],
             {
               cancelable: false,
             },
@@ -67,9 +67,7 @@ const PackageDetailUpdate = (props) => {
               <Image source={imageRecy} style={styles.wrapperImage} />
               <View style={styles.wrapperText}>
                 <View style={styles.wrapperinLine2}>
-                  <Text style={styles.stylesText}>
-                    {t('RecyclingName')}: {e.NameProduct}
-                  </Text>
+                  <Text style={styles.stylesText}>{e.NameProduct}</Text>
                 </View>
                 <Text style={styles.stylesText}>
                   {t('Amount')}: {e.amount}

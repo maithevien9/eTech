@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Text, Image, StyleSheet } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
 import icFace from '../../Images/Icons/face2.png';
 import icFace2 from '../../Images/Icons/face.png';
@@ -13,15 +13,15 @@ import Contact from '../Main/Contact/Contact';
 import Notify from '../Main/Notify/NotifyView';
 import Home from './Home/Home';
 import PackageOnSale from './Home/Menu/PackageOnSale';
-import {connect} from 'react-redux';
-import {useTranslation} from 'react-i18next';
+import { connect } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import GetHistoryRecyclablesAPI from '../../RestAPI/Recyclables/get-history-recyclables';
-import {setHistoryReducer} from '../../Redux/ActionCreators';
+import { setHistoryReducer } from '../../Redux/ActionCreators';
 import GetNotify from '../../RestAPI/Notify/get-notify-api';
-import {setdataNotify} from '../../Redux/ActionCreators';
+import { setdataNotify } from '../../Redux/ActionCreators';
 const Main2 = (props) => {
   const [selectedTab, setSelectedTab] = React.useState('home');
-  const {t, i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
   const HandleSelectContact = () => {
     setSelectedTab('Contact');
   };
@@ -50,7 +50,7 @@ const Main2 = (props) => {
       });
   };
   return (
-    <TabNavigator tabBarStyle={{height: 53}}>
+    <TabNavigator tabBarStyle={{ height: 53 }}>
       <TabNavigator.Item
         selected={selectedTab === 'home'}
         title={t('Home')}
@@ -77,7 +77,7 @@ const Main2 = (props) => {
       </TabNavigator.Item>
       <TabNavigator.Item
         selected={selectedTab === 'Notify'}
-        title={t('Nofity')}
+        title={t('Notifi')}
         titleStyle={styles.tabTitle}
         renderIcon={() => (
           <Image source={icNote2} style={styles.wrapperImage} />
@@ -103,7 +103,7 @@ const Main2 = (props) => {
   );
 };
 const styles = StyleSheet.create({
-  wrapperImage: {height: 23, width: 23},
+  wrapperImage: { height: 23, width: 23 },
   tabTitle: {
     fontSize: 10,
     fontFamily: 'Roboto',
@@ -116,6 +116,6 @@ function mapStateToProps(state) {
     Cart: state.Cart,
   };
 }
-export default connect(mapStateToProps, {setHistoryReducer, setdataNotify})(
+export default connect(mapStateToProps, { setHistoryReducer, setdataNotify })(
   Main2,
 );

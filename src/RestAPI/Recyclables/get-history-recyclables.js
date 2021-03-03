@@ -1,5 +1,5 @@
 const GetHistoryRecyclablesAPI = async (Token, status) => {
-  var url = `http://192.168.1.157:8001/GetRycyclables/${status}`;
+  var url = `https://ba-e-project2.herokuapp.com/GetRycyclables/${status}`;
   return await fetch(url, {
     method: 'GET',
     headers: {

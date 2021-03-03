@@ -56,7 +56,7 @@ const HistoryRecyclables = (props) => {
                 <View style={styles.wrapperRowGift}>
                   <Text style={styles.StyleText}>{t('Status')}: </Text>
                   <View>
-                    <Text style={styles.StyleText}>{t('Pending')}</Text>
+                    <Text style={styles.StyleText}>{t('Sold')}</Text>
                   </View>
                 </View>
                 <TouchableOpacity

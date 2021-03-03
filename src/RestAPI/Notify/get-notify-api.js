@@ -1,5 +1,5 @@
 const GetNotify = async (Token) => {
-  var url = `http://192.168.1.157:8001/GetNotify`;
+  var url = `https://ba-e-project2.herokuapp.com/GetNotify`;
 
   return await fetch(url, {
     method: 'GET',

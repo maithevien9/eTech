@@ -46,12 +46,12 @@ const Loading = (props) => {
         }
       }
       getDataLogin();
-    }, 1500);
+    }, 100);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <View style={styles.wrapper}>
-      <Text style={styles.StyleText}>ETECH DREAME TEAM</Text>
+      <Text style={styles.StyleText}>ETECH DREAM TEAM</Text>
     </View>
   );
 };

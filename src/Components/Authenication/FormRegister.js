@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -8,12 +8,12 @@ import {
   Alert,
 } from 'react-native';
 import registerAPI from '../../RestAPI/User/register-api';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 const FormRegister = (props) => {
   const [user, setuser] = useState('');
   const [mk, setmk] = useState('');
   const [mk2, setmk2] = useState('');
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const HandleRegister = () => {
     if (mk === mk2 && user !== '' && mk !== '') {
       registerAPI(user, mk)
@@ -21,31 +21,27 @@ const FormRegister = (props) => {
           var Data = json;
           if (Data.dataString === 'THANH_CONG') {
             Alert.alert(
-              `${t('Nofity')}`,
+              `${t('Notifi')}`,
               `${t('Success')}`,
               [
                 {
-                  text: 'Cancel',
-                  onPress: () => console.log('Cancel Pressed'),
-                  style: 'cancel',
+                  text: `${t('confirm')}`,
+                  onPress: () => console.log('OK Pressed'),
                 },
-                {text: 'OK', onPress: () => console.log('OK Pressed')},
               ],
-              {cancelable: false},
+              { cancelable: false },
             );
           } else {
             Alert.alert(
-              `${t('Nofity')}`,
+              `${t('Notifi')}`,
               `${t('UnsuccessfulPleaseReEnter')}`,
               [
                 {
-                  text: 'Cancel',
-                  onPress: () => console.log('Cancel Pressed'),
-                  style: 'cancel',
+                  text: `${t('confirm')}`,
+                  onPress: () => console.log('OK Pressed'),
                 },
-                {text: 'OK', onPress: () => console.log('OK Pressed')},
               ],
-              {cancelable: false},
+              { cancelable: false },
             );
           }
         })
@@ -54,17 +50,10 @@ const FormRegister = (props) => {
         });
     } else {
       Alert.alert(
-        `${t('Nofity')}`,
+        `${t('Notifi')}`,
         `${t('PleaseEnterTheInformation')}`,
-        [
-          {
-            text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
-            style: 'cancel',
-          },
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ],
-        {cancelable: false},
+        [{ text: `${t('confirm')}`, onPress: () => console.log('OK Pressed') }],
+        { cancelable: false },
       );
     }
   };

@@ -1,5 +1,5 @@
 const registerAPI = async (User, PassWord) => {
-  var url = 'http://192.168.1.157:8001/Register';
+  var url = 'https://ba-e-project2.herokuapp.com/Register';
   return await fetch(url, {
     method: 'POST',
     headers: {

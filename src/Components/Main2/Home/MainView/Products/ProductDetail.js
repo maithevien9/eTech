@@ -76,7 +76,7 @@ const ProductDetail = (props) => {
         <View style={styles.wrapperInforProductInLine}>
           <Text style={styles.styleTextInforProduct}>{t('Price')}: </Text>
           <Text style={styles.styleTextInforProduct}>
-            {route.params.e.Price}
+            {route.params.e.Price} VND
           </Text>
         </View>
         <View style={styles.wrapperInforProductInLine}>
@@ -96,7 +96,7 @@ const ProductDetail = (props) => {
         </View>
         <View style={styles.wrapperInforProductInLine}>
           <Text style={styles.styleTextInforProduct}>{t('Address')}: </Text>
-          <Text style={styles.styleTextInforProduct}>
+          <Text style={styles.styleTextInforProductAddress}>
             {route.params.e.Address}
           </Text>
         </View>
@@ -254,13 +254,17 @@ const styles = StyleSheet.create({
   styleTextInforProduct: {
     fontSize: 12,
     fontFamily: 'Roboto',
-
+    color: 'black',
+  },
+  styleTextInforProductAddress: {
+    width: '80%',
+    fontSize: 12,
+    fontFamily: 'Roboto',
     color: 'black',
   },
   wrapperBtnDetail: {
     height: windowHeight / 15,
     width: '30%',
-
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,

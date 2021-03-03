@@ -1,5 +1,5 @@
 const LoginAPI = async (user, password) => {
-  var url = 'http://192.168.1.157:8001/Login';
+  var url = 'https://ba-e-project2.herokuapp.com/Login';
 
   return await fetch(url, {
     method: 'POST',

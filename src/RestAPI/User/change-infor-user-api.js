@@ -1,5 +1,5 @@
 const ChangInforUser = async (Token, Name, Address, Phone, X, Y) => {
-  var url = 'http://192.168.1.157:8001/ChangInfor';
+  var url = 'https://ba-e-project2.herokuapp.com/ChangInfor';
 
   return await fetch(url, {
     method: 'PUT',

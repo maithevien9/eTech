@@ -60,7 +60,7 @@ const NotifyView = (props) => {
   return (
     <ScrollView>
       <View style={styles.wrapperHeader}>
-        <Text style={styles.textStyleHeader}>{t('Nofity')}</Text>
+        <Text style={styles.textStyleHeader}>{t('Notifi')}</Text>
       </View>
       {/* <View style={styles.wrapperMain2}> */}
       {/* <View style={{height: 4, backgroundColor: '#FFFFFF'}}></View> */}
@@ -79,7 +79,7 @@ const NotifyView = (props) => {
               </View>
               <View style={{width: 350, marginLeft: 20}}>
                 <View style={{width: '85%'}}>
-                  <Text style={styles.wrapperTextInNotify}>{e.Name}</Text>
+                  <Text style={styles.wrapperTextInNotify}>{t('Package')}</Text>
                 </View>
                 <View style={{width: '85%'}}>
                   <Text style={styles.wrapperTextInNotify2}>{e.Detail}</Text>

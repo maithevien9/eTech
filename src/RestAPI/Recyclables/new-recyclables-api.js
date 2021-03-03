@@ -5,7 +5,7 @@ const NewRecyclablesAPI = async (
   Phone,
   InforRecyclable,
 ) => {
-  var url = 'http://192.168.1.157:8001/NewRecyclables';
+  var url = 'https://ba-e-project2.herokuapp.com/NewRecyclables';
 
   return await fetch(url, {
     method: 'POST',

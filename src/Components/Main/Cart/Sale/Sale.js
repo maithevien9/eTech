@@ -36,15 +36,13 @@ const Sale = (props) => {
   useEffect(() => {
     if (props.InforUser.Address === null || props.InforUser.Phone === null) {
       Alert.alert(
-        `${t('Nofity')}`,
+        `${t('Notifi')}`,
         `${t('PleaseUpdateUserInformation')}`,
         [
           {
-            text: 'Cancel',
-            onPress: () => navigation.goBack(),
-            style: 'cancel',
+            text: `${t('confirm')}`,
+            onPress: () => navigation.navigate('ContactUpdate'),
           },
-          {text: 'OK', onPress: () => navigation.navigate('ContactUpdate')},
         ],
         {cancelable: false},
       );
@@ -64,37 +62,61 @@ const Sale = (props) => {
 
     var dateTime =
       year + '-' + month + '-' + date + ' ' + hour + ':' + min + ':' + sec;
-
-    NewRecyclablesAPI(props.dataLogin.token, amount, Address, Phone, props.Cart)
-      .then((json) => {
-        var data = JSON.parse(JSON.stringify(json));
-        if (data.dataString === 'THANH_CONG') {
-          props.setCart([]);
-          CreateNotifyAPI(
-            props.dataLogin.token,
-            'Gói Hàng',
-            'Tạo gói hàng thành công',
-          );
-          Alert.alert(
-            `${t('Nofity')}`,
-            `${t('Success')}`,
-            [{text: 'OK', onPress: () => navigation.replace('Main')}],
-            {
-              cancelable: false,
-            },
-          );
-        } else {
-          Alert.alert(
-            `${t('Nofity')}`,
-            `${t('notSuccess')}`,
-            [{text: 'OK', onPress: () => navigation.replace('Main')}],
-            {cancelable: false},
-          );
-        }
-      })
-      .catch((error) => {
-        console.error(error + 'fail');
-      });
+    if (amount && Address && Phone) {
+      NewRecyclablesAPI(
+        props.dataLogin.token,
+        amount,
+        Address,
+        Phone,
+        props.Cart,
+      )
+        .then((json) => {
+          var data = JSON.parse(JSON.stringify(json));
+          if (data.dataString === 'THANH_CONG') {
+            props.setCart([]);
+            CreateNotifyAPI(
+              props.dataLogin.token,
+              'Gói Hàng',
+              'Tạo gói hàng thành công',
+            );
+            Alert.alert(
+              `${t('Notifi')}`,
+              `${t('Success')}`,
+              [
+                {
+                  text: `${t('confirm')}`,
+                  onPress: () => navigation.replace('Main'),
+                },
+              ],
+              {
+                cancelable: false,
+              },
+            );
+          } else {
+            Alert.alert(
+              `${t('Notifi')}`,
+              `${t('notSuccess')}`,
+              [
+                {
+                  text: `${t('confirm')}`,
+                  onPress: () => navigation.replace('Main'),
+                },
+              ],
+              {cancelable: false},
+            );
+          }
+        })
+        .catch((error) => {
+          console.error(error + 'fail');
+        });
+    } else {
+      Alert.alert(
+        `${t('Notifi')}`,
+        `${t('PleaseUpdateUserInformation')}`,
+        [{text: `${t('confirm')}`}],
+        {cancelable: false},
+      );
+    }
   };
   return (
     <View>
@@ -102,7 +124,7 @@ const Sale = (props) => {
         <Text style={styles.Textheader}>{t('PackagePostSales')}</Text>
       </View>
       <View style={styles.wrapperMain}>
-        <Text style={styles.textMain}>{t('Price')}</Text>
+        <Text style={styles.textMain}>{t('Price')} (VND)</Text>
         <TextInput
           onChangeText={(text) => setAmount(text)}
           value={amount}
@@ -150,7 +172,7 @@ const Sale = (props) => {
               <Text style={styles.stylesText}>{e.Name}</Text>
             </View>
             <View style={styles.stylesAmount}>
-              <Text style={styles.stylesText}>{e.amount}</Text>
+              <Text style={styles.stylesText}>{e.amount} /Kg</Text>
             </View>
           </View>
         ))}

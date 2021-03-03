@@ -6,7 +6,6 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
-  Alert,
 } from 'react-native';
 
 import {Dimensions} from 'react-native';
@@ -36,9 +35,7 @@ const PackageDetail = (props) => {
               <Image source={imageRecy} style={styles.wrapperImage} />
               <View style={styles.wrapperText}>
                 <View style={styles.wrapperinLine2}>
-                  <Text style={styles.stylesText}>
-                    {t('RecyclingName')}: {e.NameProduct}
-                  </Text>
+                  <Text style={styles.stylesText}>{e.NameProduct}</Text>
                 </View>
                 <Text style={styles.stylesText}>
                   {t('Amount')}: {e.amount}
